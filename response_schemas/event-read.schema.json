@@ -143,6 +143,41 @@
                 }
             }
 	   },
+       "genres": {
+            "description": "The genre(s) this event is found under",
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "tickets": {
+            "description": "The genre(s) this event is found under",
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "supplier": {
+
+                    },
+                    "price": {
+
+                    },
+                    "dateTime": {
+
+                    },
+                    "url": {
+
+                    },
+                    "onSaleFrom": {
+
+                    },
+                    "onSaleUntil": {
+
+                    }
+                },
+                "required": ["supplier", "price", "dateTime", "onSaleUntil"]
+            }
+        },
         "webLink": {
             "description": "URL for the web page for the event on ents24.com",
             "type": "string"

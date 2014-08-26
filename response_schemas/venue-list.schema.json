@@ -18,6 +18,10 @@
     			"description": "Town or city where the venue is located",
     			"type": "string"
     		},
+            "county": {
+                "description": "The county where the venue is located",
+                "type": "string"
+            },
 	        "location": {
 	            "description": "Lat/Lon coordinates of the venue",
 	            "$ref": "http://json-schema.org/geo"

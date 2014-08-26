@@ -94,10 +94,6 @@
                     "endDateTime": {
                         "description": "RFC-3339 formatted end date and time the event",
                         "type": "string"
-                    },
-                    "summary": {
-                        "description": "Summarised description text for an event",
-                        "type": "string"
                     }
                 },
                 "required": ["id","title","startDateTime","endDateTime"]

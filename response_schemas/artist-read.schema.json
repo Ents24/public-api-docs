@@ -63,7 +63,7 @@
                     }
 
                 },
-                "required": ["id","title","startDateTime","endDateTime"]
+                "required": ["id", "title", "startDateTime", "endDateTime"]
             }
         },
 	    "image": {
@@ -144,7 +144,7 @@
                 }
             }
         },
-        "genre": {
+        "genres": {
             "description": "The genre(s) the artist is found under",
             "type": "array",
             "items": {
