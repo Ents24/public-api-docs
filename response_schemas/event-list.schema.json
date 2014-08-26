@@ -1,0 +1,93 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "Event Collection",
+    "description": "A list of Event objects with selected fields",
+    "type": "array",
+    "items": {
+    	"type": "object",
+    	"properties": {
+    		"id": {
+	    		"description": "Unique identifier for the event",
+	    		"type": "string"
+	    	},
+	    	"title": {
+	            "description": "Title of the event",
+	            "type": "string"
+	        },
+	        "venue": {
+	        	"description": "Venue the event is being held at",
+	        	"type": "object",
+	            "properties": {
+	                "id": {
+	                    "description": "Unique identifier for the venue",
+	                    "type": "string"
+	                },
+	                "name": {
+	                    "description": "Name of the venue",
+	                    "type": "string"
+	                },
+	                "town": {
+		    			"description": "Town or city where the venue is located",
+		    			"type": "string"
+		    		},
+	                "location": {
+	                    "description": "Lat/Lon coordinates of the venue",
+	                    "$ref": "http://json-schema.org/geo"
+	                }
+	            },
+	            "required": ["id", "name", "town"]
+	        },
+	        "startDateTime": {
+	        	"description": "RFC-3339 formatted start date and time the event",
+	        	"type": "string"
+	        },
+	        "endDateTime": {
+	        	"description": "RFC-3339 formatted end date and time the event",
+	        	"type": "string"
+	        },
+	        "description": {
+	        	"description": "Description text for the event",
+	        	"type": "string"
+	        },
+	        "image": {
+	            "description": "Single image asset for the event",
+	            "type": "object",
+                "properties": {
+                    "url": {
+                        "description": "Image source URL",
+                        "type": "string"
+                    },
+                    "width": {
+                        "description": "Image width",
+                        "type": "integer"
+                    },
+                    "height": {
+                        "description": "Image height",
+                        "type": "integer"
+                    },
+                    "metadata": {
+                        "description": "Metadata related to this image",
+                        "type": "object",
+                        "properties": {
+                            "copyright": {
+                                "description": "The copyright holder for this image",
+                                "type": "string"
+                            },
+                            "caption": {
+                                "description": "Caption text for this image",
+                                "type": "string"
+                            }
+                        },
+                        "required": ["copyright", "caption"]
+                    }
+                },
+                "required": ["metadata", "url", "width", "height"]
+		   	},
+            "webLink": {
+                "description": "URL for the web page for the event on ents24.com",
+                "type": "string"
+            }
+    	},
+    	"required": ["id", "title", "startDateTime", "endDateTime", "description", "webLink"]
+    }
+}

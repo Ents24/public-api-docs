@@ -1,0 +1,61 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "Artist Collection",
+    "description": "A list of Artist objects with selected fields",
+    "type": "array",
+    "items": {
+    	"type": "object",
+    	"properties": {
+    		"id": {
+	    		"description": "Unique identifier for the artist",
+	    		"type": "string"
+	    	},
+	    	"name": {
+	            "description": "Name of the artist",
+	            "type": "string"
+        	},
+	        "description": {
+	        	"description": "Description text for the artist",
+	        	"type": "string"
+	        },
+	        "image": {
+                "description": "Single image asset for the artist",
+                "type": "object",
+                "properties": {
+                    "url": {
+                        "description": "Image source URL",
+                        "type": "string"
+                    },
+                    "width": {
+                        "description": "Image width",
+                        "type": "integer"
+                    },
+                    "height": {
+                        "description": "Image height",
+                        "type": "integer"
+                    },
+                    "metadata": {
+                        "description": "Metadata related to this image",
+                        "type": "object",
+                        "properties": {
+                            "copyright": {
+                                "description": "The copyright holder for this image",
+                                "type": "string"
+                            },
+                            "caption": {
+                                "description": "Caption text for this image",
+                                "type": "string"
+                            }
+                        },
+                        "required": ["copyright", "caption"]
+                    }
+                }
+            },
+            "webLink": {
+                "description": "URL for the web page for the artist on ents24.com",
+                "type": "string"
+            }
+    	},
+    	"required": ["id", "name", "description", "webLink"]
+    }
+}

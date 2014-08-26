@@ -1,0 +1,160 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "Artist",
+    "description": "A single Artist object with all fields",
+    "type": "object",
+    "properties": {
+    	"id": {
+    		"description": "Unique identifier for the artist",
+    		"type": "string"
+    	},
+    	"name": {
+            "description": "Name of the artist",
+            "type": "string"
+        },
+        "description": {
+        	"description": "Description text for the artist",
+        	"type": "string"
+        },
+        "events": {
+        	"description": "Artists upcoming events",
+        	"type": "array",
+        	"items": {
+                "type": "object",
+                "properties": {
+                	"id": {
+                        "description": "Unique identifier for the event",
+                        "type": "string"
+                    },
+                    "title": {
+                        "description": "Title of the event",
+                        "type": "string"
+                    },
+                    "venue": {
+                        "description": "Venue the event is being held at",
+                        "type": "object",
+                        "properties": {
+                            "id": {
+                                "description": "Unique identifier for the venue",
+                                "type": "string"
+                            },
+                            "name": {
+                                "description": "Name of the venue",
+                                "type": "string"
+                            },
+                            "town": {
+                                "description": "Town or city where the venue is located",
+                                "type": "string"
+                            },
+                            "location": {
+                                "description": "Lat/Lon coordinates of the venue",
+                                "$ref": "http://json-schema.org/geo"
+                            }
+                        },
+                        "required": ["id","name","location"]
+                    },
+                    "startDateTime": {
+                        "description": "RFC-3339 formatted start date and time the event",
+                        "type": "string"
+                    },
+                    "endDateTime": {
+                        "description": "RFC-3339 formatted end date and time the event",
+                        "type": "string"
+                    }
+
+                },
+                "required": ["id","title","startDateTime","endDateTime"]
+            }
+        },
+	    "image": {
+            "description": "Multiple image assets for the artist",
+            "type": "object",
+            "properties": {
+                "small": {
+                    "description": "Small sized image",
+                    "type": "object",
+                    "properties": {
+                        "url": {
+                            "description": "Image source URL",
+                            "type": "string"
+                        },
+                        "width": {
+                            "description": "Image width",
+                            "type": "integer"
+                        },
+                        "height": {
+                            "description": "Image height",
+                            "type": "integer"
+                        }
+                    },
+                    "required": ["url", "width", "height"]
+                },
+                "medium": {
+                    "description": "Medium sized image",
+                    "type": "object",
+                    "properties": {
+                        "url": {
+                            "description": "Image source URL",
+                            "type": "string"
+                        },
+                        "width": {
+                            "description": "Image width",
+                            "type": "integer"
+                        },
+                        "height": {
+                            "description": "Image height",
+                            "type": "integer"
+                        }
+                    },
+                    "required": ["url", "width", "height"]
+                },
+                "large": {
+                    "description": "Medium sized image",
+                    "type": "object",
+                    "properties": {
+                        "url": {
+                            "description": "Image source URL",
+                            "type": "string"
+                        },
+                        "width": {
+                            "description": "Image width",
+                            "type": "integer"
+                        },
+                        "height": {
+                            "description": "Image height",
+                            "type": "integer"
+                        }
+                    },
+                    "required": ["url", "width", "height"]
+                },
+                "metadata": {
+                    "description": "Metadata related to this image",
+                    "type": "object",
+                    "properties": {
+                        "copyright": {
+                            "description": "The copyright holder for this image",
+                            "type": "string"
+                        },
+                        "caption": {
+                            "description": "Caption text for this image",
+                            "type": "string"
+                        }
+                    },
+                    "required": ["copyright", "caption"]
+                }
+            }
+        },
+        "genre": {
+            "description": "The genre(s) the artist is found under",
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "webLink": {
+            "description": "URL for the web page for the artist on ents24.com",
+            "type": "string"
+        }
+    },
+    "required": ["id", "name", "description", "webLink"]
+}
