@@ -6,7 +6,39 @@ The Ents24 REST API gives you easy access to the the UK's most comprehensive liv
 A horde of event-listing experts add over 10,000 new listings every week!  
 Easily use our data for your website or application.  
 
-Licensing [**terms and conditions**](https://www.ents24.com/developers/licensing) apply.
+Licensing terms and conditions apply.
+
+# Group Client Authentication
+In order to use the Ents24 public API you must first register as a developer, once you have your API client credentials you may use them to authenticate your requests to the API.
+
+### Request Access Token [/auth/token]
+To obtain an access token you must authenticate your client credentials with our authentication server.
+
+#### Auth Token [POST]
++ Request (application/x-www-form-urlencoded)
+
+    + Headers
+
+            Cache-Control: no-cache
+
+    + Body
+
+            client_id=aho0bVpKdFURaZ37tkYT&client_secret=uQmfyQsqeKfIMJg4FKQ9gi8cSLFXATpGFyBx038nHy
+
++ Response 200 (application/json)
+
+    + Headers
+
+            Date: Tue, 26 Aug 2014 08:00:00 GMT
+
+    + Body
+
+            {
+              access_token: "qnFqFAVw8pJMCF1z8tIMYoXwommArRmt9C08jIRA"
+              token_type: "Bearer"
+              expires: 1414317411
+              expires_in: 5184000
+            }
 
 # Group Event
 Available actions on the event resource.
