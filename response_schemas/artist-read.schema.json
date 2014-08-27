@@ -144,7 +144,7 @@
                 }
             }
         },
-        "genres": {
+        "genre": {
             "description": "The genre(s) the artist is found under",
             "type": "array",
             "items": {
