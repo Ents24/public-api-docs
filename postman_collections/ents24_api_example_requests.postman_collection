@@ -69,7 +69,7 @@
 		{
 			"id": "01ed8b87-4fb0-2897-586f-56607308e61d",
 			"headers": "Authorization: \n",
-			"url": "http://api.dev.ents24.com/venue/list?location=London",
+			"url": "https://api.ents24.com/venue/list?location=London",
 			"preRequestScript": "",
 			"pathVariables": {},
 			"method": "GET",
@@ -87,7 +87,7 @@
 		{
 			"id": "34ab90f0-899f-66a8-a407-344666421b95",
 			"headers": "Authorization: \n",
-			"url": "http://api.dev.ents24.com/venue/read?id=",
+			"url": "https://api.ents24.com/venue/read?id=",
 			"preRequestScript": "",
 			"pathVariables": {},
 			"method": "GET",
@@ -105,7 +105,7 @@
 		{
 			"id": "3ad150b3-4939-a419-30e3-a8c45be583d3",
 			"headers": "Authorization: \n",
-			"url": "http://api.dev.ents24.com/event/image?id=",
+			"url": "https://api.ents24.com/event/image?id=",
 			"preRequestScript": "",
 			"pathVariables": {},
 			"method": "GET",
@@ -123,7 +123,7 @@
 		{
 			"id": "53d1e12f-732d-5dd6-0833-5a7df6a69820",
 			"headers": "Authorization: \n",
-			"url": "http://api.dev.ents24.com/event/list?location=London&genre=theatre-shows",
+			"url": "https://api.ents24.com/event/list?location=London&genre=theatre-shows",
 			"preRequestScript": "",
 			"pathVariables": {},
 			"method": "GET",
@@ -141,7 +141,7 @@
 		{
 			"id": "5fc942c8-e07d-ccfb-86b2-a0996e877eee",
 			"headers": "Authorization: \n",
-			"url": "http://api.dev.ents24.com/event/genres",
+			"url": "https://api.ents24.com/event/genres",
 			"preRequestScript": "",
 			"pathVariables": {},
 			"method": "GET",
@@ -188,7 +188,7 @@
 		{
 			"id": "8a9d3ee8-548e-7d58-fdeb-85fd36a9ba65",
 			"headers": "Authorization: \n",
-			"url": "http://api.dev.ents24.com/event/list?location=Bristol&genre=music",
+			"url": "https://api.ents24.com/event/list?location=Bristol&genre=music",
 			"pathVariables": {},
 			"preRequestScript": "",
 			"method": "GET",
@@ -207,7 +207,7 @@
 		{
 			"id": "a27a6d86-d713-e1bc-e833-5f43ee217c10",
 			"headers": "Authorization: \n",
-			"url": "http://api.dev.ents24.com/artist/list?genre=rock",
+			"url": "https://api.ents24.com/artist/list?genre=rock",
 			"preRequestScript": "",
 			"pathVariables": {},
 			"method": "GET",
@@ -225,7 +225,7 @@
 		{
 			"id": "bd318167-cdc7-4d7b-b1fb-22b58b357bc2",
 			"headers": "Authorization: \n",
-			"url": "http://api.dev.ents24.com/artist/image?id=",
+			"url": "https://api.ents24.com/artist/image?id=",
 			"preRequestScript": "",
 			"pathVariables": {},
 			"method": "GET",
@@ -243,7 +243,7 @@
 		{
 			"id": "cfa885f0-89d6-b96e-eb1c-0d4f357df313",
 			"headers": "Authorization: \n",
-			"url": "http://api.dev.ents24.com/venue/image?id=",
+			"url": "https://api.ents24.com/venue/image?id=",
 			"preRequestScript": "",
 			"pathVariables": {},
 			"method": "GET",
@@ -261,7 +261,7 @@
 		{
 			"id": "f059d68a-d34d-a6fe-f328-68b7b2235175",
 			"headers": "Authorization: \n",
-			"url": "http://api.dev.ents24.com/event/read?id=",
+			"url": "https://api.ents24.com/event/read?id=",
 			"pathVariables": {},
 			"preRequestScript": "",
 			"method": "GET",
@@ -280,7 +280,7 @@
 		{
 			"id": "f91f3eac-b8a2-f4db-b775-3a9a1d810538",
 			"headers": "Authorization: \n",
-			"url": "http://api.dev.ents24.com/artist/read?id=",
+			"url": "https://api.ents24.com/artist/read?id=",
 			"preRequestScript": "",
 			"pathVariables": {},
 			"method": "GET",
