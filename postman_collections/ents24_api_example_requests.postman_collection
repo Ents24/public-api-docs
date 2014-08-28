@@ -159,7 +159,7 @@
 		{
 			"id": "71902bb1-c4bb-7409-ad43-5bbd5dec2400",
 			"headers": "",
-			"url": "https://api.dev.ents24.com/auth/token",
+			"url": "https://api.ents24.com/auth/token",
 			"preRequestScript": "",
 			"pathVariables": {},
 			"method": "POST",
