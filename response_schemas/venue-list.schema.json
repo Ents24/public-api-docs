@@ -1,73 +1,73 @@
 {
-    "$schema": "http://json-schema.org/draft-04/schema#",
-    "title": "Venue Collection",
-    "description": "A list of Venue objects with selected fields",
-    "type": "array",
-    "items": {
-    	"type": "object",
-    	"properties": {
-    		"id": {
-	    		"description": "Unique identifier for the venue",
-	    		"type": "string"
-	    	},
-	    	"name": {
-	            "description": "Name of the venue",
-	            "type": "string"
-	        },
-	        "town": {
-    			"description": "Town or city where the venue is located",
-    			"type": "string"
-    		},
-            "county": {
-                "description": "The county where the venue is located",
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Venue List",
+  "description": "A list of Venue objects with selected fields",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "description": "Unique identifier for the venue",
+        "type": "string"
+      },
+      "name": {
+        "description": "Name of the venue",
+        "type": "string"
+      },
+      "town": {
+        "description": "Town or city where the venue is located",
+        "type": "string"
+      },
+      "county": {
+        "description": "The county where the venue is located",
+        "type": "string"
+      },
+      "location": {
+        "description": "Lat/Lon coordinates of the venue",
+        "$ref": "http://json-schema.org/geo"
+      },
+      "description": {
+        "description": "Description text for the venue",
+        "type": "string"
+      },
+      "image": {
+        "description": "Single image asset for the venue",
+        "type": "object",
+        "properties": {
+          "url": {
+            "description": "Image source URL",
+            "type": "string"
+          },
+          "width": {
+            "description": "Image width",
+            "type": "integer"
+          },
+          "height": {
+            "description": "Image height",
+            "type": "integer"
+          },
+          "metadata": {
+            "description": "Metadata related to this image",
+            "type": "object",
+            "properties": {
+              "copyright": {
+                "description": "The copyright holder for this image",
                 "type": "string"
-            },
-	        "location": {
-	            "description": "Lat/Lon coordinates of the venue",
-	            "$ref": "http://json-schema.org/geo"
-	        },
-	        "description": {
-	        	"description": "Description text for the venue",
-	        	"type": "string"
-	        },
-	        "image": {
-                "description": "Single image asset for the venue",
-                "type": "object",
-                "properties": {
-                    "url": {
-                        "description": "Image source URL",
-                        "type": "string"
-                    },
-                    "width": {
-                        "description": "Image width",
-                        "type": "integer"
-                    },
-                    "height": {
-                        "description": "Image height",
-                        "type": "integer"
-                    },
-                    "metadata": {
-                        "description": "Metadata related to this image",
-                        "type": "object",
-                        "properties": {
-                            "copyright": {
-                                "description": "The copyright holder for this image",
-                                "type": "string"
-                            },
-                            "caption": {
-                                "description": "Caption text for this image",
-                                "type": "string"
-                            }
-                        },
-                        "required": ["copyright", "caption"]
-                    }
-                }
-            },
-            "webLink": {
-                "description": "URL for the web page for the venue on ents24.com",
+              },
+              "caption": {
+                "description": "Caption text for this image",
                 "type": "string"
-            }
-    	},
-    	"required": ["id", "name", "location", "description", "webLink"]
-    }
+              }
+            },
+            "required": ["copyright", "caption"]
+          }
+        }
+      },
+      "webLink": {
+        "description": "URL for the web page for the venue on ents24.com",
+        "type": "string"
+      }
+    },
+    "required": ["id", "name", "location", "description", "webLink"]
+  }
 }

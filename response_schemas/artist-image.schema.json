@@ -1,36 +1,36 @@
 {
-    "$schema": "http://json-schema.org/draft-04/schema#",
-    "title": "Artist Image",
-    "description": "An image asset for an artist",
-    "type": "object",
-    "properties": {
-        "url": {
-            "description": "Image source URL",
-            "type": "string"
-        },
-        "width": {
-            "description": "Image width",
-            "type": "integer"
-        },
-        "height": {
-            "description": "Image height",
-            "type": "integer"
-        },
-        "metadata": {
-            "description": "Metadata related to this image",
-            "type": "object",
-            "properties": {
-                "copyright": {
-                    "description": "The copyright holder for this image",
-                    "type": "string"
-                },
-                "caption": {
-                    "description": "Caption text for this image",
-                    "type": "string"
-                }
-            },
-            "required": ["copyright", "caption"]
-        }
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Artist Image",
+  "description": "An image asset for an artist",
+  "type": "object",
+  "properties": {
+    "url": {
+      "description": "Image source URL",
+      "type": "string"
     },
-    "required": ["url", "width", "height", "metadata"]
+    "width": {
+      "description": "Image width",
+      "type": "integer"
+    },
+    "height": {
+      "description": "Image height",
+      "type": "integer"
+    },
+    "metadata": {
+      "description": "Metadata related to this image",
+      "type": "object",
+      "properties": {
+        "copyright": {
+          "description": "The copyright holder for this image",
+          "type": "string"
+        },
+        "caption": {
+          "description": "Caption text for this image",
+          "type": "string"
+        }
+      },
+      "required": ["copyright", "caption"]
+    }
+  },
+  "required": ["url", "width", "height", "metadata"]
 }

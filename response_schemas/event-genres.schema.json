@@ -1,9 +1,9 @@
 {
-    "$schema": "http://json-schema.org/draft-04/schema#",
-    "title": "Event Genres",
-    "description": "A list of available Event genres",
-    "type": "array",
-    "items": {
-    	"type": "string"
-    }
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Event Genres",
+  "description": "A list of valid event genres",
+  "type": "array",
+  "items": {
+    "type": "string"
+  }
 }
