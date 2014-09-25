@@ -2,7 +2,7 @@ FORMAT: 1A
 HOST: http://api.ents24.com
 
 # Ents24 REST API (Beta 1)
-The Ents24 REST API gives you easy access to the the UK's most comprehensive live entertainment database:  
+The Ents24 REST API gives you easy access to the UK's most comprehensive live entertainment database:  
 A horde of event-listing experts add over 10,000 new listings every week!  
 Easily use our data for your website or application.  
 
@@ -41,7 +41,7 @@ To obtain an access token you must authenticate your client credentials with our
             }
 
 # Group Event
-Available actions on the event resource.
+Available resources on the event endpoint.
 
 ### Genres [/event/genres]
 A list of all valid event genres.
@@ -129,82 +129,98 @@ Multiple event objects with selected fields.
                     "type": "string"
                   },
                   "title": {
-                        "description": "Title of the event",
+                    "description": "Title of the event",
+                    "type": "string"
+                  },
+                  "venue": {
+                    "description": "Venue the event is being held at",
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "description": "Unique identifier for the venue",
                         "type": "string"
-                    },
-                    "venue": {
-                      "description": "Venue the event is being held at",
-                      "type": "object",
-                        "properties": {
-                            "id": {
-                                "description": "Unique identifier for the venue",
-                                "type": "string"
-                            },
-                            "name": {
-                                "description": "Name of the venue",
-                                "type": "string"
-                            },
-                            "town": {
+                      },
+                      "name": {
+                        "description": "Name of the venue",
+                        "type": "string"
+                      },
+                      "town": {
                         "description": "Town or city where the venue is located",
                         "type": "string"
                       },
-                            "location": {
-                                "description": "Lat/Lon coordinates of the venue",
-                                "$ref": "http://json-schema.org/geo"
-                            }
-                        },
-                        "required": ["id", "name", "town"]
-                    },
-                    "startDateTime": {
-                      "description": "RFC-3339 formatted start date and time the event",
-                      "type": "string"
-                    },
-                    "endDateTime": {
-                      "description": "RFC-3339 formatted end date and time the event",
-                      "type": "string"
-                    },
-                    "description": {
-                      "description": "Description text for the event",
-                      "type": "string"
-                    },
-                    "image": {
-                        "description": "Single image asset for the event",
-                        "type": "object",
-                          "properties": {
-                              "url": {
-                                  "description": "Image source URL",
-                                  "type": "string"
-                              },
-                              "width": {
-                                  "description": "Image width",
-                                  "type": "integer"
-                              },
-                              "height": {
-                                  "description": "Image height",
-                                  "type": "integer"
-                              },
-                              "metadata": {
-                                  "description": "Metadata related to this image",
-                                  "type": "object",
-                                  "properties": {
-                                      "copyright": {
-                                          "description": "The copyright holder for this image",
-                                          "type": "string"
-                                      },
-                                      "caption": {
-                                          "description": "Caption text for this image",
-                                          "type": "string"
-                                      }
-                                  },
-                                  "required": ["copyright", "caption"]
-                              }
-                          },
-                          "required": ["metadata", "url", "width", "height"]
-                  },
-                      "webLink": {
-                          "description": "URL for the web page for the event on ents24.com",
-                          "type": "string"
+                      "location": {
+                        "description": "Lat/Lon coordinates of the venue",
+                        "$ref": "http://json-schema.org/geo"
                       }
+                    },
+                    "required": ["id", "name", "town"]
+                  },
+                  "startDateTime": {
+                    "description": "DEPRECATED IN BETA 2! RFC-3339 formatted start date and time for the event",
+                    "type": "string"
+                  },
+                  "endDateTime": {
+                    "description": "DEPRECATED IN BETA 2! RFC-3339 formatted end date and time for the event",
+                    "type": "string"
+                  },
+                  "startDate": {
+                    "description": "RFC-3339 formatted start date for the event",
+                    "type": "string"
+                  },
+                  "endDate": {
+                    "description": "RFC-3339 formatted end date for the event",
+                    "type": "string"
+                  },
+                  "startTimeString": {
+                    "description": "Start time string for the event",
+                    "type": "string"
+                  },
+                  "endTimeString": {
+                    "description": "End time string for the event",
+                    "type": "string"
+                  },
+                  "description": {
+                    "description": "Description text for the event",
+                    "type": "string"
+                  },
+                  "image": {
+                    "description": "Single image asset for the event",
+                    "type": "object",
+                    "properties": {
+                      "url": {
+                        "description": "Image source URL",
+                        "type": "string"
+                      },
+                      "width": {
+                        "description": "Image width",
+                        "type": "integer"
+                      },
+                      "height": {
+                        "description": "Image height",
+                        "type": "integer"
+                      },
+                      "metadata": {
+                        "description": "Metadata related to this image",
+                        "type": "object",
+                        "properties": {
+                          "copyright": {
+                            "description": "The copyright holder for this image",
+                            "type": "string"
+                          },
+                          "caption": {
+                            "description": "Caption text for this image",
+                            "type": "string"
+                          }
+                        },
+                        "required": ["copyright", "caption"]
+                      }
+                    },
+                    "required": ["metadata", "url", "width", "height"]
+                  },
+                  "webLink": {
+                    "description": "URL for the web page for the event on ents24.com",
+                    "type": "string"
+                  }
                 },
                 "required": ["id", "title", "startDateTime", "endDateTime", "description", "webLink"]
               }
@@ -260,179 +276,201 @@ An event object with all fields.
                   "type": "string"
                 },
                 "title": {
-                      "description": "Title of the event",
+                  "description": "Title of the event",
+                  "type": "string"
+                },
+                "venue": {
+                  "description": "Venue the event is being held at",
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "description": "Unique identifier for the venue",
                       "type": "string"
+                    },
+                    "name": {
+                      "description": "Name of the venue",
+                      "type": "string"
+                    },
+                    "town": {
+                      "description": "Town or city where the venue is located",
+                      "type": "string"
+                    },
+                    "location": {
+                      "description": "Lat/Lon coordinates of the venue",
+                      "$ref": "http://json-schema.org/geo"
+                    }
                   },
-                  "venue": {
-                    "description": "Venue the event is being held at",
+                  "required": ["id", "name", "town"]
+                },
+                "startDateTime": {
+                  "description": "DEPRECATED IN BETA 2! RFC-3339 formatted start date and time for the event",
+                  "type": "string"
+                },
+                "endDateTime": {
+                  "description": "DEPRECATED IN BETA 2! RFC-3339 formatted end date and time for the event",
+                  "type": "string"
+                },
+                "startDate": {
+                  "description": "RFC-3339 formatted start date for the event",
+                  "type": "string"
+                },
+                "endDate": {
+                  "description": "RFC-3339 formatted end date for the event",
+                  "type": "string"
+                },
+                "startTimeString": {
+                  "description": "Start time string for the event",
+                  "type": "string"
+                },
+                "endTimeString": {
+                  "description": "End time string for the event",
+                  "type": "string"
+                },
+                "description": {
+                  "description": "Description text for the event",
+                  "type": "string"
+                },
+                "artists": {
+                  "description": "Featured artists",
+                  "type": "array",
+                  "items": {
                     "type": "object",
-                      "properties": {
-                          "id": {
-                              "description": "Unique identifier for the venue",
-                              "type": "string"
-                          },
-                          "name": {
-                              "description": "Name of the venue",
-                              "type": "string"
-                          },
-                          "town": {
-                              "description": "Town or city where the venue is located",
-                              "type": "string"
-                          },
-                          "location": {
-                              "description": "Lat/Lon coordinates of the venue",
-                              "$ref": "http://json-schema.org/geo"
-                          }
+                    "properties": {
+                      "id": {
+                        "description": "Unique identifier for a featured artist",
+                        "type": "string"
                       },
-                      "required": ["id", "name", "town"]
-                  },
-                  "startDateTime": {
-                    "description": "RFC-3339 formatted start date and time the event",
-                    "type": "string"
-                  },
-                  "endDateTime": {
-                    "description": "RFC-3339 formatted end date and time the event",
-                    "type": "string"
-                  },
-                  "description": {
-                    "description": "Description text for the event",
-                    "type": "string"
-                  },
-                  "artists": {
-                    "description": "Featured artists",
-                    "type": "array",
-                    "items": {
-                          "type": "object",
-                          "properties": {
-                            "id": {
-                              "description": "Unique identifier for a featured artist",
-                              "type": "string"
-                          },
-                          "name": {
-                            "description": "Name of a featured artist",
-                              "type": "string"
-                          }
-                          },
-                          "required": ["id", "name"]
+                      "name": {
+                        "description": "Name of a featured artist",
+                        "type": "string"
                       }
-                  },
+                    },
+                    "required": ["id", "name"]
+                  }
+                },
                "image": {
-                      "description": "Multiple image assets for the event",
+                  "description": "Multiple image assets for the event",
+                  "type": "object",
+                  "properties": {
+                    "small": {
+                      "description": "Small sized image",
                       "type": "object",
                       "properties": {
-                          "small": {
-                              "description": "Small sized image",
-                              "type": "object",
-                              "properties": {
-                                  "url": {
-                                      "description": "Image source URL",
-                                      "type": "string"
-                                  },
-                                  "width": {
-                                      "description": "Image width",
-                                      "type": "integer"
-                                  },
-                                  "height": {
-                                      "description": "Image height",
-                                      "type": "integer"
-                                  }
-                              },
-                              "required": ["url", "width", "height"]
-                          },
-                          "medium": {
-                              "description": "Medium sized image",
-                              "type": "object",
-                              "properties": {
-                                  "url": {
-                                      "description": "Image source URL",
-                                      "type": "string"
-                                  },
-                                  "width": {
-                                      "description": "Image width",
-                                      "type": "integer"
-                                  },
-                                  "height": {
-                                      "description": "Image height",
-                                      "type": "integer"
-                                  }
-                              },
-                              "required": ["url", "width", "height"]
-                          },
-                          "large": {
-                              "description": "Medium sized image",
-                              "type": "object",
-                              "properties": {
-                                  "url": {
-                                      "description": "Image source URL",
-                                      "type": "string"
-                                  },
-                                  "width": {
-                                      "description": "Image width",
-                                      "type": "integer"
-                                  },
-                                  "height": {
-                                      "description": "Image height",
-                                      "type": "integer"
-                                  }
-                              },
-                              "required": ["url", "width", "height"]
-                          },
-                          "metadata": {
-                              "description": "Metadata related to this image",
-                              "type": "object",
-                              "properties": {
-                                  "copyright": {
-                                      "description": "The copyright holder for this image",
-                                      "type": "string"
-                                  },
-                                  "caption": {
-                                      "description": "Caption text for this image",
-                                      "type": "string"
-                                  }
-                              },
-                              "required": ["copyright", "caption"]
-                          }
-                      }
-               },
-                 "genre": {
-                      "description": "The genre(s) this event is found under",
-                      "type": "array",
-                      "items": {
+                        "url": {
+                          "description": "Image source URL",
                           "type": "string"
-                      }
-                  },
-                  "tickets": {
-                      "description": "The genre(s) this event is found under",
-                      "type": "array",
-                      "items": {
-                          "type": "object",
-                          "properties": {
-                              "supplier": {
-
-                              },
-                              "price": {
-
-                              },
-                              "dateTime": {
-
-                              },
-                              "url": {
-
-                              },
-                              "onSaleFrom": {
-
-                              },
-                              "onSaleUntil": {
-
-                              }
-                          },
-                          "required": ["supplier", "price", "dateTime", "onSaleUntil"]
-                      }
-                  },
-                  "webLink": {
-                      "description": "URL for the web page for the event on ents24.com",
-                      "type": "string"
+                        },
+                        "width": {
+                          "description": "Image width",
+                          "type": "integer"
+                        },
+                        "height": {
+                          "description": "Image height",
+                          "type": "integer"
+                        }
+                      },
+                      "required": ["url", "width", "height"]
+                    },
+                    "medium": {
+                      "description": "Medium sized image",
+                      "type": "object",
+                      "properties": {
+                        "url": {
+                          "description": "Image source URL",
+                          "type": "string"
+                        },
+                        "width": {
+                          "description": "Image width",
+                          "type": "integer"
+                        },
+                        "height": {
+                          "description": "Image height",
+                          "type": "integer"
+                        }
+                      },
+                      "required": ["url", "width", "height"]
+                    },
+                    "large": {
+                      "description": "Medium sized image",
+                      "type": "object",
+                      "properties": {
+                        "url": {
+                          "description": "Image source URL",
+                          "type": "string"
+                        },
+                        "width": {
+                          "description": "Image width",
+                          "type": "integer"
+                        },
+                        "height": {
+                          "description": "Image height",
+                          "type": "integer"
+                        }
+                      },
+                      "required": ["url", "width", "height"]
+                    },
+                    "metadata": {
+                      "description": "Metadata related to this image",
+                      "type": "object",
+                      "properties": {
+                        "copyright": {
+                          "description": "The copyright holder for this image",
+                          "type": "string"
+                        },
+                        "caption": {
+                          "description": "Caption text for this image",
+                          "type": "string"
+                        }
+                      },
+                      "required": ["copyright", "caption"]
+                    }
                   }
+                },
+                "genre": {
+                  "description": "The genre(s) this event is found under",
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "tickets": {
+                  "description": "Tickets for this event",
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "supplier": {
+                        "description": "The supplier for this ticket",
+                        "type": "string"
+                      },
+                      "price": {
+                        "description": "The price for this ticket",
+                        "type": "string"
+                      },
+                      "dateTime": {
+                        "description": "RFC-3339 formatted date and time this ticket is valid for",
+                        "type": "string"
+                      },
+                      "url": {
+                        "description": "The purchase URL for this ticket",
+                        "type": "string"
+                      },
+                      "onSaleFrom": {
+                        "description": "RFC-3339 formatted date this ticket goes on sale",
+                        "type": "string"
+                      },
+                      "onSaleUntil": {
+                        "description": "RFC-3339 formatted date this ticket is / will be on sale until",
+                        "type": "string"
+                      }
+                    },
+                    "required": ["supplier", "price", "dateTime", "onSaleUntil"]
+                  }
+                },
+                "webLink": {
+                  "description": "URL for the web page for the event on ents24.com",
+                  "type": "string"
+                }
               },
               "required": ["id", "title", "startDateTime", "endDateTime", "description", "webLink"]
             }
@@ -472,39 +510,39 @@ An event image retrieved as either a JSON object or JPEG image.
               "description": "An image asset for an event",
               "type": "object",
               "properties": {
-                  "url": {
-                      "description": "Image source URL",
+                "url": {
+                  "description": "Image source URL",
+                  "type": "string"
+                },
+                "width": {
+                  "description": "Image width",
+                  "type": "integer"
+                },
+                "height": {
+                  "description": "Image height",
+                  "type": "integer"
+                },
+                "metadata": {
+                  "description": "Metadata related to this image",
+                  "type": "object",
+                  "properties": {
+                    "copyright": {
+                      "description": "The copyright holder for this image",
                       "type": "string"
+                    },
+                    "caption": {
+                      "description": "Caption text for this image",
+                      "type": "string"
+                    }
                   },
-                  "width": {
-                      "description": "Image width",
-                      "type": "integer"
-                  },
-                  "height": {
-                      "description": "Image height",
-                      "type": "integer"
-                  },
-                  "metadata": {
-                      "description": "Metadata related to this image",
-                      "type": "object",
-                      "properties": {
-                          "copyright": {
-                              "description": "The copyright holder for this image",
-                              "type": "string"
-                          },
-                          "caption": {
-                              "description": "Caption text for this image",
-                              "type": "string"
-                          }
-                      },
-                      "required": ["copyright", "caption"]
-                  }
+                  "required": ["copyright", "caption"]
+                }
               },
               "required": ["url", "width", "height", "metadata"]
             }
 
 # Group Artist
-Available actions on the artist resource.
+Available resources on the artist endpoint.
 
 ### List [/artist/list?genre={genre}&event={event}&event_id={event_id}&results_per_page={results_per_page}&page={page}&incl_image={incl_image}&full_description={full_description}&updated_since={updated_since}]
 Multiple artist objects with selected fields.
@@ -555,50 +593,50 @@ Multiple artist objects with selected fields.
                     "type": "string"
                   },
                   "name": {
-                        "description": "Name of the artist",
+                    "description": "Name of the artist",
+                    "type": "string"
+                  },
+                  "description": {
+                    "description": "Description text for the artist",
+                    "type": "string"
+                  },
+                  "image": {
+                    "description": "Single image asset for the artist",
+                    "type": "object",
+                    "properties": {
+                      "url": {
+                        "description": "Image source URL",
                         "type": "string"
-                    },
-                    "description": {
-                      "description": "Description text for the artist",
-                      "type": "string"
-                    },
-                    "image": {
-                          "description": "Single image asset for the artist",
-                          "type": "object",
-                          "properties": {
-                              "url": {
-                                  "description": "Image source URL",
-                                  "type": "string"
-                              },
-                              "width": {
-                                  "description": "Image width",
-                                  "type": "integer"
-                              },
-                              "height": {
-                                  "description": "Image height",
-                                  "type": "integer"
-                              },
-                              "metadata": {
-                                  "description": "Metadata related to this image",
-                                  "type": "object",
-                                  "properties": {
-                                      "copyright": {
-                                          "description": "The copyright holder for this image",
-                                          "type": "string"
-                                      },
-                                      "caption": {
-                                          "description": "Caption text for this image",
-                                          "type": "string"
-                                      }
-                                  },
-                                  "required": ["copyright", "caption"]
-                              }
-                          }
                       },
-                      "webLink": {
-                          "description": "URL for the web page for the artist on ents24.com",
-                          "type": "string"
+                      "width": {
+                        "description": "Image width",
+                        "type": "integer"
+                      },
+                      "height": {
+                        "description": "Image height",
+                        "type": "integer"
+                      },
+                      "metadata": {
+                        "description": "Metadata related to this image",
+                        "type": "object",
+                        "properties": {
+                          "copyright": {
+                            "description": "The copyright holder for this image",
+                            "type": "string"
+                          },
+                          "caption": {
+                            "description": "Caption text for this image",
+                            "type": "string"
+                          }
+                        },
+                        "required": ["copyright", "caption"]
                       }
+                    }
+                  },
+                  "webLink": {
+                    "description": "URL for the web page for the artist on ents24.com",
+                    "type": "string"
+                  }
                 },
                 "required": ["id", "name", "description", "webLink"]
               }
@@ -653,152 +691,167 @@ An artist object with all fields.
                   "type": "string"
                 },
                 "name": {
-                      "description": "Name of the artist",
-                      "type": "string"
-                  },
-                  "description": {
-                    "description": "Description text for the artist",
-                    "type": "string"
-                  },
-                  "events": {
-                    "description": "Artists upcoming events",
-                    "type": "array",
-                    "items": {
-                          "type": "object",
-                          "properties": {
-                            "id": {
-                                  "description": "Unique identifier for the event",
-                                  "type": "string"
-                              },
-                              "title": {
-                                  "description": "Title of the event",
-                                  "type": "string"
-                              },
-                              "venue": {
-                                  "description": "Venue the event is being held at",
-                                  "type": "object",
-                                  "properties": {
-                                      "id": {
-                                          "description": "Unique identifier for the venue",
-                                          "type": "string"
-                                      },
-                                      "name": {
-                                          "description": "Name of the venue",
-                                          "type": "string"
-                                      },
-                                      "town": {
-                                          "description": "Town or city where the venue is located",
-                                          "type": "string"
-                                      },
-                                      "location": {
-                                          "description": "Lat/Lon coordinates of the venue",
-                                          "$ref": "http://json-schema.org/geo"
-                                      }
-                                  },
-                                  "required": ["id","name","location"]
-                              },
-                              "startDateTime": {
-                                  "description": "RFC-3339 formatted start date and time the event",
-                                  "type": "string"
-                              },
-                              "endDateTime": {
-                                  "description": "RFC-3339 formatted end date and time the event",
-                                  "type": "string"
-                              }
-
+                  "description": "Name of the artist",
+                  "type": "string"
+                },
+                "description": {
+                  "description": "Description text for the artist",
+                  "type": "string"
+                },
+                "events": {
+                  "description": "Artists upcoming events",
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "description": "Unique identifier for the event",
+                        "type": "string"
+                      },
+                      "title": {
+                        "description": "Title of the event",
+                        "type": "string"
+                      },
+                      "venue": {
+                        "description": "Venue the event is being held at",
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "description": "Unique identifier for the venue",
+                            "type": "string"
                           },
-                          "required": ["id", "title", "startDateTime", "endDateTime"]
+                          "name": {
+                            "description": "Name of the venue",
+                            "type": "string"
+                          },
+                          "town": {
+                            "description": "Town or city where the venue is located",
+                            "type": "string"
+                          },
+                          "location": {
+                            "description": "Lat/Lon coordinates of the venue",
+                            "$ref": "http://json-schema.org/geo"
+                          }
+                        },
+                        "required": ["id","name","location"]
+                      },
+                      "startDateTime": {
+                        "description": "DEPRECATED IN BETA 2! RFC-3339 formatted start date and time for the event",
+                        "type": "string"
+                      },
+                      "endDateTime": {
+                        "description": "DEPRECATED IN BETA 2! RFC-3339 formatted end date and time for the event",
+                        "type": "string"
+                      },
+                      "startDate": {
+                        "description": "RFC-3339 formatted start date for the event",
+                        "type": "string"
+                      },
+                      "endDate": {
+                        "description": "RFC-3339 formatted end date for the event",
+                        "type": "string"
+                      },
+                      "startTimeString": {
+                        "description": "Start time string for the event",
+                        "type": "string"
+                      },
+                      "endTimeString": {
+                        "description": "End time string for the event",
+                        "type": "string"
                       }
-                  },
-                  "image": {
-                      "description": "Multiple image assets for the artist",
+                    },
+                    "required": ["id", "title", "startDateTime", "endDateTime"]
+                  }
+                },
+                "image": {
+                  "description": "Multiple image assets for the artist",
+                  "type": "object",
+                  "properties": {
+                    "small": {
+                      "description": "Small sized image",
                       "type": "object",
                       "properties": {
-                          "small": {
-                              "description": "Small sized image",
-                              "type": "object",
-                              "properties": {
-                                  "url": {
-                                      "description": "Image source URL",
-                                      "type": "string"
-                                  },
-                                  "width": {
-                                      "description": "Image width",
-                                      "type": "integer"
-                                  },
-                                  "height": {
-                                      "description": "Image height",
-                                      "type": "integer"
-                                  }
-                              },
-                              "required": ["url", "width", "height"]
-                          },
-                          "medium": {
-                              "description": "Medium sized image",
-                              "type": "object",
-                              "properties": {
-                                  "url": {
-                                      "description": "Image source URL",
-                                      "type": "string"
-                                  },
-                                  "width": {
-                                      "description": "Image width",
-                                      "type": "integer"
-                                  },
-                                  "height": {
-                                      "description": "Image height",
-                                      "type": "integer"
-                                  }
-                              },
-                              "required": ["url", "width", "height"]
-                          },
-                          "large": {
-                              "description": "Medium sized image",
-                              "type": "object",
-                              "properties": {
-                                  "url": {
-                                      "description": "Image source URL",
-                                      "type": "string"
-                                  },
-                                  "width": {
-                                      "description": "Image width",
-                                      "type": "integer"
-                                  },
-                                  "height": {
-                                      "description": "Image height",
-                                      "type": "integer"
-                                  }
-                              },
-                              "required": ["url", "width", "height"]
-                          },
-                          "metadata": {
-                              "description": "Metadata related to this image",
-                              "type": "object",
-                              "properties": {
-                                  "copyright": {
-                                      "description": "The copyright holder for this image",
-                                      "type": "string"
-                                  },
-                                  "caption": {
-                                      "description": "Caption text for this image",
-                                      "type": "string"
-                                  }
-                              },
-                              "required": ["copyright", "caption"]
-                          }
-                      }
-                  },
-                  "genre": {
-                      "description": "The genre(s) the artist is found under",
-                      "type": "array",
-                      "items": {
+                        "url": {
+                          "description": "Image source URL",
                           "type": "string"
-                      }
-                  },
-                  "webLink": {
-                      "description": "URL for the web page for the artist on ents24.com",
-                      "type": "string"
+                        },
+                        "width": {
+                          "description": "Image width",
+                          "type": "integer"
+                        },
+                        "height": {
+                          "description": "Image height",
+                          "type": "integer"
+                        }
+                      },
+                      "required": ["url", "width", "height"]
+                    },
+                    "medium": {
+                      "description": "Medium sized image",
+                      "type": "object",
+                      "properties": {
+                        "url": {
+                          "description": "Image source URL",
+                          "type": "string"
+                        },
+                        "width": {
+                          "description": "Image width",
+                          "type": "integer"
+                        },
+                        "height": {
+                          "description": "Image height",
+                          "type": "integer"
+                        }
+                      },
+                      "required": ["url", "width", "height"]
+                    },
+                    "large": {
+                      "description": "Medium sized image",
+                      "type": "object",
+                      "properties": {
+                        "url": {
+                          "description": "Image source URL",
+                          "type": "string"
+                        },
+                        "width": {
+                          "description": "Image width",
+                          "type": "integer"
+                        },
+                        "height": {
+                          "description": "Image height",
+                          "type": "integer"
+                        }
+                      },
+                      "required": ["url", "width", "height"]
+                    },
+                    "metadata": {
+                      "description": "Metadata related to this image",
+                      "type": "object",
+                      "properties": {
+                        "copyright": {
+                          "description": "The copyright holder for this image",
+                          "type": "string"
+                        },
+                        "caption": {
+                          "description": "Caption text for this image",
+                          "type": "string"
+                        }
+                      },
+                      "required": ["copyright", "caption"]
+                    }
                   }
+                },
+                "genre": {
+                  "description": "The genre(s) the artist is found under",
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "webLink": {
+                  "description": "URL for the web page for the artist on ents24.com",
+                  "type": "string"
+                }
               },
               "required": ["id", "name", "description", "webLink"]
             }
@@ -838,39 +891,39 @@ An artist image retrieved as either a JSON object or JPEG image.
               "description": "An image asset for an artist",
               "type": "object",
               "properties": {
-                  "url": {
-                      "description": "Image source URL",
+                "url": {
+                  "description": "Image source URL",
+                  "type": "string"
+                },
+                "width": {
+                  "description": "Image width",
+                  "type": "integer"
+                },
+                "height": {
+                  "description": "Image height",
+                  "type": "integer"
+                },
+                "metadata": {
+                  "description": "Metadata related to this image",
+                  "type": "object",
+                  "properties": {
+                    "copyright": {
+                      "description": "The copyright holder for this image",
                       "type": "string"
+                    },
+                    "caption": {
+                      "description": "Caption text for this image",
+                      "type": "string"
+                    }
                   },
-                  "width": {
-                      "description": "Image width",
-                      "type": "integer"
-                  },
-                  "height": {
-                      "description": "Image height",
-                      "type": "integer"
-                  },
-                  "metadata": {
-                      "description": "Metadata related to this image",
-                      "type": "object",
-                      "properties": {
-                          "copyright": {
-                              "description": "The copyright holder for this image",
-                              "type": "string"
-                          },
-                          "caption": {
-                              "description": "Caption text for this image",
-                              "type": "string"
-                          }
-                      },
-                      "required": ["copyright", "caption"]
-                  }
+                  "required": ["copyright", "caption"]
+                }
               },
               "required": ["url", "width", "height", "metadata"]
             }
 
 # Group Venue
-Available actions on the venue resource.
+Available resources on the venue endpoint.
 
 ### List [/venue/list?name={name}&location={location}&results_per_page={results_per_page}&page={page}&incl_image={incl_image}&full_description={full_description}&updated_since={updated_since}]
 Multiple venue objects with selected fields.
@@ -920,62 +973,62 @@ Multiple venue objects with selected fields.
                     "type": "string"
                   },
                   "name": {
-                        "description": "Name of the venue",
-                        "type": "string"
-                    },
+                    "description": "Name of the venue",
+                    "type": "string"
+                  },
                   "town": {
                     "description": "Town or city where the venue is located",
                     "type": "string"
                   },
-                      "county": {
-                          "description": "The county where the venue is located",
-                          "type": "string"
+                  "county": {
+                    "description": "The county where the venue is located",
+                    "type": "string"
+                  },
+                  "location": {
+                    "description": "Lat/Lon coordinates of the venue",
+                    "$ref": "http://json-schema.org/geo"
+                  },
+                  "description": {
+                    "description": "Description text for the venue",
+                    "type": "string"
+                  },
+                  "image": {
+                    "description": "Single image asset for the venue",
+                    "type": "object",
+                    "properties": {
+                      "url": {
+                        "description": "Image source URL",
+                        "type": "string"
                       },
-                    "location": {
-                        "description": "Lat/Lon coordinates of the venue",
-                        "$ref": "http://json-schema.org/geo"
-                    },
-                    "description": {
-                      "description": "Description text for the venue",
-                      "type": "string"
-                    },
-                    "image": {
-                          "description": "Single image asset for the venue",
-                          "type": "object",
-                          "properties": {
-                              "url": {
-                                  "description": "Image source URL",
-                                  "type": "string"
-                              },
-                              "width": {
-                                  "description": "Image width",
-                                  "type": "integer"
-                              },
-                              "height": {
-                                  "description": "Image height",
-                                  "type": "integer"
-                              },
-                              "metadata": {
-                                  "description": "Metadata related to this image",
-                                  "type": "object",
-                                  "properties": {
-                                      "copyright": {
-                                          "description": "The copyright holder for this image",
-                                          "type": "string"
-                                      },
-                                      "caption": {
-                                          "description": "Caption text for this image",
-                                          "type": "string"
-                                      }
-                                  },
-                                  "required": ["copyright", "caption"]
-                              }
+                      "width": {
+                        "description": "Image width",
+                        "type": "integer"
+                      },
+                      "height": {
+                        "description": "Image height",
+                        "type": "integer"
+                      },
+                      "metadata": {
+                        "description": "Metadata related to this image",
+                        "type": "object",
+                        "properties": {
+                          "copyright": {
+                            "description": "The copyright holder for this image",
+                            "type": "string"
+                          },
+                          "caption": {
+                            "description": "Caption text for this image",
+                            "type": "string"
                           }
-                      },
-                      "webLink": {
-                          "description": "URL for the web page for the venue on ents24.com",
-                          "type": "string"
+                        },
+                        "required": ["copyright", "caption"]
                       }
+                    }
+                  },
+                  "webLink": {
+                    "description": "URL for the web page for the venue on ents24.com",
+                    "type": "string"
+                  }
                 },
                 "required": ["id", "name", "location", "description", "webLink"]
               }
@@ -1030,178 +1083,194 @@ A venue object with all fields.
                   "type": "string"
                 },
                 "name": {
-                      "description": "Name of the venue",
-                      "type": "string"
-                  },
-                  "address": {
-                      "description": "The location details for a venue",
-                      "type": "object",
-                      "properties": {
-                          "streetAddress": {
-                              "description": "The building name/number, street name and district",
-                              "type": "array",
-                              "items": {
-                                  "type": "string"
-                              },
-                              "minItems": 1
-                          },
-                          "town": {
-                              "description": "Town or city where the venue is located",
-                              "type": "string"
-                          },
-                          "county": {
-                              "description": "The county where the venue is located",
-                              "type": "string"
-                          },
-                          "postcode": {
-                              "description": "Postal code for the venue address",
-                              "type": "string"
-                          },
-                          "country": {
-                              "description": "The country where the venue is located",
-                              "type": "string"
-                          }
+                  "description": "Name of the venue",
+                  "type": "string"
+                },
+                "address": {
+                  "description": "The location details for a venue",
+                  "type": "object",
+                  "properties": {
+                    "streetAddress": {
+                      "description": "The building name/number, street name and district",
+                      "type": "array",
+                      "items": {
+                        "type": "string"
                       },
-                      "required": ["town", "country"]
-                  },
-                  "location": {
-                      "description": "Lat/Lon coordinates of the venue",
-                      "$ref": "http://json-schema.org/geo"
-                  },
-                  "description": {
-                    "description": "Description text for the venue",
-                    "type": "string"
-                  },
-                  "website": {
-                      "description": "URL for the venues website",
+                      "minItems": 1
+                    },
+                    "town": {
+                      "description": "Town or city where the venue is located",
                       "type": "string"
-                  },
-                  "email": {
-                      "description": "Email address for general enquires",
+                    },
+                    "county": {
+                      "description": "The county where the venue is located",
                       "type": "string"
-                  },
-                  "phone": {
-                      "description": "Phone numbers for the venue",
-                      "type": "object",
-                      "properties": {
-                          "enquires": {
-                              "description": "Phone number for general enquires",
-                              "type": "string"
-                          },
-                          "booking": {
-                              "description": "Phone number for bookings",
-                              "type": "string"
-                          }
-                      }
-                  },
-                  "events": {
-                    "description": "Upcoming events at the venue",
-                    "type": "array",
-                    "items": {
-                          "type": "object",
-                          "properties": {
-                            "id": {
-                              "description": "Unique identifier for an event",
-                              "type": "string"
-                          },
-                          "title": {
-                            "description": "Title of an event",
-                              "type": "string"
-                          },
-                              "startDateTime": {
-                                  "description": "RFC-3339 formatted start date and time the event",
-                                  "type": "string"
-                              },
-                              "endDateTime": {
-                                  "description": "RFC-3339 formatted end date and time the event",
-                                  "type": "string"
-                              }
-                          },
-                          "required": ["id","title","startDateTime","endDateTime"]
-                      }
-                  },
-                  "image": {
-                      "description": "Multiple image assets for the venue",
-                      "type": "object",
-                      "properties": {
-                          "small": {
-                              "description": "Small sized image",
-                              "type": "object",
-                              "properties": {
-                                  "url": {
-                                      "description": "Image source URL",
-                                      "type": "string"
-                                  },
-                                  "width": {
-                                      "description": "Image width",
-                                      "type": "integer"
-                                  },
-                                  "height": {
-                                      "description": "Image height",
-                                      "type": "integer"
-                                  }
-                              },
-                              "required": ["url", "width", "height"]
-                          },
-                          "medium": {
-                              "description": "Medium sized image",
-                              "type": "object",
-                              "properties": {
-                                  "url": {
-                                      "description": "Image source URL",
-                                      "type": "string"
-                                  },
-                                  "width": {
-                                      "description": "Image width",
-                                      "type": "integer"
-                                  },
-                                  "height": {
-                                      "description": "Image height",
-                                      "type": "integer"
-                                  }
-                              },
-                              "required": ["url", "width", "height"]
-                          },
-                          "large": {
-                              "description": "Medium sized image",
-                              "type": "object",
-                              "properties": {
-                                  "url": {
-                                      "description": "Image source URL",
-                                      "type": "string"
-                                  },
-                                  "width": {
-                                      "description": "Image width",
-                                      "type": "integer"
-                                  },
-                                  "height": {
-                                      "description": "Image height",
-                                      "type": "integer"
-                                  }
-                              },
-                              "required": ["url", "width", "height"]
-                          },
-                          "metadata": {
-                              "description": "Metadata related to this image",
-                              "type": "object",
-                              "properties": {
-                                  "copyright": {
-                                      "description": "The copyright holder for this image",
-                                      "type": "string"
-                                  },
-                                  "caption": {
-                                      "description": "Caption text for this image",
-                                      "type": "string"
-                                  }
-                              },
-                              "required": ["copyright", "caption"]
-                          }
-                      }
-                  },
-                  "webLink": {
-                      "description": "URL for the web page for the venue on ents24.com",
+                    },
+                    "postcode": {
+                      "description": "Postal code for the venue address",
                       "type": "string"
+                    },
+                    "country": {
+                      "description": "The country where the venue is located",
+                      "type": "string"
+                    }
+                  },
+                  "required": ["town", "country"]
+                },
+                "location": {
+                  "description": "Lat/Lon coordinates of the venue",
+                  "$ref": "http://json-schema.org/geo"
+                },
+                "description": {
+                  "description": "Description text for the venue",
+                  "type": "string"
+                },
+                "website": {
+                  "description": "URL for the venues website",
+                  "type": "string"
+                },
+                "email": {
+                  "description": "Email address for general enquires",
+                  "type": "string"
+                },
+                "phone": {
+                  "description": "Phone numbers for the venue",
+                  "type": "object",
+                  "properties": {
+                    "enquires": {
+                      "description": "Phone number for general enquires",
+                      "type": "string"
+                    },
+                    "booking": {
+                      "description": "Phone number for bookings",
+                      "type": "string"
+                    }
                   }
+                },
+                "events": {
+                  "description": "Upcoming events at the venue",
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "description": "Unique identifier for an event",
+                        "type": "string"
+                      },
+                      "title": {
+                        "description": "Title of an event",
+                          "type": "string"
+                      },
+                      "startDateTime": {
+                        "description": "DEPRECATED IN BETA 2! RFC-3339 formatted start date and time for the event",
+                        "type": "string"
+                      },
+                      "endDateTime": {
+                        "description": "DEPRECATED IN BETA 2! RFC-3339 formatted end date and time for the event",
+                        "type": "string"
+                      },
+                      "startDate": {
+                        "description": "RFC-3339 formatted start date for the event",
+                        "type": "string"
+                      },
+                      "endDate": {
+                        "description": "RFC-3339 formatted end date for the event",
+                        "type": "string"
+                      },
+                      "startTimeString": {
+                        "description": "Start time string for the event",
+                        "type": "string"
+                      },
+                      "endTimeString": {
+                        "description": "End time string for the event",
+                        "type": "string"
+                      }
+                    },
+                    "required": ["id","title","startDateTime","endDateTime"]
+                  }
+                },
+                "image": {
+                  "description": "Multiple image assets for the venue",
+                  "type": "object",
+                  "properties": {
+                    "small": {
+                      "description": "Small sized image",
+                      "type": "object",
+                      "properties": {
+                        "url": {
+                          "description": "Image source URL",
+                          "type": "string"
+                        },
+                        "width": {
+                          "description": "Image width",
+                          "type": "integer"
+                        },
+                        "height": {
+                          "description": "Image height",
+                          "type": "integer"
+                        }
+                      },
+                      "required": ["url", "width", "height"]
+                    },
+                    "medium": {
+                      "description": "Medium sized image",
+                      "type": "object",
+                      "properties": {
+                        "url": {
+                          "description": "Image source URL",
+                          "type": "string"
+                        },
+                        "width": {
+                          "description": "Image width",
+                          "type": "integer"
+                        },
+                        "height": {
+                          "description": "Image height",
+                          "type": "integer"
+                        }
+                      },
+                      "required": ["url", "width", "height"]
+                    },
+                    "large": {
+                      "description": "Medium sized image",
+                      "type": "object",
+                      "properties": {
+                        "url": {
+                          "description": "Image source URL",
+                          "type": "string"
+                        },
+                        "width": {
+                          "description": "Image width",
+                          "type": "integer"
+                        },
+                        "height": {
+                          "description": "Image height",
+                          "type": "integer"
+                        }
+                      },
+                      "required": ["url", "width", "height"]
+                    },
+                    "metadata": {
+                      "description": "Metadata related to this image",
+                      "type": "object",
+                      "properties": {
+                        "copyright": {
+                          "description": "The copyright holder for this image",
+                          "type": "string"
+                        },
+                        "caption": {
+                          "description": "Caption text for this image",
+                          "type": "string"
+                        }
+                      },
+                      "required": ["copyright", "caption"]
+                    }
+                  }
+                },
+                "webLink": {
+                  "description": "URL for the web page for the venue on ents24.com",
+                  "type": "string"
+                }
               },
               "required": ["id", "name", "location", "description", "webLink"]
             }
@@ -1241,33 +1310,33 @@ A venue image retrieved as either a JSON object or JPEG image.
               "description": "An image asset for an venue",
               "type": "object",
               "properties": {
-                  "url": {
-                      "description": "Image source URL",
+                "url": {
+                  "description": "Image source URL",
+                  "type": "string"
+                },
+                "width": {
+                  "description": "Image width",
+                  "type": "integer"
+                },
+                "height": {
+                  "description": "Image height",
+                  "type": "integer"
+                },
+                "metadata": {
+                  "description": "Metadata related to this image",
+                  "type": "object",
+                  "properties": {
+                    "copyright": {
+                      "description": "The copyright holder for this image",
                       "type": "string"
+                    },
+                    "caption": {
+                      "description": "Caption text for this image",
+                      "type": "string"
+                    }
                   },
-                  "width": {
-                      "description": "Image width",
-                      "type": "integer"
-                  },
-                  "height": {
-                      "description": "Image height",
-                      "type": "integer"
-                  },
-                  "metadata": {
-                      "description": "Metadata related to this image",
-                      "type": "object",
-                      "properties": {
-                          "copyright": {
-                              "description": "The copyright holder for this image",
-                              "type": "string"
-                          },
-                          "caption": {
-                              "description": "Caption text for this image",
-                              "type": "string"
-                          }
-                      },
-                      "required": ["copyright", "caption"]
-                  }
+                  "required": ["copyright", "caption"]
+                }
               },
               "required": ["url", "width", "height", "metadata"]
             }
