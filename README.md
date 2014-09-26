@@ -6,6 +6,11 @@ Easily use our data for your website or application.
 
 Licensing [**terms and conditions**](http://docs.api.ents24.com/licensing) apply.
 
-In order to use the Ents24 public API you must first [**register as a developer**](https://docs.api.ents24.com/registration), once you have your client credentials you may begin making requests to the API.
+In order to use the Ents24 REST API you must first [**register as a developer**](https://docs.api.ents24.com/registration), once you have your client credentials you may begin making requests to the API.
 
 Full documention is available in human friendly HTML format at [**docs.api.ents24.com**](http://docs.api.ents24.com/)
+
+### Client Libraries
+
++ PHP
+	+ [hnrysmth/**ents24-api-client**](https://github.com/hnrysmth/ents24-api-client)
