@@ -15,11 +15,11 @@
   "resourceGroups": [
     {
       "name": "Client Authentication",
-      "description": "In order to use the Ents24 public API you must first register as a developer, once you have your API client credentials you may use them to authenticate your requests to the API.\n\n",
+      "description": "To obtain an access token you must authenticate your client credentials with our authentication server.\n\n",
       "resources": [
         {
           "name": "Request Access Token",
-          "description": "To obtain an access token you must authenticate your client credentials with our authentication server.\n\n",
+          "description": "Request an access token to authenticate future requests.\n\n",
           "uriTemplate": "/auth/token",
           "model": {},
           "parameters": [],
@@ -41,10 +41,6 @@
                         {
                           "name": "Content-Type",
                           "value": "application/x-www-form-urlencoded"
-                        },
-                        {
-                          "name": "Cache-Control",
-                          "value": "no-cache"
                         }
                       ],
                       "body": "client_id=aho0bVpKdFURaZ37tkYT&client_secret=uQmfyQsqeKfIMJg4FKQ9gi8cSLFXATpGFyBx038nHy\n",
@@ -65,7 +61,7 @@
                           "value": "Tue, 26 Aug 2014 08:00:00 GMT"
                         }
                       ],
-                      "body": "{\n  access_token: \"qnFqFAVw8pJMCF1z8tIMYoXwommArRmt9C08jIRA\"\n  token_type: \"Bearer\"\n  expires: 1414317411\n  expires_in: 5184000\n}\n",
+                      "body": "{\n  \"access_token\": \"qnFqFAVw8pJMCF1z8tIMYoXwommArRmt9C08jIRA\"\n  \"token_type\": \"Bearer\"\n  \"expires\": 1414317411\n  \"expires_in\": 5184000\n}\n",
                       "schema": ""
                     }
                   ]
@@ -104,10 +100,6 @@
                         {
                           "name": "Authorization",
                           "value": "qnFqFAVw8pJMCF1z8tIMYoXwommArRmt9C08jIRA"
-                        },
-                        {
-                          "name": "Cache-Control",
-                          "value": "no-cache"
                         }
                       ],
                       "body": "",
@@ -296,10 +288,6 @@
                         {
                           "name": "Authorization",
                           "value": "qnFqFAVw8pJMCF1z8tIMYoXwommArRmt9C08jIRA"
-                        },
-                        {
-                          "name": "Cache-Control",
-                          "value": "no-cache"
                         }
                       ],
                       "body": "",
@@ -447,10 +435,6 @@
                         {
                           "name": "Authorization",
                           "value": "qnFqFAVw8pJMCF1z8tIMYoXwommArRmt9C08jIRA"
-                        },
-                        {
-                          "name": "Cache-Control",
-                          "value": "no-cache"
                         }
                       ],
                       "body": "",
@@ -552,10 +536,6 @@
                         {
                           "name": "Authorization",
                           "value": "qnFqFAVw8pJMCF1z8tIMYoXwommArRmt9C08jIRA"
-                        },
-                        {
-                          "name": "Cache-Control",
-                          "value": "no-cache"
                         }
                       ],
                       "body": "",
@@ -708,10 +688,6 @@
                         {
                           "name": "Authorization",
                           "value": "qnFqFAVw8pJMCF1z8tIMYoXwommArRmt9C08jIRA"
-                        },
-                        {
-                          "name": "Cache-Control",
-                          "value": "no-cache"
                         }
                       ],
                       "body": "",
@@ -850,10 +826,6 @@
                         {
                           "name": "Authorization",
                           "value": "qnFqFAVw8pJMCF1z8tIMYoXwommArRmt9C08jIRA"
-                        },
-                        {
-                          "name": "Cache-Control",
-                          "value": "no-cache"
                         }
                       ],
                       "body": "",
@@ -955,10 +927,6 @@
                         {
                           "name": "Authorization",
                           "value": "qnFqFAVw8pJMCF1z8tIMYoXwommArRmt9C08jIRA"
-                        },
-                        {
-                          "name": "Cache-Control",
-                          "value": "no-cache"
                         }
                       ],
                       "body": "",
@@ -1102,10 +1070,6 @@
                         {
                           "name": "Authorization",
                           "value": "qnFqFAVw8pJMCF1z8tIMYoXwommArRmt9C08jIRA"
-                        },
-                        {
-                          "name": "Cache-Control",
-                          "value": "no-cache"
                         }
                       ],
                       "body": "",
@@ -1244,10 +1208,6 @@
                         {
                           "name": "Authorization",
                           "value": "qnFqFAVw8pJMCF1z8tIMYoXwommArRmt9C08jIRA"
-                        },
-                        {
-                          "name": "Cache-Control",
-                          "value": "no-cache"
                         }
                       ],
                       "body": "",
@@ -1349,10 +1309,6 @@
                         {
                           "name": "Authorization",
                           "value": "qnFqFAVw8pJMCF1z8tIMYoXwommArRmt9C08jIRA"
-                        },
-                        {
-                          "name": "Cache-Control",
-                          "value": "no-cache"
                         }
                       ],
                       "body": "",

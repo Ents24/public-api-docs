@@ -9,21 +9,15 @@ Easily use our data for your website or application.
 Licensing terms and conditions apply.
 
 # Group Client Authentication
-In order to use the Ents24 public API you must first register as a developer, once you have your API client credentials you may use them to authenticate your requests to the API.
+To obtain an access token you must authenticate your client credentials with our authentication server.
 
 ### Request Access Token [/auth/token]
-To obtain an access token you must authenticate your client credentials with our authentication server.
+Request an access token to authenticate future requests.
 
 #### Auth Token [POST]
 + Request (application/x-www-form-urlencoded)
 
-    + Headers
-
-            Cache-Control: no-cache
-
-    + Body
-
-            client_id=aho0bVpKdFURaZ37tkYT&client_secret=uQmfyQsqeKfIMJg4FKQ9gi8cSLFXATpGFyBx038nHy
+        client_id=aho0bVpKdFURaZ37tkYT&client_secret=uQmfyQsqeKfIMJg4FKQ9gi8cSLFXATpGFyBx038nHy
 
 + Response 200 (application/json)
 
@@ -34,10 +28,10 @@ To obtain an access token you must authenticate your client credentials with our
     + Body
 
             {
-              access_token: "qnFqFAVw8pJMCF1z8tIMYoXwommArRmt9C08jIRA"
-              token_type: "Bearer"
-              expires: 1414317411
-              expires_in: 5184000
+              "access_token": "qnFqFAVw8pJMCF1z8tIMYoXwommArRmt9C08jIRA"
+              "token_type": "Bearer"
+              "expires": 1414317411
+              "expires_in": 5184000
             }
 
 # Group Event
@@ -52,7 +46,6 @@ A list of all valid event genres.
     + Headers
 
             Authorization: qnFqFAVw8pJMCF1z8tIMYoXwommArRmt9C08jIRA
-            Cache-Control: no-cache
 
 + Response 200 (application/json)
 
@@ -99,7 +92,6 @@ Multiple event objects with selected fields.
     + Headers
 
             Authorization: qnFqFAVw8pJMCF1z8tIMYoXwommArRmt9C08jIRA
-            Cache-Control: no-cache
 
 + Response 200 (application/json)
 
@@ -250,7 +242,6 @@ An event object with all fields.
     + Headers
 
             Authorization: qnFqFAVw8pJMCF1z8tIMYoXwommArRmt9C08jIRA
-            Cache-Control: no-cache
 
 + Response 200 (application/json)
 
@@ -489,7 +480,6 @@ An event image retrieved as either a JSON object or JPEG image.
     + Headers
 
             Authorization: qnFqFAVw8pJMCF1z8tIMYoXwommArRmt9C08jIRA
-            Cache-Control: no-cache
 
 + Response 200 (application/json)
 
@@ -563,7 +553,6 @@ Multiple artist objects with selected fields.
     + Headers
 
             Authorization: qnFqFAVw8pJMCF1z8tIMYoXwommArRmt9C08jIRA
-            Cache-Control: no-cache
 
 + Response 200 (application/json)
 
@@ -665,7 +654,6 @@ An artist object with all fields.
     + Headers
 
             Authorization: qnFqFAVw8pJMCF1z8tIMYoXwommArRmt9C08jIRA
-            Cache-Control: no-cache
 
 + Response 200 (application/json)
 
@@ -870,7 +858,6 @@ An artist image retrieved as either a JSON object or JPEG image.
     + Headers
 
             Authorization: qnFqFAVw8pJMCF1z8tIMYoXwommArRmt9C08jIRA
-            Cache-Control: no-cache
 
 + Response 200 (application/json)
 
@@ -943,7 +930,6 @@ Multiple venue objects with selected fields.
     + Headers
 
             Authorization: qnFqFAVw8pJMCF1z8tIMYoXwommArRmt9C08jIRA
-            Cache-Control: no-cache
 
 + Response 200 (application/json)
 
@@ -1057,7 +1043,6 @@ A venue object with all fields.
     + Headers
 
             Authorization: qnFqFAVw8pJMCF1z8tIMYoXwommArRmt9C08jIRA
-            Cache-Control: no-cache
 
 + Response 200 (application/json)
 
@@ -1289,7 +1274,6 @@ A venue image retrieved as either a JSON object or JPEG image.
     + Headers
 
             Authorization: qnFqFAVw8pJMCF1z8tIMYoXwommArRmt9C08jIRA
-            Cache-Control: no-cache
 
 + Response 200 (application/json)
 
