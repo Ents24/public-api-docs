@@ -66,8 +66,12 @@
       "webLink": {
         "description": "URL for the web page for the venue on ents24.com",
         "type": "string"
+      },
+      "lastUpdate": {
+        "description": "The date the venue object was added/updated",
+        "type": "string"
       }
     },
-    "required": ["id", "name", "location", "description", "webLink"]
+    "required": ["id", "name", "location", "description", "webLink", "lastUpdate"]
   }
 }

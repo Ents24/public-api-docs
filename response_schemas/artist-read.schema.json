@@ -169,7 +169,11 @@
     "webLink": {
       "description": "URL for the web page for the artist on ents24.com",
       "type": "string"
+    },
+    "lastUpdate": {
+      "description": "The date the artist object was added/updated",
+      "type": "string"
     }
   },
-  "required": ["id", "name", "description", "webLink"]
+  "required": ["id", "name", "description", "webLink", "lastUpdate"]
 }

@@ -18,6 +18,71 @@
         "description": "Description text for the artist",
         "type": "string"
       },
+      "events": {
+        "description": "Artists upcoming events",
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "description": "Unique identifier for the event",
+              "type": "string"
+            },
+            "title": {
+              "description": "Title of the event",
+              "type": "string"
+            },
+            "venue": {
+              "description": "Venue the event is being held at",
+              "type": "object",
+              "properties": {
+                "id": {
+                  "description": "Unique identifier for the venue",
+                  "type": "string"
+                },
+                "name": {
+                  "description": "Name of the venue",
+                  "type": "string"
+                },
+                "town": {
+                  "description": "Town or city where the venue is located",
+                  "type": "string"
+                },
+                "location": {
+                  "description": "Lat/Lon coordinates of the venue",
+                  "$ref": "http://json-schema.org/geo"
+                }
+              },
+              "required": ["id","name","location"]
+            },
+            "startDateTime": {
+              "description": "DEPRECATED IN BETA 2! RFC-3339 formatted start date and time for the event",
+              "type": "string"
+            },
+            "endDateTime": {
+              "description": "DEPRECATED IN BETA 2! RFC-3339 formatted end date and time for the event",
+              "type": "string"
+            },
+            "startDate": {
+              "description": "RFC-3339 formatted start date for the event",
+              "type": "string"
+            },
+            "endDate": {
+              "description": "RFC-3339 formatted end date for the event",
+              "type": "string"
+            },
+            "startTimeString": {
+              "description": "Start time string for the event",
+              "type": "string"
+            },
+            "endTimeString": {
+              "description": "End time string for the event",
+              "type": "string"
+            }
+          },
+          "required": ["id", "title", "startDateTime", "endDateTime"]
+        }
+      },
       "image": {
         "description": "Single image asset for the artist",
         "type": "object",
@@ -54,8 +119,12 @@
       "webLink": {
         "description": "URL for the web page for the artist on ents24.com",
         "type": "string"
+      },
+      "lastUpdate": {
+        "description": "The date the event object was added/updated",
+        "type": "string"
       }
     },
-    "required": ["id", "name", "description", "webLink"]
+    "required": ["id", "name", "description", "webLink", "lastUpdate"]
   }
 }

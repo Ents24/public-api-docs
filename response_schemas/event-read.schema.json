@@ -203,7 +203,11 @@
     "webLink": {
       "description": "URL for the web page for the event on ents24.com",
       "type": "string"
+    },
+    "lastUpdate": {
+      "description": "The date the event object was added/updated",
+      "type": "string"
     }
   },
-  "required": ["id", "title", "startDateTime", "endDateTime", "description", "webLink"]
+  "required": ["id", "title", "startDateTime", "endDateTime", "description", "webLink", "lastUpdate"]
 }

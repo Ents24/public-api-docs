@@ -65,6 +65,58 @@
         "description": "Description text for the event",
         "type": "string"
       },
+      "artists": {
+        "description": "Featured artists",
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "description": "Unique identifier for a featured artist",
+              "type": "string"
+            },
+            "name": {
+              "description": "Name of a featured artist",
+              "type": "string"
+            }
+          },
+          "required": ["id", "name"]
+        }
+      },
+      "tickets": {
+        "description": "Tickets for this event",
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "supplier": {
+              "description": "The supplier for this ticket",
+              "type": "string"
+            },
+            "price": {
+              "description": "The price for this ticket",
+              "type": "string"
+            },
+            "dateTime": {
+              "description": "RFC-3339 formatted date and time this ticket is valid for",
+              "type": "string"
+            },
+            "url": {
+              "description": "The purchase URL for this ticket",
+              "type": "string"
+            },
+            "onSaleFrom": {
+              "description": "RFC-3339 formatted date this ticket goes on sale",
+              "type": "string"
+            },
+            "onSaleUntil": {
+              "description": "RFC-3339 formatted date this ticket is / will be on sale until",
+              "type": "string"
+            }
+          },
+          "required": ["supplier", "price", "dateTime", "onSaleUntil"]
+        }
+      },
       "image": {
         "description": "Single image asset for the event",
         "type": "object",
@@ -102,8 +154,12 @@
       "webLink": {
         "description": "URL for the web page for the event on ents24.com",
         "type": "string"
+      },
+      "lastUpdate": {
+        "description": "The date the event object was added/updated",
+        "type": "string"
       }
     },
-    "required": ["id", "title", "startDateTime", "endDateTime", "description", "webLink"]
+    "required": ["id", "title", "startDateTime", "endDateTime", "description", "webLink", "lastUpdate"]
   }
 }
