@@ -67,8 +67,10 @@ A list of all valid event genres.
               }
             }
 
-### List [/event/list?location={location}&type={type}&genre={genre}&date={date}&date_from={date_from}&date_to={date_to}&venue={venue}&venue_id={venue_id}&artist={artist}&artist_id={artist_id}&results_per_page={results_per_page}&page={page}&incl_image={incl_image}&full_description={full_description}&updated_since={updated_since}]
-Multiple event objects with selected fields.
+### List [/event/list?location={location}&type={type}&genre={genre}&date={date}&date_from={date_from}&date_to={date_to}&venue={venue}&venue_id={venue_id}&artist={artist}&artist_id={artist_id}&results_per_page={results_per_page}&page={page}&incl_image={incl_image}&image_size={image_size}&incl_artists={incl_artists}&incl_tickets={incl_tickets}&full_description={full_description}&updated_since={updated_since}]
+Multiple event objects with selected fields.  
+***NB:*** *You must filter resources retrieved from this end-point with at least one of the following request parameters:*  
+`location` `venue` `venue_id` `artist_id`
 
 #### Event List [GET]
 + Parameters
@@ -79,11 +81,14 @@ Multiple event objects with selected fields.
   + date_to (optional, date, `2014-09-10`) ... The date you want an events listing to.<br />***NB:*** *This parameter is required when `date_from` parameter is set.*
   + venue (optional, string, `Hyde Park`) ... The venue you want an events listing for.
   + venue_id (optional, string, `lRx9`) ... The unique identifier for a venue you want an events listing for.
-  + artist (optional, string, `Blondie`) ... The artist you want an events listing for.
+  + artist (optional, string, `Blondie`) ... The artist you want an events listing for.<br />***NB:*** *Values applied to this parameter may match more than one artist!<br />You should use the `artist/read` end-point to get an events listing for a particular artist.*
   + artist_id (optional, string, `njyZ`) ... The unique identifier for an artist you want an events listing for.
   + results_per_page (optional, integer, `25`) ... The number of results you want per page/chunk [25, 50, 100].
-  + page (optional, integer, `1`) ... The page/chunk of results to be requested.
+  + page (optional, string, `ZW0=`) ... The page/chunk of results to be requested.
   + incl_image (optional, boolean, `1`) ... Decides whether or not an event image is included in the response.
+  + image_size (optional, string, `medium`) ... Chooses the size of image included with each image object if one is available.
+  + incl_artists (optional, boolean, `1`) ... Decides whether or not a list of performing artists is included in the response. 
+  + incl_tickets (optional, boolean, `1`) ... Decides whether or not a list of available tickets is included in the response.  
   + full_description (optional, boolean, `0`) ... Decides whether full or summarised description text is included in the response. 
   + updated_since (optional, date, `2014-08-31`) ... Only retrive events that have been added/updated since the given date.
 
@@ -100,17 +105,15 @@ Multiple event objects with selected fields.
             Date: Tue, 26 Aug 2014 08:00:00 GMT
             Expires: Tue, 26 Aug 2014 09:00:00 GMT
             Last-Modified: Tue, 25 Aug 2014 22:10:00 GMT
-            X-Current-Page: 2
-            X-Next-Page: https://api.ents24.com/event/list?...&page=3
-            X-Previous-Page: https://api.ents24.com/event/list?...&page=1
+            X-Next-Page: R2U=
+            X-Previous-Page: bUw=
             X-Total-Items-Found: 75
-            X-Total-Pages: 3
 
     + Body
 
             {
               "$schema": "http://json-schema.org/draft-04/schema#",
-              "title": "Event Collection",
+              "title": "Event List",
               "description": "A list of Event objects with selected fields",
               "type": "array",
               "items": {
@@ -175,6 +178,58 @@ Multiple event objects with selected fields.
                     "description": "Description text for the event",
                     "type": "string"
                   },
+                  "artists": {
+                    "description": "Featured artists",
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "description": "Unique identifier for a featured artist",
+                          "type": "string"
+                        },
+                        "name": {
+                          "description": "Name of a featured artist",
+                          "type": "string"
+                        }
+                      },
+                      "required": ["id", "name"]
+                    }
+                  },
+                  "tickets": {
+                    "description": "Tickets for this event",
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "supplier": {
+                          "description": "The supplier for this ticket",
+                          "type": "string"
+                        },
+                        "price": {
+                          "description": "The price for this ticket",
+                          "type": "string"
+                        },
+                        "dateTime": {
+                          "description": "RFC-3339 formatted date and time this ticket is valid for",
+                          "type": "string"
+                        },
+                        "url": {
+                          "description": "The purchase URL for this ticket",
+                          "type": "string"
+                        },
+                        "onSaleFrom": {
+                          "description": "RFC-3339 formatted date this ticket goes on sale",
+                          "type": "string"
+                        },
+                        "onSaleUntil": {
+                          "description": "RFC-3339 formatted date this ticket is / will be on sale until",
+                          "type": "string"
+                        }
+                      },
+                      "required": ["supplier", "price", "dateTime", "onSaleUntil"]
+                    }
+                  },
                   "image": {
                     "description": "Single image asset for the event",
                     "type": "object",
@@ -212,9 +267,13 @@ Multiple event objects with selected fields.
                   "webLink": {
                     "description": "URL for the web page for the event on ents24.com",
                     "type": "string"
+                  },
+                  "lastUpdate": {
+                    "description": "The date the event object was added/updated",
+                    "type": "string"
                   }
                 },
-                "required": ["id", "title", "startDateTime", "endDateTime", "description", "webLink"]
+                "required": ["id", "title", "startDateTime", "endDateTime", "description", "webLink", "lastUpdate"]
               }
             }
 
@@ -224,7 +283,6 @@ Multiple event objects with selected fields.
 
             Date: Tue, 26 Aug 2014 08:00:00 GMT
             X-Total-Items-Found: 0
-            X-Total-Pages: 0
 
 ### Read [/event/read?id={id}&incl_artists={incl_artists}&incl_images={incl_images}&incl_tickets={incl_tickets}&full_description={full_description}]
 An event object with all fields.
@@ -250,9 +308,7 @@ An event object with all fields.
             Date: Tue, 26 Aug 2014 08:00:00 GMT
             Expires: Tue, 26 Aug 2014 09:00:00 GMT
             Last-Modified: Tue, 25 Aug 2014 22:10:00 GMT
-            X-Current-Page: 1
             X-Total-Items-Found: 1
-            X-Total-Pages: 1
 
     + Body
 
@@ -461,9 +517,13 @@ An event object with all fields.
                 "webLink": {
                   "description": "URL for the web page for the event on ents24.com",
                   "type": "string"
+                },
+                "lastUpdate": {
+                  "description": "The date the event object was added/updated",
+                  "type": "string"
                 }
               },
-              "required": ["id", "title", "startDateTime", "endDateTime", "description", "webLink"]
+              "required": ["id", "title", "startDateTime", "endDateTime", "description", "webLink", "lastUpdate"]
             }
 
 ### Image [/event/image?id={id}&size={size}&format={format}]
@@ -488,9 +548,7 @@ An event image retrieved as either a JSON object or JPEG image.
             Date: Tue, 26 Aug 2014 08:00:00 GMT
             Expires: Tue, 26 Aug 2014 09:00:00 GMT
             Last-Modified: Tue, 25 Aug 2014 22:10:00 GMT
-            X-Current-Page: 1
             X-Total-Items-Found: 1
-            X-Total-Pages: 1
 
     + Body
 
@@ -534,16 +592,19 @@ An event image retrieved as either a JSON object or JPEG image.
 # Group Artist
 Available resources on the artist endpoint.
 
-### List [/artist/list?genre={genre}&event={event}&event_id={event_id}&results_per_page={results_per_page}&page={page}&incl_image={incl_image}&full_description={full_description}&updated_since={updated_since}]
-Multiple artist objects with selected fields.
+### List [/artist/list?name={name}genre={genre}&event={event}&event_id={event_id}&results_per_page={results_per_page}&page={page}&incl_image={incl_image}&full_description={full_description}&updated_since={updated_since}]
+Multiple artist objects with selected fields.  
+***NB:*** *You must filter resources retrieved from this end-point with at least one of the following request parameters:*  
+`name` `event` `event_id`
 
 #### Artist List [GET]
 + Parameters
+  + name (optional, string, `Blondie`) ... The string that matches artist names you want a list of.<br />***NB:*** *Values applied to this parameter may match more than one artist!<br />You should use the `artist/read` end-point to retrieve data for a particular artist.*
   + genre (optional, string, `rock`) ... The genre of artist you want listed.
   + event (optional, string, `BBC Radio 2 Live In Hyde Park`) ... The name for an event you want an artists listing for.
   + event_id (optional, string, `mDDaoO`) ... The unique identifier for an event you want an artists listing for.
   + results_per_page (optional, integer, `25`) ... The number of results you want per page/chunk [25, 50, 100].
-  + page (optional, integer, `1`) ... The page/chunk of results to be requested.
+  + page (optional, string, `ZW0=`) ... The page/chunk of results to be requested.
   + incl_image (optional, boolean, `1`) ... Decides whether or not an artist image is included in the response.
   + full_description (optional, boolean, `0`) ... Decides whether full or summarised description text is included in the response. 
   + updated_since (optional, date, `YYYY-MM-DD`) ... Only retrive artists that have been added/updated since the given date.
@@ -561,17 +622,15 @@ Multiple artist objects with selected fields.
             Date: Tue, 26 Aug 2014 08:00:00 GMT
             Expires: Tue, 26 Aug 2014 09:00:00 GMT
             Last-Modified: Tue, 25 Aug 2014 22:10:00 GMT
-            X-Current-Page: 2
-            X-Next-Page: https://api.ents24.com/event/list?...&page=3
-            X-Previous-Page: https://api.ents24.com/event/list?...&page=1
+            X-Next-Page: R2U=
+            X-Previous-Page: bUw=
             X-Total-Items-Found: 75
-            X-Total-Pages: 3
 
     + Body
 
             {
               "$schema": "http://json-schema.org/draft-04/schema#",
-              "title": "Artist Collection",
+              "title": "Artist List",
               "description": "A list of Artist objects with selected fields",
               "type": "array",
               "items": {
@@ -588,6 +647,71 @@ Multiple artist objects with selected fields.
                   "description": {
                     "description": "Description text for the artist",
                     "type": "string"
+                  },
+                  "events": {
+                    "description": "Artists upcoming events",
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "description": "Unique identifier for the event",
+                          "type": "string"
+                        },
+                        "title": {
+                          "description": "Title of the event",
+                          "type": "string"
+                        },
+                        "venue": {
+                          "description": "Venue the event is being held at",
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "description": "Unique identifier for the venue",
+                              "type": "string"
+                            },
+                            "name": {
+                              "description": "Name of the venue",
+                              "type": "string"
+                            },
+                            "town": {
+                              "description": "Town or city where the venue is located",
+                              "type": "string"
+                            },
+                            "location": {
+                              "description": "Lat/Lon coordinates of the venue",
+                              "$ref": "http://json-schema.org/geo"
+                            }
+                          },
+                          "required": ["id","name","location"]
+                        },
+                        "startDateTime": {
+                          "description": "DEPRECATED IN BETA 2! RFC-3339 formatted start date and time for the event",
+                          "type": "string"
+                        },
+                        "endDateTime": {
+                          "description": "DEPRECATED IN BETA 2! RFC-3339 formatted end date and time for the event",
+                          "type": "string"
+                        },
+                        "startDate": {
+                          "description": "RFC-3339 formatted start date for the event",
+                          "type": "string"
+                        },
+                        "endDate": {
+                          "description": "RFC-3339 formatted end date for the event",
+                          "type": "string"
+                        },
+                        "startTimeString": {
+                          "description": "Start time string for the event",
+                          "type": "string"
+                        },
+                        "endTimeString": {
+                          "description": "End time string for the event",
+                          "type": "string"
+                        }
+                      },
+                      "required": ["id", "title", "startDateTime", "endDateTime"]
+                    }
                   },
                   "image": {
                     "description": "Single image asset for the artist",
@@ -625,9 +749,13 @@ Multiple artist objects with selected fields.
                   "webLink": {
                     "description": "URL for the web page for the artist on ents24.com",
                     "type": "string"
+                  },
+                  "lastUpdate": {
+                    "description": "The date the event object was added/updated",
+                    "type": "string"
                   }
                 },
-                "required": ["id", "name", "description", "webLink"]
+                "required": ["id", "name", "description", "webLink", "lastUpdate"]
               }
             }
 
@@ -637,7 +765,6 @@ Multiple artist objects with selected fields.
 
             Date: Tue, 26 Aug 2014 08:00:00 GMT
             X-Total-Items-Found: 0
-            X-Total-Pages: 0
 
 ### Read [/artist/read?id={id}&incl_events={incl_events}&incl_image={incl_images}&full_description={full_description}]
 An artist object with all fields.
@@ -662,9 +789,7 @@ An artist object with all fields.
             Date: Tue, 26 Aug 2014 08:00:00 GMT
             Expires: Tue, 26 Aug 2014 09:00:00 GMT
             Last-Modified: Tue, 25 Aug 2014 22:10:00 GMT
-            X-Current-Page: 1
             X-Total-Items-Found: 1
-            X-Total-Pages: 1
 
     + Body
 
@@ -839,9 +964,13 @@ An artist object with all fields.
                 "webLink": {
                   "description": "URL for the web page for the artist on ents24.com",
                   "type": "string"
+                },
+                "lastUpdate": {
+                  "description": "The date the artist object was added/updated",
+                  "type": "string"
                 }
               },
-              "required": ["id", "name", "description", "webLink"]
+              "required": ["id", "name", "description", "webLink", "lastUpdate"]
             }
 
 ### Image [/artist/image?id={id}&size={size}&format={format}]
@@ -913,7 +1042,9 @@ An artist image retrieved as either a JSON object or JPEG image.
 Available resources on the venue endpoint.
 
 ### List [/venue/list?name={name}&location={location}&results_per_page={results_per_page}&page={page}&incl_image={incl_image}&full_description={full_description}&updated_since={updated_since}]
-Multiple venue objects with selected fields.
+Multiple venue objects with selected fields.  
+***NB:*** *You must filter resources retrieved from this end-point with at least one of the following request parameters:*  
+`name` `location` `event` `event_id`
 
 #### Venue List [GET]
 + Parameters
@@ -938,17 +1069,15 @@ Multiple venue objects with selected fields.
             Date: Tue, 26 Aug 2014 08:00:00 GMT
             Expires: Tue, 26 Aug 2014 09:00:00 GMT
             Last-Modified: Tue, 25 Aug 2014 22:10:00 GMT
-            X-Current-Page: 2
-            X-Next-Page: https://api.ents24.com/event/list?...&page=3
-            X-Previous-Page: https://api.ents24.com/event/list?...&page=1
+            X-Next-Page: R2U=
+            X-Previous-Page: bUw=
             X-Total-Items-Found: 75
-            X-Total-Pages: 3
 
     + Body
 
             {
               "$schema": "http://json-schema.org/draft-04/schema#",
-              "title": "Venue Collection",
+              "title": "Venue List",
               "description": "A list of Venue objects with selected fields",
               "type": "array",
               "items": {
@@ -1014,9 +1143,13 @@ Multiple venue objects with selected fields.
                   "webLink": {
                     "description": "URL for the web page for the venue on ents24.com",
                     "type": "string"
+                  },
+                  "lastUpdate": {
+                    "description": "The date the venue object was added/updated",
+                    "type": "string"
                   }
                 },
-                "required": ["id", "name", "location", "description", "webLink"]
+                "required": ["id", "name", "location", "description", "webLink", "lastUpdate"]
               }
             }
 
@@ -1051,9 +1184,7 @@ A venue object with all fields.
             Date: Tue, 26 Aug 2014 08:00:00 GMT
             Expires: Tue, 26 Aug 2014 09:00:00 GMT
             Last-Modified: Tue, 25 Aug 2014 22:10:00 GMT
-            X-Current-Page: 1
             X-Total-Items-Found: 1
-            X-Total-Pages: 1
 
   + Body
 
@@ -1255,9 +1386,13 @@ A venue object with all fields.
                 "webLink": {
                   "description": "URL for the web page for the venue on ents24.com",
                   "type": "string"
+                },
+                "lastUpdate": {
+                  "description": "The date the venue object was added/updated",
+                  "type": "string"
                 }
               },
-              "required": ["id", "name", "location", "description", "webLink"]
+              "required": ["id", "name", "location", "description", "webLink", "lastUpdate"]
             }
 
 ### Image [/venue/image?id={id}&size={size}&format={format}]
@@ -1282,9 +1417,7 @@ A venue image retrieved as either a JSON object or JPEG image.
             Date: Tue, 26 Aug 2014 08:00:00 GMT
             Expires: Tue, 26 Aug 2014 09:00:00 GMT
             Last-Modified: Tue, 25 Aug 2014 22:10:00 GMT
-            X-Current-Page: 1
             X-Total-Items-Found: 1
-            X-Total-Pages: 1
 
     + Body
 
