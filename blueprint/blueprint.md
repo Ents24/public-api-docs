@@ -1,7 +1,7 @@
 FORMAT: 1A
-HOST: http://api.ents24.com
+HOST: https://api.ents24.com
 
-# Ents24 REST API (Beta 1)
+# Ents24 REST API (Beta 1.1)
 The Ents24 REST API gives you easy access to the UK's most comprehensive live entertainment database:  
 A horde of event-listing experts add over 10,000 new listings every week!  
 Easily use our data for your website or application.  
@@ -34,8 +34,34 @@ Request an access token to authenticate future requests.
               "expires_in": 5184000
             }
 
+# Group User Authentication
+To obtain an access token you must authenticate your client user credentials with our authentication server.
+
+### Request Access Token [/auth/login]
+Request an access token to authenticate future client user requests.
+
+#### Auth Login [POST]
++ Request (application/x-www-form-urlencoded)
+
+        client_id=aho0bVpKdFURaZ37tkYT&client_secret=uQmfyQsqeKfIMJg4FKQ9gi8cSLFXATpGFyBx038nHy&username=auser&password=mypa55w0rd
+
++ Response 200 (application/json)
+
+    + Headers
+
+            Date: Tue, 26 Aug 2014 08:00:00 GMT
+
+    + Body
+
+            {
+              "access_token": "qnFqFAVw8pJMCF1z8tIMYoXwommArRmt9C08jIRA"
+              "token_type": "Bearer"
+              "expires": 1414317411
+              "expires_in": 5184000
+            }
+
 # Group Event
-Available resources on the event endpoint.
+Available resources on the Event API endpoints.
 
 ### Genres [/event/genres]
 A list of all valid event genres.
@@ -107,7 +133,6 @@ Multiple event objects with selected fields.
             Last-Modified: Tue, 25 Aug 2014 22:10:00 GMT
             X-Next-Page: R2U=
             X-Previous-Page: bUw=
-            X-Total-Items-Found: 75
 
     + Body
 
@@ -282,7 +307,6 @@ Multiple event objects with selected fields.
     + Headers
 
             Date: Tue, 26 Aug 2014 08:00:00 GMT
-            X-Total-Items-Found: 0
 
 ### Read [/event/read?id={id}&incl_artists={incl_artists}&incl_images={incl_images}&incl_tickets={incl_tickets}&full_description={full_description}]
 An event object with all fields.
@@ -308,7 +332,6 @@ An event object with all fields.
             Date: Tue, 26 Aug 2014 08:00:00 GMT
             Expires: Tue, 26 Aug 2014 09:00:00 GMT
             Last-Modified: Tue, 25 Aug 2014 22:10:00 GMT
-            X-Total-Items-Found: 1
 
     + Body
 
@@ -548,7 +571,6 @@ An event image retrieved as either a JSON object or JPEG image.
             Date: Tue, 26 Aug 2014 08:00:00 GMT
             Expires: Tue, 26 Aug 2014 09:00:00 GMT
             Last-Modified: Tue, 25 Aug 2014 22:10:00 GMT
-            X-Total-Items-Found: 1
 
     + Body
 
@@ -590,7 +612,7 @@ An event image retrieved as either a JSON object or JPEG image.
             }
 
 # Group Artist
-Available resources on the artist endpoint.
+Available resources on the Artist API endpoints.
 
 ### List [/artist/list?name={name}genre={genre}&event={event}&event_id={event_id}&results_per_page={results_per_page}&page={page}&incl_image={incl_image}&full_description={full_description}&updated_since={updated_since}]
 Multiple artist objects with selected fields.  
@@ -624,7 +646,6 @@ Multiple artist objects with selected fields.
             Last-Modified: Tue, 25 Aug 2014 22:10:00 GMT
             X-Next-Page: R2U=
             X-Previous-Page: bUw=
-            X-Total-Items-Found: 75
 
     + Body
 
@@ -764,7 +785,6 @@ Multiple artist objects with selected fields.
     + Headers
 
             Date: Tue, 26 Aug 2014 08:00:00 GMT
-            X-Total-Items-Found: 0
 
 ### Read [/artist/read?id={id}&incl_events={incl_events}&incl_image={incl_images}&full_description={full_description}]
 An artist object with all fields.
@@ -789,7 +809,6 @@ An artist object with all fields.
             Date: Tue, 26 Aug 2014 08:00:00 GMT
             Expires: Tue, 26 Aug 2014 09:00:00 GMT
             Last-Modified: Tue, 25 Aug 2014 22:10:00 GMT
-            X-Total-Items-Found: 1
 
     + Body
 
@@ -995,9 +1014,6 @@ An artist image retrieved as either a JSON object or JPEG image.
             Date: Tue, 26 Aug 2014 08:00:00 GMT
             Expires: Tue, 26 Aug 2014 09:00:00 GMT
             Last-Modified: Tue, 25 Aug 2014 22:10:00 GMT
-            X-Current-Page: 1
-            X-Total-Items-Found: 1
-            X-Total-Pages: 1
 
     + Body
 
@@ -1039,7 +1055,7 @@ An artist image retrieved as either a JSON object or JPEG image.
             }
 
 # Group Venue
-Available resources on the venue endpoint.
+Available resources on the Venue API endpoints.
 
 ### List [/venue/list?name={name}&location={location}&results_per_page={results_per_page}&page={page}&incl_image={incl_image}&full_description={full_description}&updated_since={updated_since}]
 Multiple venue objects with selected fields.  
@@ -1071,7 +1087,6 @@ Multiple venue objects with selected fields.
             Last-Modified: Tue, 25 Aug 2014 22:10:00 GMT
             X-Next-Page: R2U=
             X-Previous-Page: bUw=
-            X-Total-Items-Found: 75
 
     + Body
 
@@ -1158,8 +1173,6 @@ Multiple venue objects with selected fields.
   + Headers
 
             Date: Tue, 26 Aug 2014 08:00:00 GMT
-            X-Total-Items-Found: 0
-            X-Total-Pages: 0
 
 ### Read [/venue/read?id={id}&incl_events={incl_events}&incl_images={incl_images}&full_description={full_description}]
 A venue object with all fields.
@@ -1184,7 +1197,6 @@ A venue object with all fields.
             Date: Tue, 26 Aug 2014 08:00:00 GMT
             Expires: Tue, 26 Aug 2014 09:00:00 GMT
             Last-Modified: Tue, 25 Aug 2014 22:10:00 GMT
-            X-Total-Items-Found: 1
 
   + Body
 
@@ -1417,7 +1429,6 @@ A venue image retrieved as either a JSON object or JPEG image.
             Date: Tue, 26 Aug 2014 08:00:00 GMT
             Expires: Tue, 26 Aug 2014 09:00:00 GMT
             Last-Modified: Tue, 25 Aug 2014 22:10:00 GMT
-            X-Total-Items-Found: 1
 
     + Body
 
