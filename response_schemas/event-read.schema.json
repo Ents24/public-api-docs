@@ -33,7 +33,7 @@
           "$ref": "http://json-schema.org/geo"
         }
       },
-      "required": ["id", "name", "town"]
+      "required": ["id","name","town","location"]
     },
     "startDateTime": {
       "description": "DEPRECATED IN BETA 2! RFC-3339 formatted start date and time for the event",
@@ -78,7 +78,7 @@
             "type": "string"
           }
         },
-        "required": ["id", "name"]
+        "required": ["id","name"]
       }
     },
    "image": {
@@ -94,15 +94,15 @@
               "type": "string"
             },
             "width": {
-              "description": "Image width",
+              "description": "Image width (px)",
               "type": "integer"
             },
             "height": {
-              "description": "Image height",
+              "description": "Image height (px)",
               "type": "integer"
             }
           },
-          "required": ["url", "width", "height"]
+          "required": ["url","width","height"]
         },
         "medium": {
           "description": "Medium sized image",
@@ -113,15 +113,15 @@
               "type": "string"
             },
             "width": {
-              "description": "Image width",
+              "description": "Image width (px)",
               "type": "integer"
             },
             "height": {
-              "description": "Image height",
+              "description": "Image height (px)",
               "type": "integer"
             }
           },
-          "required": ["url", "width", "height"]
+          "required": ["url","width","height"]
         },
         "large": {
           "description": "Medium sized image",
@@ -132,15 +132,15 @@
               "type": "string"
             },
             "width": {
-              "description": "Image width",
+              "description": "Image width (px)",
               "type": "integer"
             },
             "height": {
-              "description": "Image height",
+              "description": "Image height (px)",
               "type": "integer"
             }
           },
-          "required": ["url", "width", "height"]
+          "required": ["url","width","height"]
         },
         "metadata": {
           "description": "Metadata related to this image",
@@ -155,7 +155,7 @@
               "type": "string"
             }
           },
-          "required": ["copyright", "caption"]
+          "required": ["copyright","caption"]
         }
       }
     },
@@ -197,17 +197,25 @@
             "type": "string"
           }
         },
-        "required": ["supplier", "price", "dateTime", "onSaleUntil"]
+        "required": ["supplier","price","dateTime","onSaleUntil"]
       }
     },
     "webLink": {
       "description": "URL for the web page for the event on ents24.com",
       "type": "string"
     },
+    "viewsOnEnts24": {
+      "description": "The number of unique vistors to this event's page on Ents24",
+      "type": "integer"
+    },
+    "fansOnEnts24": {
+      "description": "The number of Ents24 users tracking updates and announcements for this event",
+      "type": "integer"
+    },
     "lastUpdate": {
-      "description": "The date the event object was added/updated",
+      "description": "RFC-3339 formatted added/updated timestamp for this object",
       "type": "string"
     }
   },
-  "required": ["id", "title", "startDateTime", "endDateTime", "description", "webLink", "lastUpdate"]
+  "required": ["id","title","startDate","endDate","description","webLink","viewsOnEnts24","fansOnEnts24","lastUpdate"]
 }

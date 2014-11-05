@@ -9,11 +9,11 @@
       "type": "string"
     },
     "width": {
-      "description": "Image width",
+      "description": "Image width (px)",
       "type": "integer"
     },
     "height": {
-      "description": "Image height",
+      "description": "Image height (px)",
       "type": "integer"
     },
     "metadata": {
@@ -29,8 +29,8 @@
           "type": "string"
         }
       },
-      "required": ["copyright", "caption"]
+      "required": ["copyright","caption"]
     }
   },
-  "required": ["url", "width", "height", "metadata"]
+  "required": ["url","width","height","metadata"]
 }

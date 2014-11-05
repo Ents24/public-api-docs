@@ -53,7 +53,7 @@
                   "$ref": "http://json-schema.org/geo"
                 }
               },
-              "required": ["id","name","location"]
+              "required": ["id","name","town","location"]
             },
             "startDateTime": {
               "description": "DEPRECATED IN BETA 2! RFC-3339 formatted start date and time for the event",
@@ -80,7 +80,7 @@
               "type": "string"
             }
           },
-          "required": ["id", "title", "startDateTime", "endDateTime"]
+          "required": ["id","title","startDate","endDate"]
         }
       },
       "image": {
@@ -92,11 +92,11 @@
             "type": "string"
           },
           "width": {
-            "description": "Image width",
+            "description": "Image width (px)",
             "type": "integer"
           },
           "height": {
-            "description": "Image height",
+            "description": "Image height (px)",
             "type": "integer"
           },
           "metadata": {
@@ -112,7 +112,7 @@
                 "type": "string"
               }
             },
-            "required": ["copyright", "caption"]
+            "required": ["copyright","caption"]
           }
         }
       },
@@ -120,11 +120,19 @@
         "description": "URL for the web page for the artist on ents24.com",
         "type": "string"
       },
+      "viewsOnEnts24": {
+        "description": "The number of unique vistors to this artist's page on Ents24",
+        "type": "integer"
+      },
+      "fansOnEnts24": {
+        "description": "The number of Ents24 users tracking updates and announcements for this artist",
+        "type": "integer"
+      },
       "lastUpdate": {
-        "description": "The date the event object was added/updated",
+        "description": "RFC-3339 formatted added/updated timestamp for this object",
         "type": "string"
       }
     },
-    "required": ["id", "name", "description", "webLink", "lastUpdate"]
+    "required": ["id","name","description","webLink","viewsOnEnts24","fansOnEnts24","lastUpdate"]
   }
 }
