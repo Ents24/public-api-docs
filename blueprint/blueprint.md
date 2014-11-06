@@ -297,10 +297,6 @@ Multiple event objects with selected fields.
                     "description": "URL for the web page for the event on ents24.com",
                     "type": "string"
                   },
-                  "viewsOnEnts24": {
-                    "description": "The number of unique vistors to this event's page on Ents24",
-                    "type": "integer"
-                  },
                   "fansOnEnts24": {
                     "description": "The number of Ents24 users tracking updates and announcements for this event",
                     "type": "integer"
@@ -310,7 +306,7 @@ Multiple event objects with selected fields.
                     "type": "string"
                   }
                 },
-                "required": ["id","title","startDate","endDate","description","webLink","viewsOnEnts24","fansOnEnts24","lastUpdate"]
+                "required": ["id","title","startDate","endDate","description","webLink","fansOnEnts24","lastUpdate"]
               }
             }
 
@@ -558,10 +554,6 @@ An event object with all fields.
                   "description": "URL for the web page for the event on ents24.com",
                   "type": "string"
                 },
-                "viewsOnEnts24": {
-                  "description": "The number of unique vistors to this event's page on Ents24",
-                  "type": "integer"
-                },
                 "fansOnEnts24": {
                   "description": "The number of Ents24 users tracking updates and announcements for this event",
                   "type": "integer"
@@ -571,7 +563,7 @@ An event object with all fields.
                   "type": "string"
                 }
               },
-              "required": ["id","title","startDate","endDate","description","webLink","viewsOnEnts24","fansOnEnts24","lastUpdate"]
+              "required": ["id","title","startDate","endDate","description","webLink","fansOnEnts24","lastUpdate"]
             }
 
 ### Image [/event/image?id={id}&size={size}&format={format}]
@@ -799,10 +791,6 @@ Multiple artist objects with selected fields.
                     "description": "URL for the web page for the artist on ents24.com",
                     "type": "string"
                   },
-                  "viewsOnEnts24": {
-                    "description": "The number of unique vistors to this artist's page on Ents24",
-                    "type": "integer"
-                  },
                   "fansOnEnts24": {
                     "description": "The number of Ents24 users tracking updates and announcements for this artist",
                     "type": "integer"
@@ -812,7 +800,7 @@ Multiple artist objects with selected fields.
                     "type": "string"
                   }
                 },
-                "required": ["id","name","description","webLink","viewsOnEnts24","fansOnEnts24","lastUpdate"]
+                "required": ["id","name","description","webLink","fansOnEnts24","lastUpdate"]
               }
             }
 
@@ -1025,10 +1013,6 @@ An artist object with all fields.
                   "description": "URL for the web page for the artist on ents24.com",
                   "type": "string"
                 },
-                "viewsOnEnts24": {
-                  "description": "The number of unique vistors to this artist's page on Ents24",
-                  "type": "integer"
-                },
                 "fansOnEnts24": {
                   "description": "The number of Ents24 users tracking updates and announcements for this artist",
                   "type": "integer"
@@ -1038,7 +1022,7 @@ An artist object with all fields.
                   "type": "string"
                 }
               },
-              "required": ["id","name","description","webLink","viewsOnEnts24","fansOnEnts24","lastUpdate"]
+              "required": ["id","name","description","webLink","fansOnEnts24","lastUpdate"]
             }
 
 ### Image [/artist/image?id={id}&size={size}&format={format}]
@@ -1256,10 +1240,6 @@ Multiple venue objects with selected fields.
                     "description": "URL for the web page for the venue on ents24.com",
                     "type": "string"
                   },
-                  "viewsOnEnts24": {
-                    "description": "The number of unique vistors to this venue's page on Ents24",
-                    "type": "integer"
-                  },
                   "fansOnEnts24": {
                     "description": "The number of Ents24 users tracking updates and announcements for this venue",
                     "type": "integer"
@@ -1269,7 +1249,7 @@ Multiple venue objects with selected fields.
                     "type": "string"
                   }
                 },
-                "required": ["id","name","town","location","description","webLink","viewsOnEnts24","fansOnEnts24","lastUpdate"]
+                "required": ["id","name","town","location","description","webLink","fansOnEnts24","lastUpdate"]
               }
             }
 
@@ -1509,10 +1489,6 @@ A venue object with all fields.
                   "description": "URL for the web page for the venue on ents24.com",
                   "type": "string"
                 },
-                "viewsOnEnts24": {
-                  "description": "The number of unique vistors to this venue's page on Ents24",
-                  "type": "integer"
-                },
                 "fansOnEnts24": {
                   "description": "The number of Ents24 users tracking updates and announcements for this venue",
                   "type": "integer"
@@ -1522,7 +1498,7 @@ A venue object with all fields.
                   "type": "string"
                 }
               },
-              "required": ["id","name","town","location","description","webLink","viewsOnEnts24","fansOnEnts24","lastUpdate"]
+              "required": ["id","name","town","location","description","webLink","fansOnEnts24","lastUpdate"]
             }
 
 ### Image [/venue/image?id={id}&size={size}&format={format}]
