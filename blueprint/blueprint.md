@@ -107,10 +107,10 @@ Multiple event objects with selected fields.
   + date_from (optional, date, `2014-09-03`) ... The date you want an events listing from.<br />***NB:*** *This parameter is required when `date_to` parameter is set.*
   + date_to (optional, date, `2014-09-10`) ... The date you want an events listing to.<br />***NB:*** *This parameter is required when `date_from` parameter is set.*
   + venue_name (optional, string, `Hyde Park`) ... The venue you want an events listing for.<br />***NB:*** *Values applied to this parameter may match more than one venue!<br />You should use the `venue/read` end-point to get event listings for a particular venue.*
-  + venue (optional, string, `Hyde Park`) ... **DEPRECATED IN BETA 2! You should use the `venue_name` parameter instead**
+  + venue (optional, string, `Hyde Park`) ... **DEPRECATED IN BETA 2!** You should use the `venue_name` parameter instead
   + venue_id (optional, string, `lRx9`) ... **DEPRECATED IN BETA 2!** The unique identifier for a venue you want an events listing for.
   + artist_name (optional, string, `Blondie`) ... The artist you want an events listing for.<br />***NB:*** *Values applied to this parameter may match more than one artist!<br />You should use the `artist/read` end-point to get an upcoming events list for a particular artist.*
-  + artist (optional, string, `Blondie`) ... **DEPRECATED IN BETA 2! You should use the `artist_name` parameter instead**
+  + artist (optional, string, `Blondie`) ... **DEPRECATED IN BETA 2!** You should use the `artist_name` parameter instead
   + artist_id (optional, string, `njyZ`) ... **DEPRECATED IN BETA 2!** The unique identifier for an artist you want an events listing for.
   + results_per_page (optional, integer, `25`) ... The number of results you want per page/chunk [25, 50, 100].
   + page (optional, string, `ZW0=`) ... The page/chunk of results to be requested.
@@ -231,32 +231,40 @@ Multiple event objects with selected fields.
                     "items": {
                       "type": "object",
                       "properties": {
-                        "supplier": {
-                          "description": "The supplier for this ticket",
-                          "type": "string"
-                        },
-                        "price": {
-                          "description": "The price for this ticket",
-                          "type": "string"
-                        },
                         "dateTime": {
                           "description": "RFC-3339 formatted date and time this ticket is valid for",
                           "type": "string"
                         },
-                        "url": {
-                          "description": "The purchase URL for this ticket",
+                        "supplier": {
+                          "description": "The supplier of this ticket",
+                          "type": "string"
+                        },
+                        "price": {
+                          "description": "The face-value price for this ticket",
+                          "type": "string"
+                        },
+                        "totalPrice": {
+                          "description": "The total price for this ticket",
+                          "type": "string"
+                        },
+                        "inclBookingFee": {
+                          "description": "Flag indicating whether a booking fee is included in the price of this ticket.",
                           "type": "string"
                         },
                         "onSaleFrom": {
                           "description": "RFC-3339 formatted date this ticket goes on sale",
-                          "type": "string"
+                          "type": ["string","null"]
                         },
                         "onSaleUntil": {
                           "description": "RFC-3339 formatted date this ticket is / will be on sale until",
+                          "type": ["string","null"]
+                        },
+                        "url": {
+                          "description": "The purchase URL for this ticket",
                           "type": "string"
                         }
                       },
-                      "required": ["supplier","price","dateTime","onSaleUntil"]
+                      "required": ["dateTime","supplier","price","totalPrice","inclBookingFee","onSaleFrom","onSaleUntil","url"]
                     }
                   },
                   "image": {
@@ -522,32 +530,40 @@ An event object with all fields.
                   "items": {
                     "type": "object",
                     "properties": {
-                      "supplier": {
-                        "description": "The supplier for this ticket",
-                        "type": "string"
-                      },
-                      "price": {
-                        "description": "The price for this ticket",
-                        "type": "string"
-                      },
                       "dateTime": {
                         "description": "RFC-3339 formatted date and time this ticket is valid for",
                         "type": "string"
                       },
-                      "url": {
-                        "description": "The purchase URL for this ticket",
+                      "supplier": {
+                        "description": "The supplier of this ticket",
+                        "type": "string"
+                      },
+                      "price": {
+                        "description": "The face-value price for this ticket",
+                        "type": "string"
+                      },
+                      "totalPrice": {
+                        "description": "The total price for this ticket",
+                        "type": "string"
+                      },
+                      "inclBookingFee": {
+                        "description": "Flag indicating whether a booking fee is included in the price of this ticket.",
                         "type": "string"
                       },
                       "onSaleFrom": {
                         "description": "RFC-3339 formatted date this ticket goes on sale",
-                        "type": "string"
+                        "type": ["string","null"]
                       },
                       "onSaleUntil": {
                         "description": "RFC-3339 formatted date this ticket is / will be on sale until",
+                        "type": ["string","null"]
+                      },
+                      "url": {
+                        "description": "The purchase URL for this ticket",
                         "type": "string"
                       }
                     },
-                    "required": ["supplier","price","dateTime","onSaleUntil"]
+                    "required": ["dateTime","supplier","price","totalPrice","inclBookingFee","onSaleFrom","onSaleUntil","url"]
                   }
                 },
                 "webLink": {
@@ -640,7 +656,7 @@ Multiple artist objects with selected fields.
 + Parameters
   + name (optional, string, `Blondie`) ... The string that matches artist names you want a list of.<br />***NB:*** *Values applied to this parameter may match more than one artist!<br />You should use the `artist/read` end-point to retrieve data for a particular artist.*
   + event_name (optional, string, `BBC Radio 2 Live In Hyde Park`) ... The name for an event you want an artists listing for.<br />***NB:*** *Values applied to this parameter may match more than one event!<br />You should use the `event/read` end-point to retrieve data for a particular event.*
-  + event (optional, string, `BBC Radio 2 Live In Hyde Park`) ... **DEPRECATED IN BETA 2! You should use the `event_name` parameter instead**
+  + event (optional, string, `BBC Radio 2 Live In Hyde Park`) ... **DEPRECATED IN BETA 2!** You should use the `event_name` parameter instead.
   + genre (optional, string, `rock`) ... The genre you want an artists listing for.
   + results_per_page (optional, integer, `25`) ... The number of results you want per page/chunk [25, 50, 100].
   + page (optional, string, `ZW0=`) ... The page/chunk of results to be requested.
@@ -1100,7 +1116,7 @@ Multiple venue objects with selected fields.
   + name (optional, string, `The Fleece`) ... The name of a venue.
   + location (optional, string, `bristol`) ... The location of venue(s) you want a listing for.
   + event_name (optional, string, `BBC Radio 2 Live In Hyde Park`) ... The name for an event you want an venue list for.<br />***NB:*** *Values applied to this parameter may match more than one event!<br />You should use the `event/read` end-point to retrieve data for a particular event.*
-  + event (optional, string, `BBC Radio 2 Live In Hyde Park`) ... **DEPRECATED IN BETA 2! You should use the `event_name` parameter instead**
+  + event (optional, string, `BBC Radio 2 Live In Hyde Park`) ... **DEPRECATED IN BETA 2!** You should use the `event_name` parameter instead.
   + genre (optional, string, `rock`) ... The genre of event you want a venues listing for.
   + results_per_page (optional, integer, `25`) ... The number of results you want per page/chunk [25, 50, 100].
   + page (optional, integer, `1`) ... The page/chunk of results to be requested.
