@@ -89,32 +89,40 @@
         "items": {
           "type": "object",
           "properties": {
-            "supplier": {
-              "description": "The supplier for this ticket",
-              "type": "string"
-            },
-            "price": {
-              "description": "The price for this ticket",
-              "type": "string"
-            },
             "dateTime": {
               "description": "RFC-3339 formatted date and time this ticket is valid for",
               "type": "string"
             },
-            "url": {
-              "description": "The purchase URL for this ticket",
+            "supplier": {
+              "description": "The supplier of this ticket",
+              "type": "string"
+            },
+            "price": {
+              "description": "The face-value price for this ticket",
+              "type": "string"
+            },
+            "totalPrice": {
+              "description": "The total price for this ticket",
+              "type": "string"
+            },
+            "inclBookingFee": {
+              "description": "Flag indicating whether a booking fee is included in the price of this ticket.",
               "type": "string"
             },
             "onSaleFrom": {
               "description": "RFC-3339 formatted date this ticket goes on sale",
-              "type": "string"
+              "type": ["string","null"]
             },
             "onSaleUntil": {
               "description": "RFC-3339 formatted date this ticket is / will be on sale until",
+              "type": ["string","null"]
+            },
+            "url": {
+              "description": "The purchase URL for this ticket",
               "type": "string"
             }
           },
-          "required": ["supplier","price","dateTime","onSaleUntil"]
+          "required": ["dateTime","supplier","price","totalPrice","inclBookingFee","onSaleFrom","onSaleUntil","url"]
         }
       },
       "image": {
