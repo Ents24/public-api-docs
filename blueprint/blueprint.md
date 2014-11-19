@@ -1,7 +1,7 @@
 FORMAT: 1A
 HOST: https://api.ents24.com
 
-# Ents24 REST API (Beta 1.2)
+# Ents24 REST API (Beta 2)
 The Ents24 REST API gives you easy access to the UK's most comprehensive live entertainment database:  
 A horde of event-listing experts add over 10,000 new listings every week!  
 Easily use our data for your website or application.  
@@ -107,12 +107,8 @@ Multiple event objects with selected fields.
   + date_from (optional, date, `2014-09-03`) ... The date you want an events listing from.<br />***NB:*** *This parameter is required when `date_to` parameter is set.*
   + date_to (optional, date, `2014-09-10`) ... The date you want an events listing to.<br />***NB:*** *This parameter is required when `date_from` parameter is set.*
   + venue_name (optional, string, `Hyde Park`) ... The venue you want an events listing for.<br />***NB:*** *Values applied to this parameter may match more than one venue!<br />You should use the `venue/read` end-point to get event listings for a particular venue.*
-  + venue (optional, string, `Hyde Park`) ... **DEPRECATED IN BETA 2!** You should use the `venue_name` parameter instead
-  + venue_id (optional, string, `lRx9`) ... **DEPRECATED IN BETA 2!** The unique identifier for a venue you want an events listing for.
   + artist_name (optional, string, `Blondie`) ... The artist you want an events listing for.<br />***NB:*** *Values applied to this parameter may match more than one artist!<br />You should use the `artist/read` end-point to get an upcoming events list for a particular artist.*
-  + artist (optional, string, `Blondie`) ... **DEPRECATED IN BETA 2!** You should use the `artist_name` parameter instead
-  + artist_id (optional, string, `njyZ`) ... **DEPRECATED IN BETA 2!** The unique identifier for an artist you want an events listing for.
-  + results_per_page (optional, integer, `25`) ... The number of results you want per page/chunk [25, 50, 100].
+  + results\_per\_page (optional, integer, `25`) ... The number of results you want per page/chunk [25, 50, 100].
   + page (optional, string, `ZW0=`) ... The page/chunk of results to be requested.
   + incl_image (optional, boolean, `1`) ... Decides whether or not an event image is included in the response.
   + image_size (optional, string, `medium`) ... Chooses the size of image included with each image object if one is available.
@@ -178,14 +174,6 @@ Multiple event objects with selected fields.
                       }
                     },
                     "required": ["id","name","town","location"]
-                  },
-                  "startDateTime": {
-                    "description": "DEPRECATED IN BETA 2! RFC-3339 formatted start date and time for the event",
-                    "type": "string"
-                  },
-                  "endDateTime": {
-                    "description": "DEPRECATED IN BETA 2! RFC-3339 formatted end date and time for the event",
-                    "type": "string"
                   },
                   "startDate": {
                     "description": "RFC-3339 formatted start date for the event",
@@ -392,14 +380,6 @@ An event object with all fields.
                     }
                   },
                   "required": ["id","name","town","location"]
-                },
-                "startDateTime": {
-                  "description": "DEPRECATED IN BETA 2! RFC-3339 formatted start date and time for the event",
-                  "type": "string"
-                },
-                "endDateTime": {
-                  "description": "DEPRECATED IN BETA 2! RFC-3339 formatted end date and time for the event",
-                  "type": "string"
                 },
                 "startDate": {
                   "description": "RFC-3339 formatted start date for the event",
@@ -656,9 +636,8 @@ Multiple artist objects with selected fields.
 + Parameters
   + name (optional, string, `Blondie`) ... The string that matches artist names you want a list of.<br />***NB:*** *Values applied to this parameter may match more than one artist!<br />You should use the `artist/read` end-point to retrieve data for a particular artist.*
   + event_name (optional, string, `BBC Radio 2 Live In Hyde Park`) ... The name for an event you want an artists listing for.<br />***NB:*** *Values applied to this parameter may match more than one event!<br />You should use the `event/read` end-point to retrieve data for a particular event.*
-  + event (optional, string, `BBC Radio 2 Live In Hyde Park`) ... **DEPRECATED IN BETA 2!** You should use the `event_name` parameter instead.
   + genre (optional, string, `rock`) ... The genre you want an artists listing for.
-  + results_per_page (optional, integer, `25`) ... The number of results you want per page/chunk [25, 50, 100].
+  + results\_per\_page (optional, integer, `25`) ... The number of results you want per page/chunk [25, 50, 100].
   + page (optional, string, `ZW0=`) ... The page/chunk of results to be requested.
   + incl_image (optional, boolean, `1`) ... Decides whether or not an artist image is included in the response.
   + image_size (optional, string, `medium`) ... Chooses the size of image included with each artist object if one is available.
@@ -741,14 +720,6 @@ Multiple artist objects with selected fields.
                             }
                           },
                           "required": ["id","name","town","location"]
-                        },
-                        "startDateTime": {
-                          "description": "DEPRECATED IN BETA 2! RFC-3339 formatted start date and time for the event",
-                          "type": "string"
-                        },
-                        "endDateTime": {
-                          "description": "DEPRECATED IN BETA 2! RFC-3339 formatted end date and time for the event",
-                          "type": "string"
                         },
                         "startDate": {
                           "description": "RFC-3339 formatted start date for the event",
@@ -911,14 +882,6 @@ An artist object with all fields.
                           }
                         },
                         "required": ["id","name","town","location"]
-                      },
-                      "startDateTime": {
-                        "description": "DEPRECATED IN BETA 2! RFC-3339 formatted start date and time for the event",
-                        "type": "string"
-                      },
-                      "endDateTime": {
-                        "description": "DEPRECATED IN BETA 2! RFC-3339 formatted end date and time for the event",
-                        "type": "string"
                       },
                       "startDate": {
                         "description": "RFC-3339 formatted start date for the event",
@@ -1116,9 +1079,8 @@ Multiple venue objects with selected fields.
   + name (optional, string, `The Fleece`) ... The name of a venue.
   + location (optional, string, `bristol`) ... The location of venue(s) you want a listing for.
   + event_name (optional, string, `BBC Radio 2 Live In Hyde Park`) ... The name for an event you want an venue list for.<br />***NB:*** *Values applied to this parameter may match more than one event!<br />You should use the `event/read` end-point to retrieve data for a particular event.*
-  + event (optional, string, `BBC Radio 2 Live In Hyde Park`) ... **DEPRECATED IN BETA 2!** You should use the `event_name` parameter instead.
   + genre (optional, string, `rock`) ... The genre of event you want a venues listing for.
-  + results_per_page (optional, integer, `25`) ... The number of results you want per page/chunk [25, 50, 100].
+  + results\_per\_page (optional, integer, `25`) ... The number of results you want per page/chunk [25, 50, 100].
   + page (optional, integer, `1`) ... The page/chunk of results to be requested.
   + incl_image (optional, boolean, `1`) ... Decides whether or not an artist image is included in the response.
   + image_size (optional, string, `medium`) ... Chooses the size of image included with each venue object if one is available.
@@ -1190,14 +1152,6 @@ Multiple venue objects with selected fields.
                         "title": {
                           "description": "Title of an event",
                             "type": "string"
-                        },
-                        "startDateTime": {
-                          "description": "DEPRECATED IN BETA 2! RFC-3339 formatted start date and time for the event",
-                          "type": "string"
-                        },
-                        "endDateTime": {
-                          "description": "DEPRECATED IN BETA 2! RFC-3339 formatted end date and time for the event",
-                          "type": "string"
                         },
                         "startDate": {
                           "description": "RFC-3339 formatted start date for the event",
@@ -1394,14 +1348,6 @@ A venue object with all fields.
                       "title": {
                         "description": "Title of an event",
                           "type": "string"
-                      },
-                      "startDateTime": {
-                        "description": "DEPRECATED IN BETA 2! RFC-3339 formatted start date and time for the event",
-                        "type": "string"
-                      },
-                      "endDateTime": {
-                        "description": "DEPRECATED IN BETA 2! RFC-3339 formatted end date and time for the event",
-                        "type": "string"
                       },
                       "startDate": {
                         "description": "RFC-3339 formatted start date for the event",
