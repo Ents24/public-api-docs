@@ -213,6 +213,54 @@ Multiple event objects with selected fields.
                       "required": ["id","name"]
                     }
                   },
+                  "stages": {
+                    "description": "Festival stages",
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "description": "Name of the stage",
+                          "type": "string"
+                        },
+                        "days": {
+                          "description": "Stage schedule",
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "startDate": {
+                                "description": "Start date of the day(s) block",
+                                "type": "string"
+                              },
+                              "endDate": {
+                                "description": "End date of the day(s) block",
+                                "type": "string"
+                              },
+                              "artists": {
+                                "description": "Featured artists",
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "id": {
+                                      "description": "Unique identifier for a featured artist",
+                                      "type": "string"
+                                    },
+                                    "name": {
+                                      "description": "Name of a featured artist",
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": ["id","name"]
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
                   "tickets": {
                     "description": "Tickets for this event",
                     "type": "array",
@@ -419,7 +467,55 @@ An event object with all fields.
                     "required": ["id","name"]
                   }
                 },
-               "image": {
+                "stages": {
+                  "description": "Festival stages",
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "description": "Name of the stage",
+                        "type": "string"
+                      },
+                      "days": {
+                        "description": "Stage schedule",
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "startDate": {
+                              "description": "Start date of the day(s) block",
+                              "type": "string"
+                            },
+                            "endDate": {
+                              "description": "End date of the day(s) block",
+                              "type": "string"
+                            },
+                            "artists": {
+                              "description": "Featured artists",
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "id": {
+                                    "description": "Unique identifier for a featured artist",
+                                    "type": "string"
+                                  },
+                                  "name": {
+                                    "description": "Name of a featured artist",
+                                    "type": "string"
+                                  }
+                                },
+                                "required": ["id","name"]
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "image": {
                   "description": "Multiple image assets for the event",
                   "type": "object",
                   "properties": {
