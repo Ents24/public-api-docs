@@ -1,80 +1,62 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "title": "Event",
-  "description": "A single Event object with all fields",
+  "title": "Festival",
+  "description": "Festival Event Object",
   "type": "object",
   "properties": {
     "id": {
-      "description": "Unique identifier for the event",
+      "description": "Unique identifier for the festival",
       "type": "string"
     },
     "title": {
-      "description": "Title of the event",
+      "description": "Title of the festival",
       "type": "string"
     },
     "venue": {
-      "description": "Venue the event is being held at",
+      "description": "The venue or festival site",
       "type": "object",
       "properties": {
         "id": {
-          "description": "Unique identifier for the venue",
+          "description": "Unique identifier for the venue or festival site",
           "type": "string"
         },
         "name": {
-          "description": "Name of the venue",
+          "description": "Name of the venue or festival site",
           "type": "string"
         },
         "town": {
-          "description": "Town or city where the venue is located",
+          "description": "Town or city where or near-to the venue or festival site",
           "type": "string"
         },
         "location": {
-          "description": "Lat/Lon coordinates of the venue",
+          "description": "Lat/Lon coordinates of the venue or festival site",
           "$ref": "http://json-schema.org/geo"
         }
       },
       "required": ["id","name","town","location"]
     },
     "startDate": {
-      "description": "RFC-3339 formatted start date for the event",
+      "description": "RFC-3339 formatted start date for the festival",
       "type": "string"
     },
     "endDate": {
-      "description": "RFC-3339 formatted end date for the event",
+      "description": "RFC-3339 formatted end date for the festival",
       "type": "string"
     },
     "startTimeString": {
-      "description": "Start time string for the event",
+      "description": "Start time string for the festival",
       "type": "string"
     },
     "endTimeString": {
-      "description": "End time string for the event",
+      "description": "End time string for the festival",
       "type": "string"
     },
     "description": {
-      "description": "Description text for the event",
+      "description": "Description text for the festival",
       "type": "string"
     },
-    "artists": {
-      "description": "Featured artists",
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "description": "Unique identifier for a featured artist",
-            "type": "string"
-          },
-          "name": {
-            "description": "Name of a featured artist",
-            "type": "string"
-          }
-        },
-        "required": ["id","name"]
-      }
-    },
     "stages": {
-      "description": "Stages at the event",
+      "description": "Stages at the festival",
       "type": "array",
       "items": {
         "type": "object",
@@ -120,7 +102,7 @@
                   }
                 }
               },
-              "required": ["startDate","endDate"]
+              "required": ["date","artists"]
             }
           }
         },
@@ -128,7 +110,7 @@
       }
     },
     "image": {
-      "description": "Multiple image assets for the event",
+      "description": "Multiple image assets for the festival",
       "type": "object",
       "properties": {
         "small": {

@@ -1,0 +1,26 @@
+<?php
+$r = new HttpRequest('https://api.ents24.com/event/list', HttpRequest::METH_GET);
+
+$r->addHeaders([
+	'Authorization' => 'qnFqFAVw8pJMCF1z8tIMYoXwommArRmt9C08jIRA'
+]);
+
+$r->addQueryData([
+	'location'         => 'latLon:56.271843608072,-4.3589121058253',
+	'results_per_page' => '100',
+	'order_by'         => 'lastUpdate',
+	'order_direction'  => 'desc'
+]);
+
+try {
+
+    $r->send();
+
+    if ($r->getResponseCode() === 200) {
+        // Do something with the response data.
+    }
+
+} catch (HttpException $e) {
+    echo $e;
+}
+?>
