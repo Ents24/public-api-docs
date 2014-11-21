@@ -17,7 +17,7 @@ Request an access token to authenticate future requests.
 #### Auth Token [POST]
 + Request (application/x-www-form-urlencoded)
 
-        client_id=aho0bVpKdFURaZ37tkYT&client_secret=uQmfyQsqeKfIMJg4FKQ9gi8cSLFXATpGFyBx038nHy
+        client\_id=aho0bVpKdFURaZ37tkYT&client\_secret=uQmfyQsqeKfIMJg4FKQ9gi8cSLFXATpGFyBx038nHy
 
 + Response 200 (application/json)
 
@@ -28,14 +28,14 @@ Request an access token to authenticate future requests.
     + Body
 
             {
-              "access_token": "qnFqFAVw8pJMCF1z8tIMYoXwommArRmt9C08jIRA"
-              "token_type": "Bearer"
+              "access\_token": "qnFqFAVw8pJMCF1z8tIMYoXwommArRmt9C08jIRA"
+              "token\_type": "Bearer"
               "expires": 1414317411
-              "expires_in": 5184000
+              "expires\_in": 5184000
             }
 
 # Group User Authentication
-To obtain an access token you must authenticate your client user credentials with our authentication server.  
+To obtain an access token you must authenticate your client user credentials with our authentication server.
 User credentials should represent a valid Ents24 user account. 
 
 ### Request Access Token [/auth/login]
@@ -44,7 +44,7 @@ Request an access token to authenticate future client user requests.
 #### Auth Login [POST]
 + Request (application/x-www-form-urlencoded)
 
-        client_id=aho0bVpKdFURaZ37tkYT&client_secret=uQmfyQsqeKfIMJg4FKQ9gi8cSLFXATpGFyBx038nHy&username=auser&password=mypa55w0rd
+        client\_id=aho0bVpKdFURaZ37tkYT&client\_secret=uQmfyQsqeKfIMJg4FKQ9gi8cSLFXATpGFyBx038nHy&username=auser&password=mypa55w0rd
 
 + Response 200 (application/json)
 
@@ -55,10 +55,10 @@ Request an access token to authenticate future client user requests.
     + Body
 
             {
-              "access_token": "qnFqFAVw8pJMCF1z8tIMYoXwommArRmt9C08jIRA"
-              "token_type": "Bearer"
+              "access\_token": "qnFqFAVw8pJMCF1z8tIMYoXwommArRmt9C08jIRA"
+              "token\_type": "Bearer"
               "expires": 1414317411
-              "expires_in": 5184000
+              "expires\_in": 5184000
             }
 
 # Group Location
@@ -157,7 +157,7 @@ A list of all valid event genres.
               }
             }
 
-### List [/event/list?location={location}&type={type}&genre={genre}&date={date}&date_from={date_from}&date_to={date_to}&venue_name={venue_name}&venue={venue}&venue_id={venue_id}&artist_name={artist_name}&artist={artist}&artist_id={artist_id}&results_per_page={results_per_page}&page={page}&incl_image={incl_image}&image_size={image_size}&incl_artists={incl_artists}&incl_tickets={incl_tickets}&full_description={full_description}&updated_since={updated_since}]
+### List [/event/list?location={location}&radius\_distance="{radius\_distance}"&distance\_unit="{distance\_unit}"&type={type}&genre={genre}&date={date}&date\_from={date\_from}&date\_to={date\_to}&venue\_name={venue\_name}&venue={venue}&venue\_id={venue\_id}&artist\_name={artist\_name}&artist={artist}&artist\_id={artist\_id}&results\_per\_page={results\_per\_page}&page={page}&incl\_image={incl\_image}&image\_size={image\_size}&incl\_artists={incl\_artists}&incl\_tickets={incl\_tickets}&full\_description={full\_description}&updated\_since={updated\_since}]
 Multiple event objects with selected fields.  
 ***NB:*** *You must filter resources retrieved from this end-point with at least one of the following request parameters:*  
 `location` `venue_name` `artist_name`
@@ -463,7 +463,7 @@ Multiple event objects with selected fields.
             X-Previous-Page: ZW0=
             X-Total-Items-Found: 75
 
-### Read [/event/read?id={id}&incl_artists={incl_artists}&incl_images={incl_images}&incl_tickets={incl_tickets}&full_description={full_description}]
+### Read [/event/read?id={id}&incl\_artists={incl\_artists}&incl\_images={incl\_images}&incl\_tickets={incl\_tickets}&full\_description={full\_description}]
 An event object with all fields.
 
 #### Event [GET]
@@ -871,7 +871,7 @@ An event image retrieved as either a JSON object or JPEG image.
 # Group Artist
 Available resources on the Artist API endpoints.
 
-### List [/artist/list?name={name}&event_name={event_name}&event={event}&genre={genre}&results_per_page={results_per_page}&page={page}&incl_image={incl_image}&image_size={image_size}&incl_events={incl_events}&full_description={full_description}&updated_since={updated_since}]
+### List [/artist/list?name={name}&event\_name={event\_name}&event={event}&genre={genre}&results\_per\_page={results\_per\_page}&page={page}&incl\_image={incl\_image}&image\_size={image\_size}&incl\_events={incl\_events}&full\_description={full\_description}&updated\_since={updated\_since}]
 Multiple artist objects with selected fields.  
 ***NB:*** *You must filter resources retrieved from this end-point with at least one of the following request parameters:*  
 `name` `event_name`
@@ -1046,7 +1046,7 @@ Multiple artist objects with selected fields.
             X-Previous-Page: ZW0=
             X-Total-Items-Found: 75
 
-### Read [/artist/read?id={id}&incl_events={incl_events}&incl_image={incl_images}&full_description={full_description}]
+### Read [/artist/read?id={id}&incl\_events={incl\_events}&incl\_image={incl\_images}&full\_description={full\_description}]
 An artist object with all fields.
 
 #### Artist [GET]
@@ -1313,7 +1313,7 @@ An artist image retrieved as either a JSON object or JPEG image.
 # Group Venue
 Available resources on the Venue API endpoints.
 
-### List [/venue/list?name={name}&location={location}&event_name={event_name}&event={event}&genre={genre}&results_per_page={results_per_page}&page={page}&incl_image={incl_image}&image_size={image_size}&incl_events={incl_events}&full_description={full_description}&updated_since={updated_since}]
+### List [/venue/list?name={name}&location={location}&radius\_distance="{radius\_distance}"&distance\_unit="{distance\_unit}"&event\_name={event\_name}&event={event}&genre={genre}&results\_per\_page={results\_per\_page}&page={page}&incl\_image={incl\_image}&image\_size={image\_size}&incl\_events={incl\_events}&full\_description={full\_description}&updated\_since={updated\_since}]
 Multiple venue objects with selected fields.  
 ***NB:*** *You must filter resources retrieved from this end-point with at least one of the following request parameters:*  
 `name` `location` `event_name`
@@ -1480,7 +1480,7 @@ Multiple venue objects with selected fields.
             X-Previous-Page: ZW0=
             X-Total-Items-Found: 75
 
-### Read [/venue/read?id={id}&incl_events={incl_events}&incl_images={incl_images}&full_description={full_description}]
+### Read [/venue/read?id={id}&incl\_events={incl\_events}&incl\_images={incl\_images}&full\_description={full\_description}]
 A venue object with all fields.
 
 #### Venue [GET]
