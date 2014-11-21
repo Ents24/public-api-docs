@@ -10,12 +10,44 @@
         "description": "Unique identifier for the event",
         "type": "string"
       },
+      "title": {
+        "description": "Title of the event",
+        "type": ["string","null"]
+      },
       "headline": {
         "description": "Headline of the event",
         "type": ["string","null"]
       },
-      "title": {
-        "description": "Title of the event",
+      "startDate": {
+        "description": "RFC-3339 formatted start date for the event",
+        "type": ["string","null"]
+      },
+      "endDate": {
+        "description": "RFC-3339 formatted end date for the event",
+        "type": ["string","null"]
+      },
+      "startTimeString": {
+        "description": "Start time string for the event",
+        "type": ["string","null"]
+      },
+      "endTimeString": {
+        "description": "End time string for the event",
+        "type": ["string","null"]
+      },
+      "isSoldOut": {
+        "description": "Flag to indicate whether the event is sold out.",
+        "type": "boolean"
+      },
+      "ticketsAvailable": {
+        "description": "Flag to indicate whether there are tickets available for the event.",
+        "type": "boolean"
+      },
+      "isFree": {
+        "description": "Flag to indicate whether the event is free entry.",
+        "type": "boolean"
+      },
+      "price": {
+        "description": "Price info for the event.",
         "type": ["string","null"]
       },
       "venue": {
@@ -41,22 +73,6 @@
         },
         "required": ["id","name","town","location"]
       },
-      "startDate": {
-        "description": "RFC-3339 formatted start date for the event",
-        "type": ["string","null"]
-      },
-      "endDate": {
-        "description": "RFC-3339 formatted end date for the event",
-        "type": ["string","null"]
-      },
-      "startTimeString": {
-        "description": "Start time string for the event",
-        "type": ["string","null"]
-      },
-      "endTimeString": {
-        "description": "End time string for the event",
-        "type": ["string","null"]
-      },
       "description": {
         "description": "Description text for the event",
         "type": ["string","null"]
@@ -69,14 +85,14 @@
           "properties": {
             "id": {
               "description": "Unique identifier for a featured artist",
-              "type": ["string","null"]
+              "type": "string"
             },
             "name": {
               "description": "Name of a featured artist",
               "type": ["string","null"]
             }
           },
-          "required": ["id","name"]
+          "required": ["name"]
         }
       },
       "stages": {
@@ -95,6 +111,10 @@
               "items": {
                 "type": "object",
                 "properties": {
+                  "id": {
+                    "description": "Unique identifier for the stage day(s)",
+                    "type": "string"
+                  },
                   "startDate": {
                     "description": "The start date for this day or time-span",
                     "type": ["string","null"]
@@ -111,7 +131,7 @@
                       "properties": {
                         "id": {
                           "description": "Unique identifier for a featured artist",
-                          "type": ["string","null"]
+                          "type": "string"
                         },
                         "name": {
                           "description": "Name of a featured artist",
@@ -129,55 +149,13 @@
           "required": ["name","days"]
         }
       },
-      "tickets": {
-        "description": "Tickets for this event",
-        "type": "array",
-        "items": {
-          "type": "object",
-          "properties": {
-            "dateTime": {
-              "description": "RFC-3339 formatted date and time this ticket is valid for",
-              "type": ["string","null"]
-            },
-            "supplier": {
-              "description": "The supplier of this ticket",
-              "type": ["string","null"]
-            },
-            "price": {
-              "description": "The face-value price for this ticket",
-              "type": ["string","null"]
-            },
-            "totalPrice": {
-              "description": "The total price for this ticket",
-              "type": ["string","null"]
-            },
-            "inclBookingFee": {
-              "description": "Flag indicating whether a booking fee is included in the price of this ticket.",
-              "type": ["string","null"]
-            },
-            "onSaleFrom": {
-              "description": "RFC-3339 formatted date this ticket goes on sale",
-              "type": ["string","null"]
-            },
-            "onSaleUntil": {
-              "description": "RFC-3339 formatted date this ticket is / will be on sale until",
-              "type": ["string","null"]
-            },
-            "url": {
-              "description": "The purchase URL for this ticket",
-              "type": ["string","null"]
-            }
-          },
-          "required": ["dateTime","supplier","price","totalPrice","inclBookingFee","onSaleFrom","onSaleUntil","url"]
-        }
-      },
       "image": {
-        "description": "Single image asset for the event",
+        "description": "Multiple image assets for the event",
         "type": "object",
         "properties": {
           "url": {
             "description": "Image source URL",
-            "type": ["string","null"]
+            "type": "string"
           },
           "width": {
             "description": "Image width (px)",
@@ -203,11 +181,60 @@
             "required": ["copyright","caption"]
           }
         },
-        "required": ["metadata","url","width","height"]
+        "required": ["url","width","height","metadata"]
+      },
+      "tickets": {
+        "description": "Tickets for this event",
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "dateTime": {
+              "description": "RFC-3339 formatted date and time this ticket is valid for",
+              "type": ["string","null"]
+            },
+            "supplier": {
+              "description": "The supplier of this ticket",
+              "type": ["string","null"]
+            },
+            "price": {
+              "description": "The face-value price for this ticket",
+              "type": ["string","null"]
+            },
+            "totalPrice": {
+              "description": "The total price for this ticket",
+              "type": ["string","null"]
+            },
+            "inclBookingFee": {
+              "description": "Flag indicating whether a booking fee is included in the price of this ticket.",
+              "type": "boolean"
+            },
+            "onSaleFrom": {
+              "description": "RFC-3339 formatted date this ticket goes on sale",
+              "type": ["string","null"]
+            },
+            "onSaleUntil": {
+              "description": "RFC-3339 formatted date this ticket is / will be on sale until",
+              "type": ["string","null"]
+            },
+            "url": {
+              "description": "The purchase URL for this ticket",
+              "type": ["string","null"]
+            }
+          },
+          "required": ["dateTime","supplier","price","totalPrice","inclBookingFee","onSaleFrom","onSaleUntil","url"]
+        }
+      },
+      "genre": {
+        "description": "The genre(s) this event is found under",
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
       },
       "webLink": {
         "description": "URL for the web page for the event on ents24.com",
-        "type": ["string","null"]
+        "type": "string"
       },
       "fansOnEnts24": {
         "description": "The number of Ents24 users tracking updates and announcements for this event",
@@ -215,9 +242,9 @@
       },
       "lastUpdate": {
         "description": "RFC-3339 formatted added/updated timestamp for this object",
-        "type": ["string","null"]
+        "type": "string"
       }
     },
-    "required": ["id","title","headline","startDate","endDate","description","webLink","fansOnEnts24","lastUpdate"]
+    "required": ["id","title","headline","startDate","endDate","startTimeString","endTimeString","isSoldOut","ticketsAvailable","isFree","price","description","genre","webLink","fansOnEnts24","lastUpdate"]
   }
 }
