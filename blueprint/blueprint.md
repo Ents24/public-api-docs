@@ -64,7 +64,7 @@ Request an access token to authenticate future client user requests.
 # Group Location
 
 ### Search [/event/list?name={name}&postcode={postcode}&geo={geo}]
-Search for unique location identifiers [postcode, lat,lonfor use as the value on Location request parameters.
+Search for unique location identifiers for use in event or venue list by location requests.
 
 #### Location Search [GET]
 + Parameters
@@ -91,7 +91,7 @@ Search for unique location identifiers [postcode, lat,lonfor use as the value on
             {
               "$schema": "http://json-schema.org/draft-04/schema#",
               "title": "Location Search",
-              "description": "List of location objects matching the request parameters",
+              "description": "List of location objects with properties matching the query parameter values",
               "type": "array",
               "items": {
                 "type": "object",
@@ -157,7 +157,7 @@ A list of all valid event genres.
               }
             }
 
-### List [/event/list?location={location}&radius\_distance="{radius\_distance}"&distance\_unit="{distance\_unit}"&type={type}&genre={genre}&date={date}&date\_from={date\_from}&date\_to={date\_to}&venue\_name={venue\_name}&artist\_name={artist\_name}&results\_per\_page={results\_per\_page}&page={page}&incl\_image={incl\_image}&image\_size={image\_size}&incl\_artists={incl\_artists}&incl\_tickets={incl\_tickets}&full\_description={full\_description}&updated\_since={updated\_since}]
+### List [/event/list?location={location}&radius\_distance="{radius\_distance}"&distance\_unit="{distance\_unit}"&type={type}&genre={genre}&date={date}&date\_from={date\_from}&date\_to={date\_to}&venue\_name={venue\_name}&artist\_name={artist\_name}&results\_per\_page={results\_per\_page}&page={page}&incl\_image={incl\_image}&image\_size={image\_size}&incl\_stages={incl\_stages}&incl\_artists={incl\_artists}&incl\_tickets={incl\_tickets}&full\_description={full\_description}&updated\_since={updated\_since}]
 Multiple event objects with selected fields.  
 ***NB:*** *You must filter resources retrieved from this end-point with at least one of the following request parameters:*  
 `location` `venue_name` `artist_name`
@@ -177,6 +177,7 @@ Multiple event objects with selected fields.
   + page (optional, string, `ZW0=`) ... The page/chunk of results to be requested.
   + incl_image (optional, boolean, `1`) ... Decides whether or not an event image is included in the response.
   + image_size (optional, string, `medium`) ... Chooses the size of image included with each image object if one is available.
+  + incl_stages (optional, boolean, `1`) ... Decides whether or not a list of stages is included for any festival events in the response. 
   + incl_artists (optional, boolean, `1`) ... Decides whether or not a list of performing artists is included in the response. 
   + incl_tickets (optional, boolean, `1`) ... Decides whether or not a list of available tickets is included in the response.  
   + full_description (optional, boolean, `0`) ... Decides whether full or summarised description text is included in the response. 
