@@ -1,107 +1,69 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "title": "Event",
-  "description": "A single Event object with all fields",
+  "title": "Festival",
+  "description": "Festival Event Object",
   "type": "object",
   "properties": {
     "id": {
-      "description": "Unique identifier for the event",
+      "description": "Unique identifier for the festival",
       "type": "string"
     },
     "title": {
-      "description": "Title of the event",
-      "type": ["string","null"]
-    },
-    "headline": {
-      "description": "Headline of the event",
-      "type": ["string","null"]
-    },
-    "startDate": {
-      "description": "RFC-3339 formatted start date for the event",
-      "type": ["string","null"]
-    },
-    "endDate": {
-      "description": "RFC-3339 formatted end date for the event",
-      "type": ["string","null"]
-    },
-    "startTimeString": {
-      "description": "Start time string for the event",
-      "type": ["string","null"]
-    },
-    "endTimeString": {
-      "description": "End time string for the event",
-      "type": ["string","null"]
-    },
-    "isSoldOut": {
-      "description": "Flag to indicate whether the event is sold out.",
-      "type": "boolean"
-    },
-    "ticketsAvailable": {
-      "description": "Flag to indicate whether there are tickets available for the event.",
-      "type": "boolean"
-    },
-    "isFree": {
-      "description": "Flag to indicate whether the event is free entry.",
-      "type": "boolean"
-    },
-    "price": {
-      "description": "Price info for the event.",
-      "type": ["string","null"]
+      "description": "Title of the festival",
+      "type": "string"
     },
     "venue": {
-      "description": "Venue the event is being held at",
+      "description": "The venue or festival site",
       "type": "object",
       "properties": {
         "id": {
-          "description": "Unique identifier for the venue",
+          "description": "Unique identifier for the venue or festival site",
           "type": "string"
         },
         "name": {
-          "description": "Name of the venue",
-          "type": ["string","null"]
+          "description": "Name of the venue or festival site",
+          "type": "string"
         },
         "town": {
-          "description": "Town or city where the venue is located",
-          "type": ["string","null"]
+          "description": "Town or city where or near-to the venue or festival site",
+          "type": "string"
         },
         "location": {
-          "description": "Lat/Lon coordinates of the venue",
+          "description": "Lat/Lon coordinates of the venue or festival site",
           "$ref": "http://json-schema.org/geo"
         }
       },
       "required": ["id","name","town","location"]
     },
-    "description": {
-      "description": "Description text for the event",
-      "type": ["string","null"]
+    "startDate": {
+      "description": "RFC-3339 formatted start date for the festival",
+      "type": "string"
     },
-    "artists": {
-      "description": "Featured artists",
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "description": "Unique identifier for a featured artist",
-            "type": "string"
-          },
-          "name": {
-            "description": "Name of a featured artist",
-            "type": ["string","null"]
-          }
-        },
-        "required": ["name"]
-      }
+    "endDate": {
+      "description": "RFC-3339 formatted end date for the festival",
+      "type": "string"
+    },
+    "startTimeString": {
+      "description": "Start time string for the festival",
+      "type": "string"
+    },
+    "endTimeString": {
+      "description": "End time string for the festival",
+      "type": "string"
+    },
+    "description": {
+      "description": "Description text for the festival",
+      "type": "string"
     },
     "stages": {
-      "description": "Stages at the event",
+      "description": "Stages at the festival",
       "type": "array",
       "items": {
         "type": "object",
         "properties": {
           "name": {
             "description": "Name of the stage",
-            "type": ["string","null"]
+            "type": "string"
           },
           "days": {
             "description": "Days or timespans performances are occuring on the stage",
@@ -115,11 +77,11 @@
                 },
                 "startDate": {
                   "description": "The start date for this day or time-span",
-                  "type": ["string","null"]
+                  "type": "string"
                 },
                 "endDate": {
                   "description": "The end date for this day or time-span",
-                  "type": ["string","null"]
+                  "type": "string"
                 },
                 "artists": {
                   "description": "Performing artists",
@@ -133,14 +95,14 @@
                       },
                       "name": {
                         "description": "Name of a featured artist",
-                        "type": ["string","null"]
+                        "type": "string"
                       }
                     },
                     "required": ["name"]
                   }
                 }
               },
-              "required": ["startDate","endDate"]
+              "required": ["date","artists"]
             }
           }
         },
@@ -148,7 +110,7 @@
       }
     },
     "image": {
-      "description": "Multiple image assets for the event",
+      "description": "Multiple image assets for the festival",
       "type": "object",
       "properties": {
         "small": {
@@ -214,15 +176,22 @@
           "properties": {
             "copyright": {
               "description": "The copyright holder for this image",
-              "type": ["string","null"]
+              "type": "string"
             },
             "caption": {
               "description": "Caption text for this image",
-              "type": ["string","null"]
+              "type": "string"
             }
           },
           "required": ["copyright","caption"]
         }
+      }
+    },
+    "genre": {
+      "description": "The genre(s) this event is found under",
+      "type": "array",
+      "items": {
+        "type": "string"
       }
     },
     "tickets": {
@@ -233,39 +202,23 @@
         "properties": {
           "dateTime": {
             "description": "RFC-3339 formatted date and time this ticket is valid for",
-            "type": ["string","null"]
+            "type": "string"
           },
           "supplier": {
             "description": "The supplier of this ticket",
-            "type": ["string","null"]
+            "type": "string"
           },
           "price": {
             "description": "The face-value price for this ticket",
-            "type": ["string","null"]
+            "type": "string"
           },
           "totalPrice": {
             "description": "The total price for this ticket",
-            "type": ["string","null"]
+            "type": "string"
           },
           "inclBookingFee": {
             "description": "Flag indicating whether a booking fee is included in the price of this ticket.",
-            "type": "boolean"
-          },
-          "isOnSale": {
-            "description": "Flag indicating whether the ticket is on sale.",
-            "type": "boolean"
-          },
-          "isAvailable": {
-            "description": "Flag indicating whether the ticket is available.",
-            "type": "boolean"
-          },
-          "isPresaleTicket": {
-            "description": "Flag indicating whether the ticket is a pre-sale ticket.",
-            "type": "boolean"
-          },
-          "isResaleTicket": {
-            "description": "Flag indicating whether the ticket is a re-sale ticket.",
-            "type": "boolean"
+            "type": "string"
           },
           "onSaleFrom": {
             "description": "RFC-3339 formatted date this ticket goes on sale",
@@ -277,30 +230,19 @@
           },
           "url": {
             "description": "The purchase URL for this ticket",
-            "type": ["string","null"]
-          },
-          "email": {
-            "description": "The sales email address for this ticket.",
-            "type": ["string","null"]
-          },
-          "telephone": {
-            "description": "The sales phone line number for this ticket.",
-            "type": ["string","null"]
+            "type": "string"
           }
         },
-        "required": ["dateTime","supplier","price","totalPrice","inclBookingFee","isOnSale","isAvailable","isPresaleTicket","isResaleTicket","onSaleFrom","onSaleUntil","url","email","telephone"]
-      }
-    },
-    "genre": {
-      "description": "The genre(s) this event is found under",
-      "type": "array",
-      "items": {
-        "type": "string"
+        "required": ["dateTime","supplier","price","totalPrice","inclBookingFee","onSaleFrom","onSaleUntil","url"]
       }
     },
     "webLink": {
       "description": "URL for the web page for the event on ents24.com",
       "type": "string"
+    },
+    "viewsOnEnts24": {
+      "description": "The number of unique vistors to this event's page on Ents24",
+      "type": "integer"
     },
     "fansOnEnts24": {
       "description": "The number of Ents24 users tracking updates and announcements for this event",
@@ -311,5 +253,5 @@
       "type": "string"
     }
   },
-  "required": ["id","title","headline","startDate","endDate","startTimeString","endTimeString","isSoldOut","ticketsAvailable","isFree","price","description","genre","webLink","fansOnEnts24","lastUpdate"]
+  "required": ["id","title","startDate","endDate","description","webLink","viewsOnEnts24","fansOnEnts24","lastUpdate"]
 }

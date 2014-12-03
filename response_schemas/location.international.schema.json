@@ -1,0 +1,47 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Location",
+  "description": "Location Object",
+  "type": "object",
+  "properties": {
+    "id": {
+      "description": "Unique identifier for the location",
+      "type": "string"
+    },
+    "name": {
+      "description": "Name of the location",
+      "type": "string"
+    },
+    "county": {
+      "description": "County where the location is found",
+      "type": "string"
+    },
+    "state": {
+      "description": "State where the location is found",
+      "type": "string"
+    },
+    "latitude": {
+      "description": "Latitude of the location",
+      "type": "number"
+    },
+    "longitude": {
+      "description": "Longitude of the location",
+      "type": "number"
+    },
+    "postCodes": {
+      "description": "Valid postal codes for this location",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "zipCodes": {
+      "description": "Valid zip codes for this location",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": ["id","name","latitude","longitude"]
+}
