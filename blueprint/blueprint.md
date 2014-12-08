@@ -17,7 +17,7 @@ Request an access token to authenticate future requests.
 #### Auth Token [POST]
 + Request (application/x-www-form-urlencoded)
 
-        client_id=aho0bVpKdFURaZ37tkYT&client_secret=uQmfyQsqeKfIMJg4FKQ9gi8cSLFXATpGFyBx038nHy
+        client\_id=aho0bVpKdFURaZ37tkYT&client\_secret=uQmfyQsqeKfIMJg4FKQ9gi8cSLFXATpGFyBx038nHy
 
 + Response 200 (application/json)
 
@@ -28,10 +28,10 @@ Request an access token to authenticate future requests.
     + Body
 
             {
-              "access_token": "qnFqFAVw8pJMCF1z8tIMYoXwommArRmt9C08jIRA"
-              "token_type": "Bearer"
+              "access\_token": "qnFqFAVw8pJMCF1z8tIMYoXwommArRmt9C08jIRA"
+              "token\_type": "Bearer"
               "expires": 1414317411
-              "expires_in": 5184000
+              "expires\_in": 5184000
             }
 
 # Group User Authentication
@@ -44,7 +44,7 @@ Request an access token to authenticate future client user requests.
 #### Auth Login [POST]
 + Request (application/x-www-form-urlencoded)
 
-        client_id=aho0bVpKdFURaZ37tkYT&client_secret=uQmfyQsqeKfIMJg4FKQ9gi8cSLFXATpGFyBx038nHy&username=auser&password=mypa55w0rd
+        client\_id=aho0bVpKdFURaZ37tkYT&client\_secret=uQmfyQsqeKfIMJg4FKQ9gi8cSLFXATpGFyBx038nHy&username=auser&password=mypa55w0rd
 
 + Response 200 (application/json)
 
@@ -55,22 +55,24 @@ Request an access token to authenticate future client user requests.
     + Body
 
             {
-              "access_token": "qnFqFAVw8pJMCF1z8tIMYoXwommArRmt9C08jIRA"
-              "token_type": "Bearer"
+              "access\_token": "qnFqFAVw8pJMCF1z8tIMYoXwommArRmt9C08jIRA"
+              "token\_type": "Bearer"
               "expires": 1414317411
-              "expires_in": 5184000
+              "expires\_in": 5184000
             }
 
 # Group Location
 
-### Search [/event/list?name={name}&postcode={postcode}&geo={geo}]
-Search for unique location identifiers for use in event or venue list by location requests.
+### Search [/event/list?name={name}&postcode={postcode}&geo={geo}&radius\_distance={radius\_distance}&distance\_unit={distance\_unit}]
+Check location parameter values for use in event or venue list by location requests.
 
 #### Location Search [GET]
 + Parameters
   + name (optional, string, `Newcastle`) ... The name of the location your searching for.
   + postcode (optional, string, `NE82 6YY`) ... The postcode of the location your searching for.
   + geo (optional, string, `54.974384411995,-1.6015806376512`) ... Comma separated latitude and longitude of the location your searching for.
+  + radius\_distance (optional, integer, `10`) ... The furthest distance from the given location that should be searched.<br />***NB:*** *This parameter is disregarded unless either the `postcode` or `geo` parameter is set.*
+  + distance\_unit (optional, string, `mi`) ... The unit of measurment that should be applied to the radius\_distance value [mi, km].<br />***NB:*** *This parameter is disregarded unless either the `postcode` or `geo` parameter is set.*
 
 + Request
 
@@ -168,8 +170,8 @@ Multiple event objects with selected fields.
   + radius\_distance (optional, integer, `10`) ... The furthest distance from the location you want events listed for.<br />***NB:*** *The `location` parameter is required when this parameter is set.*
   + distance\_unit (optional, string, `mi`) ... The unit of measurment that should be applied to the radius\_distance value [mi, km].<br />***NB:*** *The `location` parameter is required when this parameter is set.*
   + genre (optional, string, `rock`) ... The genre of event type you want listed.
-  + date (optional, date, `2014-09-03`) ... A specific date you want an events listing for.<br />***NB:*** *This parameter is disregarded if `date_from` and `date_to` parameters are set in the same request*.
-  + date\_from (optional, date, `2014-09-03`) ... The date you want an events listing from.<br />***NB:*** *This parameter is required when `date_to` parameter is set.*
+  + date (optional, date, `2014-09-03`) ... A specific date you want an events listing for.<br />***NB:*** *This parameter is disregarded if `date_from` and `date\_to` parameters are set in the same request*.
+  + date\_from (optional, date, `2014-09-03`) ... The date you want an events listing from.<br />***NB:*** *This parameter is required when `date\_to` parameter is set.*
   + date\_to (optional, date, `2014-09-10`) ... The date you want an events listing to.<br />***NB:*** *This parameter is required when `date_from` parameter is set.*
   + venue_name (optional, string, `Hyde Park`) ... The venue you want an events listing for.<br />***NB:*** *Values applied to this parameter may match more than one venue!<br />You should use the `venue/read` end-point to get event listings for a particular venue.*
   + artist_name (optional, string, `Blondie`) ... The artist you want an events listing for.<br />***NB:*** *Values applied to this parameter may match more than one artist!<br />You should use the `artist/read` end-point to get an upcoming events list for a particular artist.*
@@ -181,9 +183,9 @@ Multiple event objects with selected fields.
   + incl\_artists (optional, boolean, `1`) ... Decides whether or not a list of performing artists is included in the response. 
   + incl\_tickets (optional, boolean, `1`) ... Decides whether or not a list of available tickets is included in the response.  
   + full\_description (optional, boolean, `0`) ... Decides whether full or summarised description text is included in the response. 
-  + updated_since (optional, date, `2014-08-31`) ... Only retrive events that have been added/updated since the given date.
+  + updated\_since (optional, date, `2014-08-31`) ... Only retrive events that have been added/updated since the given date.
   + order\_by (optional, string, `lastUpdate`) ... Order events by the named object property.
-  + order\_direction (optional, string, `desc`) ... Ordering direction [`asc`,`desc`].
+  + order\_direction (optional, string, `desc`) ... Ordering direction [asc, desc].
 
 + Request
 
@@ -472,10 +474,10 @@ An event object with all fields.
 #### Event [GET]
 + Parameters
   + id (required, string, `mDDaoO`) ... Unique identifier string of the Event you want full details for.  
-  + incl_artists (optional, boolean, `1`) ... Decides whether or not a list of performing artists is included in the response.  
-  + incl_images (optional, boolean, `1`) ... Decides whether or not an event images are included in the response.  
-  + incl_tickets (optional, boolean, `1`) ... Decides whether or not a list of available tickets is included in the response.  
-  + full_description (optional, boolean, `1`) ... Decides whether full or summarised description text is included in the response. 
+  + incl\_artists (optional, boolean, `1`) ... Decides whether or not a list of performing artists is included in the response.  
+  + incl\_images (optional, boolean, `1`) ... Decides whether or not an event images are included in the response.  
+  + incl\_tickets (optional, boolean, `1`) ... Decides whether or not a list of available tickets is included in the response.  
+  + full\_description (optional, boolean, `1`) ... Decides whether full or summarised description text is included in the response. 
 
 + Request
 
@@ -882,17 +884,17 @@ Multiple artist objects with selected fields.
 #### Artist List [GET]
 + Parameters
   + name (optional, string, `Blondie`) ... The string that matches artist names you want a list of.<br />***NB:*** *Values applied to this parameter may match more than one artist!<br />You should use the `artist/read` end-point to retrieve data for a particular artist.*
-  + event_name (optional, string, `BBC Radio 2 Live In Hyde Park`) ... The name for an event you want an artists listing for.<br />***NB:*** *Values applied to this parameter may match more than one event!<br />You should use the `event/read` end-point to retrieve data for a particular event.*
+  + event\_name (optional, string, `BBC Radio 2 Live In Hyde Park`) ... The name for an event you want an artists listing for.<br />***NB:*** *Values applied to this parameter may match more than one event!<br />You should use the `event/read` end-point to retrieve data for a particular event.*
   + genre (optional, string, `rock`) ... The genre you want an artists listing for.
   + results\_per\_page (optional, integer, `25`) ... The number of results you want per page/chunk [25, 50, 100].
   + page (optional, string, `ZW0=`) ... The page/chunk of results to be requested.
-  + incl_image (optional, boolean, `1`) ... Decides whether or not an artist image is included in the response.
-  + image_size (optional, string, `medium`) ... Chooses the size of image included with each artist object if one is available.
-  + incl_events (optional, boolean, `1`) ... Decides whether or not a list of upcoming events is included with each artist object in the response.
-  + full_description (optional, boolean, `0`) ... Decides whether full or summarised description text is included in the response. 
-  + updated_since (optional, date, `YYYY-MM-DD`) ... Only retrive artists that have been added/updated since the given date.
+  + incl\_image (optional, boolean, `1`) ... Decides whether or not an artist image is included in the response.
+  + image\_size (optional, string, `medium`) ... Chooses the size of image included with each artist object if one is available.
+  + incl\_events (optional, boolean, `1`) ... Decides whether or not a list of upcoming events is included with each artist object in the response.
+  + full\_description (optional, boolean, `0`) ... Decides whether full or summarised description text is included in the response. 
+  + updated\_since (optional, date, `YYYY-MM-DD`) ... Only retrive artists that have been added/updated since the given date.
   + order\_by (optional, string, `lastUpdate`) ... Order events by the named object property.
-  + order\_direction (optional, string, `desc`) ... Ordering direction [`asc`,`desc`].
+  + order\_direction (optional, string, `desc`) ... Ordering direction [asc, desc].
 
 + Request
 
@@ -1057,9 +1059,9 @@ An artist object with all fields.
 #### Artist [GET]
 + Parameters
   + id (required, string, `oKkO`) ... Unique identifier string of the Artist you want full details for.
-  + incl_events (optional, boolean, `1`) ... Decides whether or not a list of events the artists is performing at is included in the response.  
-  + incl_images (optional, boolean, `1`) ... Decides whether or not an artist images are included in the response.  
-  + full_description (optional, boolean, `1`) ... Decides whether full or summarised description text is included in the response. 
+  + incl\_events (optional, boolean, `1`) ... Decides whether or not a list of events the artists is performing at is included in the response.  
+  + incl\_images (optional, boolean, `1`) ... Decides whether or not an artist images are included in the response.  
+  + full\_description (optional, boolean, `1`) ... Decides whether full or summarised description text is included in the response. 
 
 + Request
 
@@ -1327,19 +1329,19 @@ Multiple venue objects with selected fields.
 + Parameters
   + name (optional, string, `The Fleece`) ... The name of a venue.
   + location (optional, string, `postcode:SW1X 7LY`) ... The location of events you want a listing for. Values should be prefixed with the type of location data you are submitting. [name, postcode, geo].<br />***NB:*** *Values applied to this parameter with the `name` may be ambiguous E.G: Newcastle. Use `location/search` endpoint to find a unique location identifier (postcode or lat,lng) that matches the location you want.*
-  + radius_distance (optional, integer, `10`) ... The furthest distance from the location you want events listed for.<br />***NB:*** *The `location` parameter is required when this parameter is set.*
-  + distance_unit (optional, string, `mi`) ... The unit of measurment that should be applied to the radius\_distance value [mi, km].<br />***NB:*** *The `location` parameter is required when this parameter is set.*
-  + event_name (optional, string, `BBC Radio 2 Live In Hyde Park`) ... The name for an event you want an venue list for.<br />***NB:*** *Values applied to this parameter may match more than one event!<br />You should use the `event/read` end-point to retrieve data for a particular event.*
+  + radius\_distance (optional, integer, `10`) ... The furthest distance from the location you want events listed for.<br />***NB:*** *The `location` parameter is required when this parameter is set.*
+  + distance\_unit (optional, string, `mi`) ... The unit of measurment that should be applied to the radius\_distance value [mi, km].<br />***NB:*** *The `location` parameter is required when this parameter is set.*
+  + event\_name (optional, string, `BBC Radio 2 Live In Hyde Park`) ... The name for an event you want an venue list for.<br />***NB:*** *Values applied to this parameter may match more than one event!<br />You should use the `event/read` end-point to retrieve data for a particular event.*
   + genre (optional, string, `rock`) ... The genre of event you want a venues listing for.
   + results\_per\_page (optional, integer, `25`) ... The number of results you want per page/chunk [25, 50, 100].
   + page (optional, integer, `1`) ... The page/chunk of results to be requested.
-  + incl_image (optional, boolean, `1`) ... Decides whether or not an artist image is included in the response.
-  + image_size (optional, string, `medium`) ... Chooses the size of image included with each venue object if one is available.
-  + incl_events (optional, boolean, `1`) ... Decides whether or not a list of upcoming events is included with each venue object in the response.
-  + full_description (optional, boolean, `0`) ... Decides whether full or summarised description text is included in the response. 
-  + updated_since (optional, date, `YYYY-MM-DD`) ... Only retrive venues that have been added/updated since the given date.
+  + incl\_image (optional, boolean, `1`) ... Decides whether or not an artist image is included in the response.
+  + image\_size (optional, string, `medium`) ... Chooses the size of image included with each venue object if one is available.
+  + incl\_events (optional, boolean, `1`) ... Decides whether or not a list of upcoming events is included with each venue object in the response.
+  + full\_description (optional, boolean, `0`) ... Decides whether full or summarised description text is included in the response. 
+  + updated\_since (optional, date, `YYYY-MM-DD`) ... Only retrive venues that have been added/updated since the given date.
   + order\_by (optional, string, `lastUpdate`) ... Order events by the named object property.
-  + order\_direction (optional, string, `desc`) ... Ordering direction [`asc`,`desc`].
+  + order\_direction (optional, string, `desc`) ... Ordering direction [asc, desc].
 
 + Request
 
@@ -1493,9 +1495,9 @@ A venue object with all fields.
 #### Venue [GET]
 + Parameters
   + id (required, string, `oKkO`) ... Unique identifier string of the Artist you want full details for.
-  + incl_events (optional, boolean, `1`) ... Decides whether or not a list of events at this venue at is included in the response.  
-  + incl_images (optional, boolean, `1`) ... Decides whether or not an venue images are included in the response.  
-  + full_description (optional, boolean, `1`) ... Decides whether full or summarised description text is included in the response. 
+  + incl\_events (optional, boolean, `1`) ... Decides whether or not a list of events at this venue at is included in the response.  
+  + incl\_images (optional, boolean, `1`) ... Decides whether or not an venue images are included in the response.  
+  + full\_description (optional, boolean, `1`) ... Decides whether full or summarised description text is included in the response. 
 
 + Request
 
