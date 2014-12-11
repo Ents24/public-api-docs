@@ -4,6 +4,25 @@
   "description": "A list of valid event genres",
   "type": "array",
   "items": {
-    "type": "string"
+    "type": "object",
+    "properties": {
+      "key": {
+        "description": "The genre key. This is the value used in an Event object's `genre` property",
+        "type": "string"
+      },
+      "title": {
+        "description": "The genre title",
+        "type": ["string","null"]
+      },
+      "isSubGenre": {
+        "description": "Flag showing if this genre object has a parent genre object",
+        "type": "boolean"
+      },
+      "parentKey": {
+        "description": "The key of the parent genre. E.G: Music, Comedy or Theatre",
+        "type": "string"
+      }
+    },
+    "required": ["key","title","isSubGenre"]
   }
 }

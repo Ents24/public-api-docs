@@ -129,10 +129,14 @@ Check location parameter values for use in event or venue list by location reque
 # Group Event
 Available resources on the Event API endpoints.
 
-### Genres [/event/genres]
+### Genres [/event/genres?parent\_key={parent\_key}&parent\_genres\_only={parent\_genres\_only}]
 A list of all valid event genres.
 
 #### Event Genres [GET]
++ Parameters
+  + parent\_key (optional, string, `music`) ... The parent of genre you want a list of genres for. E.G: E.G: music, comedy or theatre-shows.
+  + parent\_genres\_only (optional, boolean, `1`) ... Decides whether or not subgenres are included in the genre list. ***NB:*** *This parameter is disregarded if the `parent_key` parameter is set in the same request.*
+
 + Request
 
     + Headers
@@ -155,7 +159,26 @@ A list of all valid event genres.
               "description": "A list of valid event genres",
               "type": "array",
               "items": {
-                "type": "string"
+                "type": "object",
+                "properties": {
+                  "key": {
+                    "description": "The genre key. This is the value used in an Event object's `genre` property",
+                    "type": "string"
+                  },
+                  "title": {
+                    "description": "The genre title",
+                    "type": ["string","null"]
+                  },
+                  "isChild": {
+                    "description": "Flag showing if this genre object represents a subgenre of another genre",
+                    "type": "boolean"
+                  },
+                  "parentKey": {
+                    "description": "The key of the parent genre. E.G: music, comedy or theatre-shows",
+                    "type": "string"
+                  }
+                },
+                "required": ["key","title","isChild"]
               }
             }
 
@@ -170,7 +193,7 @@ Multiple event objects with selected fields.
   + radius\_distance (optional, integer, `10`) ... The furthest distance from the location you want events listed for.<br />***NB:*** *The `location` parameter is required when this parameter is set.*
   + distance\_unit (optional, string, `mi`) ... The unit of measurment that should be applied to the radius\_distance value [mi, km].<br />***NB:*** *The `location` parameter is required when this parameter is set.*
   + genre (optional, string, `rock`) ... The genre of event type you want listed.
-  + date (optional, date, `2014-09-03`) ... A specific date you want an events listing for.<br />***NB:*** *This parameter is disregarded if `date_from` and `date\_to` parameters are set in the same request*.
+  + date (optional, date, `2014-09-03`) ... A specific date you want an events listing for.<br />***NB:*** *This parameter is disregarded if `date_from` and `date\_to` parameters are set in the same request.*
   + date\_from (optional, date, `2014-09-03`) ... The date you want an events listing from.<br />***NB:*** *This parameter is required when `date\_to` parameter is set.*
   + date\_to (optional, date, `2014-09-10`) ... The date you want an events listing to.<br />***NB:*** *This parameter is required when `date_from` parameter is set.*
   + venue_name (optional, string, `Hyde Park`) ... The venue you want an events listing for.<br />***NB:*** *Values applied to this parameter may match more than one venue!<br />You should use the `venue/read` end-point to get event listings for a particular venue.*
