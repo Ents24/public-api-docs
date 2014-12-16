@@ -1,0 +1,9 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Tracked Artist List",
+  "description": "A list of tracked Artist objects with selected fields",
+  "type": "array",
+  "items": { 
+    "$ref": "https://raw.githubusercontent.com/Ents24/public-api-docs/beta3/response_schemas/_nested-artist.schema.json" 
+  }
+}

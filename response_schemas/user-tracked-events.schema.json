@@ -1,0 +1,9 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Tracked Event List",
+  "description": "A list of tracked Event objects with selected fields",
+  "type": "array",
+  "items": { 
+    "$ref": "https://raw.githubusercontent.com/Ents24/public-api-docs/beta3/response_schemas/_nested-event.schema.json" 
+  }
+}
