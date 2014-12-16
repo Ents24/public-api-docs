@@ -1,0 +1,34 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "User Tracking Updates Request",
+  "description": "Entity tracking update requests for the user",
+  "type": "object",
+  "properties": {
+    "lastSyncDate": {
+      "description": "RFC-3339 formatted timestamp for the last time the user client sent updates",
+      "type": "string"
+    },
+    "artists": {
+      "description": "Tracked artist updates",
+      "type": "array",
+      "items": { 
+        "$ref": "https://raw.githubusercontent.com/Ents24/public-api-docs/beta3/request_schemas/_nested-tracking-update.schema.json" 
+      }
+    },
+    "venues": {
+      "description": "Tracked venue updates",
+      "type": "array",
+      "items": { 
+        "$ref": "https://raw.githubusercontent.com/Ents24/public-api-docs/beta3/request_schemas/_nested-tracking-update.schema.json" 
+      }
+    },
+    "events": {
+      "description": "Tracked event updates",
+      "type": "array",
+      "items": { 
+        "$ref": "https://raw.githubusercontent.com/Ents24/public-api-docs/beta3/request_schemas/_nested-tracking-update.schema.json" 
+      }
+    }
+  },
+  "required": ["lastSyncDate"]
+}
