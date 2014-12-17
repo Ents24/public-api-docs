@@ -1,0 +1,7 @@
+{
+  "description": "Entity tracking update list",
+  "type": "array",
+  "items": {
+    "$ref": ""
+  }
+}

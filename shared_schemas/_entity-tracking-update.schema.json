@@ -1,0 +1,22 @@
+{
+  "description": "Entity tracking update",
+  "type": "object",
+  "properties": {
+    "type": {
+      "description": "The type of entity being tracked/untracked",
+      "type": "string"
+    },
+    "id": {
+      "description": "The unique identifier for the entity being tracked/untracked",
+      "type": "string"
+    },
+    "action": {
+      "description": "The action to be taken for the entity",
+      "type": "string"
+    },
+    "timestamp": {
+      "description": "The date and time the action was taken"
+    }
+  },
+  "required": ["type", "id", "action", "timestamp"]
+}

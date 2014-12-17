@@ -8,27 +8,9 @@
       "description": "RFC-3339 formatted timestamp for the last time the user client sent updates",
       "type": "string"
     },
-    "artists": {
-      "description": "Tracked artist updates",
-      "type": "array",
-      "items": { 
-        "$ref": "https://raw.githubusercontent.com/Ents24/public-api-docs/beta3/request_schemas/_nested-tracking-update.schema.json" 
-      }
-    },
-    "venues": {
-      "description": "Tracked venue updates",
-      "type": "array",
-      "items": { 
-        "$ref": "https://raw.githubusercontent.com/Ents24/public-api-docs/beta3/request_schemas/_nested-tracking-update.schema.json" 
-      }
-    },
-    "events": {
-      "description": "Tracked event updates",
-      "type": "array",
-      "items": { 
-        "$ref": "https://raw.githubusercontent.com/Ents24/public-api-docs/beta3/request_schemas/_nested-tracking-update.schema.json" 
-      }
+    "changes": {
+      "$ref": "https://raw.githubusercontent.com/Ents24/public-api-docs/beta3/shared_schemas/_entity-tracking-update-list.schema.json"
     }
   },
-  "required": ["lastSyncDate"]
+  "required": ["lastSyncDate", "changes"]
 }
