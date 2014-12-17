@@ -12,11 +12,11 @@
     },
     "expires": {
       "description": "The expiry date of the issued access token",
-      "type": "string"
+      "type": "integer"
     },
     "expires_in": {
       "description": "The validity timespan from the time of issue",
-      "type": "string"
+      "type": "integer"
     }
   },
   "required": ["access_token", "token_type", "expires", "expires_in"]
