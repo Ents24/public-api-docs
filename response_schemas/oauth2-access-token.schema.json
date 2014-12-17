@@ -15,7 +15,7 @@
       "type": "integer"
     },
     "expires_in": {
-      "description": "The validity timespan from the time of issue",
+      "description": "The validity timespan for the token from the time of issue",
       "type": "integer"
     }
   },
