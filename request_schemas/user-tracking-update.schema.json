@@ -8,9 +8,9 @@
       "description": "RFC-3339 formatted timestamp for the last time the user client sent updates",
       "type": "string"
     },
-    "changes": {
+    "data": {
       "$ref": "https://raw.githubusercontent.com/Ents24/public-api-docs/beta3/shared_schemas/_entity-tracking-update-list.schema.json"
     }
   },
-  "required": ["lastSyncDate", "changes"]
+  "required": ["lastSyncDate", "data"]
 }
