@@ -981,6 +981,34 @@ An artist image retrieved as either a JSON object or JPEG image.
               "required": ["url","width","height","metadata"]
             }
 
+
+### Widget [/artist/widget?id={id}]
+Data for an artist tour dates widget.
+
+#### Artist Widget [GET]
++ Parameters
+  + id (required, string, `oKkO`) ... Unique identifier string of the artist you want widget data for.
+
++ Response 200 (application/json)
+
+    + Headers
+
+            Date: Tue, 26 Aug 2014 08:00:00 GMT
+            Expires: Tue, 26 Aug 2014 09:00:00 GMT
+            Last-Modified: Tue, 25 Aug 2014 22:10:00 GMT
+
+    + Body
+
+            {
+              "$schema": "http://json-schema.org/draft-04/schema#",
+              "title": "Artist Widget",
+              "description": "Data for an artist tour dates widget",
+              "type": "object",
+              "properties": {
+              },
+              "required": []
+            }
+
 # Group Venue
 Available resources on the Venue API endpoints.
 
@@ -1334,6 +1362,33 @@ A venue image retrieved as either a JSON object or JPEG image.
                 }
               },
               "required": ["url","width","height","metadata"]
+            }
+
+### Widget [/venue/widget?id={id}]
+Data for a venue events listing widget.
+
+#### Venue Widget [GET]
++ Parameters
+  + id (required, string, `oKkO`) ... Unique identifier string of the venue you want widget data for.
+
++ Response 200 (application/json)
+
+    + Headers
+
+            Date: Tue, 26 Aug 2014 08:00:00 GMT
+            Expires: Tue, 26 Aug 2014 09:00:00 GMT
+            Last-Modified: Tue, 25 Aug 2014 22:10:00 GMT
+
+    + Body
+
+            {
+              "$schema": "http://json-schema.org/draft-04/schema#",
+              "title": "Venue Widget",
+              "description": "Data for a venue events listing widget",
+              "type": "object",
+              "properties": {
+              },
+              "required": []
             }
 
 # Group User
