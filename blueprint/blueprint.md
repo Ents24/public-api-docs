@@ -919,6 +919,50 @@ An artist object with all fields.
               "required": ["id","name","description","webLink","fansOnEnts24","lastUpdate"]
             }
 
+### Events [/artist/events?id={id}&results\_per\_page={results\_per\_page}&page={page}&incl\_image={incl\_image}&image\_size={image\_size}&incl\_stages={incl\_stages}&incl\_artists={incl\_artists}&incl\_tickets={incl\_tickets}&full\_description={full\_description}&updated\_since={updated\_since}&order\_by={order\_by}&order\_direction={order\_direction}]
+A list of events for an artist.
+
+#### Artist Events [GET]
++ Parameters
+  + id (required, string, `oKkO`) ... Unique identifier string of the Artist you want full details for.
+  + results\_per\_page (optional, integer, `25`) ... The number of results you want per page/chunk [25, 50, 100].
+  + page (optional, string, `ZW0=`) ... The page/chunk of results to be requested.
+  + incl\_image (optional, boolean, `1`) ... Decides whether or not an event image is included in the response.
+  + image\_size (optional, string, `medium`) ... Chooses the size of image included with each image object if one is available.
+  + incl\_stages (optional, boolean, `1`) ... Decides whether or not a list of stages is included for any festival events in the response. 
+  + incl\_artists (optional, boolean, `1`) ... Decides whether or not a list of performing artists is included in the response. 
+  + incl\_tickets (optional, boolean, `1`) ... Decides whether or not a list of available tickets is included in the response.  
+  + full\_description (optional, boolean, `0`) ... Decides whether full or summarised description text is included in the response. 
+  + updated\_since (optional, date, `2014-08-31`) ... Only retrive events that have been added/updated since the given date.
+  + order\_by (optional, string, `lastUpdate`) ... Order events by the named object property.
+  + order\_direction (optional, string, `desc`) ... Ordering direction [asc, desc]. 
+
++ Request
+
+    + Headers
+
+            Authorization: qnFqFAVw8pJMCF1z8tIMYoXwommArRmt9C08jIRA
+
++ Response 200 (application/json)
+
+    + Headers
+
+            Date: Tue, 26 Aug 2014 08:00:00 GMT
+            Expires: Tue, 26 Aug 2014 09:00:00 GMT
+            Last-Modified: Tue, 25 Aug 2014 22:10:00 GMT
+
+    + Body
+
+            {
+              "$schema": "http://json-schema.org/draft-04/schema#",
+              "title": "Artist Events",
+              "description": "A list of events for an artist",
+              "type": "array",
+              "items": { 
+                "$ref": "https://raw.githubusercontent.com/Ents24/public-api-docs/beta3/response\_schemas/\_nested-event.schema.json" 
+              }
+            }
+
 ### Image [/artist/image?id={id}&size={size}&format={format}]
 An artist image retrieved as either a JSON object or JPEG image.
 
@@ -1300,6 +1344,50 @@ A venue object with all fields.
                 }
               },
               "required": ["id","name","town","location","description","webLink","fansOnEnts24","lastUpdate"]
+            }
+
+### Events [/venue/events?id={id}&results\_per\_page={results\_per\_page}&page={page}&incl\_image={incl\_image}&image\_size={image\_size}&incl\_stages={incl\_stages}&incl\_artists={incl\_artists}&incl\_tickets={incl\_tickets}&full\_description={full\_description}&updated\_since={updated\_since}&order\_by={order\_by}&order\_direction={order\_direction}]
+A list of events for a venue.
+
+#### Venue Events [GET]
++ Parameters
+  + id (required, string, `oKkO`) ... Unique identifier string of the Venue you want full details for.
+  + results\_per\_page (optional, integer, `25`) ... The number of results you want per page/chunk [25, 50, 100].
+  + page (optional, string, `ZW0=`) ... The page/chunk of results to be requested.
+  + incl\_image (optional, boolean, `1`) ... Decides whether or not an event image is included in the response.
+  + image\_size (optional, string, `medium`) ... Chooses the size of image included with each image object if one is available.
+  + incl\_stages (optional, boolean, `1`) ... Decides whether or not a list of stages is included for any festival events in the response. 
+  + incl\_artists (optional, boolean, `1`) ... Decides whether or not a list of performing artists is included in the response. 
+  + incl\_tickets (optional, boolean, `1`) ... Decides whether or not a list of available tickets is included in the response.  
+  + full\_description (optional, boolean, `0`) ... Decides whether full or summarised description text is included in the response. 
+  + updated\_since (optional, date, `2014-08-31`) ... Only retrive events that have been added/updated since the given date.
+  + order\_by (optional, string, `lastUpdate`) ... Order events by the named object property.
+  + order\_direction (optional, string, `desc`) ... Ordering direction [asc, desc]. 
+
++ Request
+
+    + Headers
+
+            Authorization: qnFqFAVw8pJMCF1z8tIMYoXwommArRmt9C08jIRA
+
++ Response 200 (application/json)
+
+    + Headers
+
+            Date: Tue, 26 Aug 2014 08:00:00 GMT
+            Expires: Tue, 26 Aug 2014 09:00:00 GMT
+            Last-Modified: Tue, 25 Aug 2014 22:10:00 GMT
+
+    + Body
+
+            {
+              "$schema": "http://json-schema.org/draft-04/schema#",
+              "title": "Venue Events",
+              "description": "A list of events for a venue",
+              "type": "array",
+              "items": { 
+                "$ref": "https://raw.githubusercontent.com/Ents24/public-api-docs/beta3/response\_schemas/\_nested-event.schema.json" 
+              }
             }
 
 ### Image [/venue/image?id={id}&size={size}&format={format}]
