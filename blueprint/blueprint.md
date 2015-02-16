@@ -134,7 +134,7 @@ A list of all valid event genres.
 
 #### Event Genres [GET]
 + Parameters
-  + parent\_key (optional, string, `music`) ... The parent of genre you want a list of genres for. E.G: E.G: music, comedy or theatre-shows.
+  + parent\_key (optional, string, `music`) ... The parent of genre you want a list of genres for. E.G: music, comedy or theatre-shows.
   + parent\_genres\_only (optional, boolean, `1`) ... Decides whether or not subgenres are included in the genre list. ***NB:*** *This parameter is disregarded if the `parent_key` parameter is set in the same request.*
 
 + Request
@@ -174,7 +174,7 @@ A list of all valid event genres.
                     "type": "boolean"
                   },
                   "parentKey": {
-                    "description": "The key of the parent genre. E.G: music, comedy or theatre-shows",
+                    "description": "The key of the parent genre object. E.G: music, comedy or theatre-shows",
                     "type": "string"
                   }
                 },
@@ -193,7 +193,7 @@ Multiple event objects with selected fields.
   + radius\_distance (optional, integer, `10`) ... The furthest distance from the location you want events listed for.<br />***NB:*** *The `location` parameter is required when this parameter is set.*
   + distance\_unit (optional, string, `mi`) ... The unit of measurment that should be applied to the radius\_distance value [mi, km].<br />***NB:*** *The `location` parameter is required when this parameter is set.*
   + genre (optional, string, `rock`) ... The genre of event type you want listed.
-  + date (optional, date, `2014-09-03`) ... A specific date you want an events listing for.<br />***NB:*** *This parameter is disregarded if `date_from` and `date\_to` parameters are set in the same request.*
+  + date (optional, date, `2014-09-03`) ... A specific date you want an events listing for.<br />***NB:*** *This parameter is disregarded if `date_from` and `date\_to` parameters are set in the same request*.
   + date\_from (optional, date, `2014-09-03`) ... The date you want an events listing from.<br />***NB:*** *This parameter is required when `date\_to` parameter is set.*
   + date\_to (optional, date, `2014-09-10`) ... The date you want an events listing to.<br />***NB:*** *This parameter is required when `date_from` parameter is set.*
   + venue_name (optional, string, `Hyde Park`) ... The venue you want an events listing for.<br />***NB:*** *Values applied to this parameter may match more than one venue!<br />You should use the `venue/read` end-point to get event listings for a particular venue.*
@@ -235,7 +235,460 @@ Multiple event objects with selected fields.
               "description": "A list of Event objects with selected fields",
               "type": "array",
               "items": { 
-                "$ref": "https://raw.githubusercontent.com/Ents24/public-api-docs/beta3/response\_schemas/\_nested-event.schema.json" 
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "description": "Unique identifier for the event",
+                    "type": "string"
+                  },
+                  "title": {
+                    "description": "Title of the event",
+                    "type": ["string","null"]
+                  },
+                  "headline": {
+                    "description": "Headline of the event",
+                    "type": ["string","null"]
+                  },
+                  "startDate": {
+                    "description": "RFC-3339 formatted start date for the event",
+                    "type": "string"
+                  },
+                  "endDate": {
+                    "description": "RFC-3339 formatted end date for the event",
+                    "type": "string"
+                  },
+                  "startTimeString": {
+                    "description": "Start time string for the event",
+                    "type": ["string","null"]
+                  },
+                  "endTimeString": {
+                    "description": "End time string for the event",
+                    "type": ["string","null"]
+                  },
+                  "hasMoved": {
+                    "description": "Flag to indicate if an event has been moved to another location",
+                    "type": "boolean"
+                  },
+                  "isCancelled": {
+                    "description": "Flag to indicate if an event has been cancelled",
+                    "type": "boolean"
+                  },
+                  "isPostponed": {
+                    "description": "Flag to indicate if an event has been postponed",
+                    "type": "boolean"
+                  },
+                  "isRescheduled": {
+                    "description": "Flag to indicate if an event has been re-scheduled",
+                    "type": "boolean"
+                  },
+                  "isSoldOut": {
+                    "description": "Flag to indicate whether the event is sold out",
+                    "type": "boolean"
+                  },
+                  "ticketsAvailable": {
+                    "description": "Flag to indicate whether there are tickets available for the event",
+                    "type": "boolean"
+                  },
+                  "isFree": {
+                    "description": "Flag to indicate whether the event is free entry",
+                    "type": "boolean"
+                  },
+                  "price": {
+                    "description": "Price info for the event",
+                    "type": ["string","null"]
+                  },
+                  "venue": {
+                    "description": "Venue the event is being held at",
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "description": "Unique identifier for the venue",
+                        "type": "string"
+                      },
+                      "name": {
+                        "description": "Name of the venue",
+                        "type": "string"
+                      },
+                      "town": {
+                        "description": "Town or city where the venue is located",
+                        "type": "string"
+                      },
+                      "location": {
+                        "description": "Lat/Lon coordinates of the venue",
+                        "$ref": "http://json-schema.org/geo"
+                      }
+                    },
+                    "required": ["id","name","town","location"]
+                  },
+                  "description": {
+                    "description": "Description text for the event",
+                    "type": ["string","null"]
+                  },
+                  "artists": {
+                    "description": "Featured artists",
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "description": "Unique identifier for a featured artist",
+                          "type": "string"
+                        },
+                        "name": {
+                          "description": "Name of a featured artist",
+                          "type": "string"
+                        }
+                      },
+                      "required": ["name"]
+                    }
+                  },
+                  "stages": {
+                    "description": "Stages at the event",
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "description": "Name of the stage",
+                          "type": "string"
+                        },
+                        "days": {
+                          "description": "Days or timespans performances are occuring on the stage",
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "id": {
+                                "description": "Unique identifier for the stage day(s)",
+                                "type": "string"
+                              },
+                              "startDate": {
+                                "description": "The start date for this day or time-span",
+                                "type": "string"
+                              },
+                              "endDate": {
+                                "description": "The end date for this day or time-span",
+                                "type": "string"
+                              },
+                              "artists": {
+                                "description": "Performing artists",
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "id": {
+                                      "description": "Unique identifier for a featured artist",
+                                      "type": "string"
+                                    },
+                                    "name": {
+                                      "description": "Name of a featured artist",
+                                      "type": "string"
+                                    }
+                                  },
+                                  "required": ["name"]
+                                }
+                              }
+                            },
+                            "required": ["startDate","endDate"]
+                          }
+                        }
+                      },
+                      "required": ["name","days"]
+                    }
+                  },
+                  "occurrences": {
+                    "description": "The individual occurences of a repeated event (E.G. A theatre show)",
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "description": "Unique identifier for the event",
+                          "type": "string"
+                        },
+                        "startDate": {
+                          "description": "RFC-3339 formatted start date for the event",
+                          "type": "string"
+                        },
+                        "endDate": {
+                          "description": "RFC-3339 formatted end date for the event",
+                          "type": "string"
+                        },
+                        "startTimeString": {
+                          "description": "Start time string for the event",
+                          "type": ["string","null"]
+                        },
+                        "endTimeString": {
+                          "description": "End time string for the event",
+                          "type": ["string","null"]
+                        },
+                        "hasMoved": {
+                          "description": "Flag to indicate if an event has been moved to another location",
+                          "type": "boolean"
+                        },
+                        "isCancelled": {
+                          "description": "Flag to indicate if an event has been cancelled",
+                          "type": "boolean"
+                        },
+                        "isPostponed": {
+                          "description": "Flag to indicate if an event has been postponed",
+                          "type": "boolean"
+                        },
+                        "isRescheduled": {
+                          "description": "Flag to indicate if an event has been re-scheduled",
+                          "type": "boolean"
+                        },
+                        "isSoldOut": {
+                          "description": "Flag to indicate whether the event is sold out",
+                          "type": "boolean"
+                        },
+                        "ticketsAvailable": {
+                          "description": "Flag to indicate whether there are tickets available for the event",
+                          "type": "boolean"
+                        },
+                        "isFree": {
+                          "description": "Flag to indicate whether the event is free entry",
+                          "type": "boolean"
+                        },
+                        "price": {
+                          "description": "Price info for the event",
+                          "type": ["string","null"]
+                        },
+                        "tickets": {
+                          "description": "Tickets for this event",
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "dateTime": {
+                                "description": "RFC-3339 formatted date and time this ticket is valid for",
+                                "type": "string"
+                              },
+                              "supplier": {
+                                "description": "The supplier of this ticket",
+                                "type": "string"
+                              },
+                              "price": {
+                                "description": "The face-value price for this ticket",
+                                "type": ["string","null"]
+                              },
+                              "totalPrice": {
+                                "description": "The total price for this ticket",
+                                "type": ["string","null"]
+                              },
+                              "inclBookingFee": {
+                                "description": "Flag indicating whether a booking fee is included in the price of this ticket",
+                                "type": "boolean"
+                              },
+                              "isOnSale": {
+                                "description": "Flag indicating whether the ticket is on sale",
+                                "type": "boolean"
+                              },
+                              "isAvailable": {
+                                "description": "Flag indicating whether the ticket is available",
+                                "type": "boolean"
+                              },
+                              "isPresaleTicket": {
+                                "description": "Flag indicating whether the ticket is a pre-sale ticket",
+                                "type": "boolean"
+                              },
+                              "isResaleTicket": {
+                                "description": "Flag indicating whether the ticket is a re-sale ticket",
+                                "type": "boolean"
+                              },
+                              "onSaleFrom": {
+                                "description": "RFC-3339 formatted date this ticket goes on sale",
+                                "type": ["string","null"]
+                              },
+                              "onSaleUntil": {
+                                "description": "RFC-3339 formatted date this ticket is / will be on sale until",
+                                "type": ["string","null"]
+                              },
+                              "url": {
+                                "description": "The purchase URL for this ticket",
+                                "type": ["string","null"]
+                              },
+                              "email": {
+                                "description": "The sales email address for this ticket",
+                                "type": ["string","null"]
+                              },
+                              "telephone": {
+                                "description": "The sales phone line number for this ticket",
+                                "type": ["string","null"]
+                              }
+                            },
+                            "required": ["dateTime","supplier","price","totalPrice","inclBookingFee","isOnSale","isAvailable","isPresaleTicket","isResaleTicket","onSaleFrom","onSaleUntil","url","email","telephone"]
+                          }
+                        }
+                      },
+                      "required": ["id","startDate","endDate","startTimeString","endTimeString","hasMoved","isCancelled","isPostponed","isRescheduled","isSoldOut","ticketsAvailable","isFree","price"]
+                    }
+                  },
+                  "images": {
+                    "description": "Multiple image assets for the event",
+                    "type": "object",
+                    "properties": {
+                      "small": {
+                        "description": "Small sized image",
+                        "type": "object",
+                        "properties": {
+                          "url": {
+                            "description": "Image source URL",
+                            "type": "string"
+                          },
+                          "width": {
+                            "description": "Image width (px)",
+                            "type": "integer"
+                          },
+                          "height": {
+                            "description": "Image height (px)",
+                            "type": "integer"
+                          }
+                        },
+                        "required": ["url","width","height"]
+                      },
+                      "medium": {
+                        "description": "Medium sized image",
+                        "type": "object",
+                        "properties": {
+                          "url": {
+                            "description": "Image source URL",
+                            "type": "string"
+                          },
+                          "width": {
+                            "description": "Image width (px)",
+                            "type": "integer"
+                          },
+                          "height": {
+                            "description": "Image height (px)",
+                            "type": "integer"
+                          }
+                        },
+                        "required": ["url","width","height"]
+                      },
+                      "large": {
+                        "description": "Medium sized image",
+                        "type": "object",
+                        "properties": {
+                          "url": {
+                            "description": "Image source URL",
+                            "type": "string"
+                          },
+                          "width": {
+                            "description": "Image width (px)",
+                            "type": "integer"
+                          },
+                          "height": {
+                            "description": "Image height (px)",
+                            "type": "integer"
+                          }
+                        },
+                        "required": ["url","width","height"]
+                      },
+                      "metadata": {
+                        "description": "Metadata related to this image",
+                        "type": "object",
+                        "properties": {
+                          "copyright": {
+                            "description": "The copyright holder for this image",
+                            "type": ["string","null"]
+                          },
+                          "caption": {
+                            "description": "Caption text for this image",
+                            "type": ["string","null"]
+                          }
+                        },
+                        "required": ["copyright","caption"]
+                      }
+                    }
+                  },
+                  "tickets": {
+                    "description": "Tickets for this event",
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "dateTime": {
+                          "description": "RFC-3339 formatted date and time this ticket is valid for",
+                          "type": "string"
+                        },
+                        "supplier": {
+                          "description": "The supplier of this ticket",
+                          "type": "string"
+                        },
+                        "price": {
+                          "description": "The face-value price for this ticket",
+                          "type": ["string","null"]
+                        },
+                        "totalPrice": {
+                          "description": "The total price for this ticket",
+                          "type": ["string","null"]
+                        },
+                        "inclBookingFee": {
+                          "description": "Flag indicating whether a booking fee is included in the price of this ticket",
+                          "type": "boolean"
+                        },
+                        "isOnSale": {
+                          "description": "Flag indicating whether the ticket is on sale",
+                          "type": "boolean"
+                        },
+                        "isAvailable": {
+                          "description": "Flag indicating whether the ticket is available",
+                          "type": "boolean"
+                        },
+                        "isPresaleTicket": {
+                          "description": "Flag indicating whether the ticket is a pre-sale ticket",
+                          "type": "boolean"
+                        },
+                        "isResaleTicket": {
+                          "description": "Flag indicating whether the ticket is a re-sale ticket",
+                          "type": "boolean"
+                        },
+                        "onSaleFrom": {
+                          "description": "RFC-3339 formatted date this ticket goes on sale",
+                          "type": ["string","null"]
+                        },
+                        "onSaleUntil": {
+                          "description": "RFC-3339 formatted date this ticket is / will be on sale until",
+                          "type": ["string","null"]
+                        },
+                        "url": {
+                          "description": "The purchase URL for this ticket",
+                          "type": ["string","null"]
+                        },
+                        "email": {
+                          "description": "The sales email address for this ticket",
+                          "type": ["string","null"]
+                        },
+                        "telephone": {
+                          "description": "The sales phone line number for this ticket",
+                          "type": ["string","null"]
+                        }
+                      },
+                      "required": ["dateTime","supplier","price","totalPrice","inclBookingFee","isOnSale","isAvailable","isPresaleTicket","isResaleTicket","onSaleFrom","onSaleUntil","url","email","telephone"]
+                    }
+                  },
+                  "genre": {
+                    "description": "The genre(s) this event is found under",
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "webLink": {
+                    "description": "URL for the web page for the event on ents24.com",
+                    "type": "string"
+                  },
+                  "fansOnEnts24": {
+                    "description": "The number of Ents24 users tracking updates and announcements for this event",
+                    "type": "integer"
+                  },
+                  "lastUpdate": {
+                    "description": "RFC-3339 formatted added/updated timestamp for this object",
+                    "type": "string"
+                  }
+                },
+                "required": ["id","title","headline","startDate","endDate","startTimeString","endTimeString","isSoldOut","ticketsAvailable","isFree","description","genre","webLink","fansOnEnts24","lastUpdate"]
               }
             }
 
@@ -297,11 +750,11 @@ An event object with all fields.
                 },
                 "startDate": {
                   "description": "RFC-3339 formatted start date for the event",
-                  "type": ["string","null"]
+                  "type": "string"
                 },
                 "endDate": {
                   "description": "RFC-3339 formatted end date for the event",
-                  "type": ["string","null"]
+                  "type": "string"
                 },
                 "startTimeString": {
                   "description": "Start time string for the event",
@@ -311,20 +764,36 @@ An event object with all fields.
                   "description": "End time string for the event",
                   "type": ["string","null"]
                 },
+                "hasMoved": {
+                  "description": "Flag to indicate if an event has been moved to another location",
+                  "type": "boolean"
+                },
+                "isCancelled": {
+                  "description": "Flag to indicate if an event has been cancelled",
+                  "type": "boolean"
+                },
+                "isPostponed": {
+                  "description": "Flag to indicate if an event has been postponed",
+                  "type": "boolean"
+                },
+                "isRescheduled": {
+                  "description": "Flag to indicate if an event has been re-scheduled",
+                  "type": "boolean"
+                },
                 "isSoldOut": {
-                  "description": "Flag to indicate whether the event is sold out.",
+                  "description": "Flag to indicate whether the event is sold out",
                   "type": "boolean"
                 },
                 "ticketsAvailable": {
-                  "description": "Flag to indicate whether there are tickets available for the event.",
+                  "description": "Flag to indicate whether there are tickets available for the event",
                   "type": "boolean"
                 },
                 "isFree": {
-                  "description": "Flag to indicate whether the event is free entry.",
+                  "description": "Flag to indicate whether the event is free entry",
                   "type": "boolean"
                 },
                 "price": {
-                  "description": "Price info for the event.",
+                  "description": "Price info for the event",
                   "type": ["string","null"]
                 },
                 "venue": {
@@ -337,11 +806,11 @@ An event object with all fields.
                     },
                     "name": {
                       "description": "Name of the venue",
-                      "type": ["string","null"]
+                      "type": "string"
                     },
                     "town": {
                       "description": "Town or city where the venue is located",
-                      "type": ["string","null"]
+                      "type": "string"
                     },
                     "location": {
                       "description": "Lat/Lon coordinates of the venue",
@@ -366,7 +835,7 @@ An event object with all fields.
                       },
                       "name": {
                         "description": "Name of a featured artist",
-                        "type": ["string","null"]
+                        "type": "string"
                       }
                     },
                     "required": ["name"]
@@ -380,7 +849,7 @@ An event object with all fields.
                     "properties": {
                       "name": {
                         "description": "Name of the stage",
-                        "type": ["string","null"]
+                        "type": "string"
                       },
                       "days": {
                         "description": "Days or timespans performances are occuring on the stage",
@@ -394,11 +863,11 @@ An event object with all fields.
                             },
                             "startDate": {
                               "description": "The start date for this day or time-span",
-                              "type": ["string","null"]
+                              "type": "string"
                             },
                             "endDate": {
                               "description": "The end date for this day or time-span",
-                              "type": ["string","null"]
+                              "type": "string"
                             },
                             "artists": {
                               "description": "Performing artists",
@@ -412,7 +881,7 @@ An event object with all fields.
                                   },
                                   "name": {
                                     "description": "Name of a featured artist",
-                                    "type": ["string","null"]
+                                    "type": "string"
                                   }
                                 },
                                 "required": ["name"]
@@ -426,7 +895,135 @@ An event object with all fields.
                     "required": ["name","days"]
                   }
                 },
-                "image": {
+                "occurrences": {
+                  "description": "The individual occurences of a repeated event (E.G. A theatre show)",
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "description": "Unique identifier for the event",
+                        "type": "string"
+                      },
+                      "startDate": {
+                        "description": "RFC-3339 formatted start date for the event",
+                        "type": "string"
+                      },
+                      "endDate": {
+                        "description": "RFC-3339 formatted end date for the event",
+                        "type": "string"
+                      },
+                      "startTimeString": {
+                        "description": "Start time string for the event",
+                        "type": ["string","null"]
+                      },
+                      "endTimeString": {
+                        "description": "End time string for the event",
+                        "type": ["string","null"]
+                      },
+                      "hasMoved": {
+                        "description": "Flag to indicate if an event has been moved to another location",
+                        "type": "boolean"
+                      },
+                      "isCancelled": {
+                        "description": "Flag to indicate if an event has been cancelled",
+                        "type": "boolean"
+                      },
+                      "isPostponed": {
+                        "description": "Flag to indicate if an event has been postponed",
+                        "type": "boolean"
+                      },
+                      "isRescheduled": {
+                        "description": "Flag to indicate if an event has been re-scheduled",
+                        "type": "boolean"
+                      },
+                      "isSoldOut": {
+                        "description": "Flag to indicate whether the event is sold out",
+                        "type": "boolean"
+                      },
+                      "ticketsAvailable": {
+                        "description": "Flag to indicate whether there are tickets available for the event",
+                        "type": "boolean"
+                      },
+                      "isFree": {
+                        "description": "Flag to indicate whether the event is free entry",
+                        "type": "boolean"
+                      },
+                      "price": {
+                        "description": "Price info for the event",
+                        "type": ["string","null"]
+                      },
+                      "tickets": {
+                        "description": "Tickets for this event",
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "dateTime": {
+                              "description": "RFC-3339 formatted date and time this ticket is valid for",
+                              "type": "string"
+                            },
+                            "supplier": {
+                              "description": "The supplier of this ticket",
+                              "type": "string"
+                            },
+                            "price": {
+                              "description": "The face-value price for this ticket",
+                              "type": ["string","null"]
+                            },
+                            "totalPrice": {
+                              "description": "The total price for this ticket",
+                              "type": ["string","null"]
+                            },
+                            "inclBookingFee": {
+                              "description": "Flag indicating whether a booking fee is included in the price of this ticket",
+                              "type": "boolean"
+                            },
+                            "isOnSale": {
+                              "description": "Flag indicating whether the ticket is on sale",
+                              "type": "boolean"
+                            },
+                            "isAvailable": {
+                              "description": "Flag indicating whether the ticket is available",
+                              "type": "boolean"
+                            },
+                            "isPresaleTicket": {
+                              "description": "Flag indicating whether the ticket is a pre-sale ticket",
+                              "type": "boolean"
+                            },
+                            "isResaleTicket": {
+                              "description": "Flag indicating whether the ticket is a re-sale ticket",
+                              "type": "boolean"
+                            },
+                            "onSaleFrom": {
+                              "description": "RFC-3339 formatted date this ticket goes on sale",
+                              "type": ["string","null"]
+                            },
+                            "onSaleUntil": {
+                              "description": "RFC-3339 formatted date this ticket is / will be on sale until",
+                              "type": ["string","null"]
+                            },
+                            "url": {
+                              "description": "The purchase URL for this ticket",
+                              "type": ["string","null"]
+                            },
+                            "email": {
+                              "description": "The sales email address for this ticket",
+                              "type": ["string","null"]
+                            },
+                            "telephone": {
+                              "description": "The sales phone line number for this ticket",
+                              "type": ["string","null"]
+                            }
+                          },
+                          "required": ["dateTime","supplier","price","totalPrice","inclBookingFee","isOnSale","isAvailable","isPresaleTicket","isResaleTicket","onSaleFrom","onSaleUntil","url","email","telephone"]
+                        }
+                      }
+                    },
+                    "required": ["id","startDate","endDate","startTimeString","endTimeString","hasMoved","isCancelled","isPostponed","isRescheduled","isSoldOut","ticketsAvailable","isFree","price"]
+                  }
+                },
+                "images": {
                   "description": "Multiple image assets for the event",
                   "type": "object",
                   "properties": {
@@ -512,11 +1109,11 @@ An event object with all fields.
                     "properties": {
                       "dateTime": {
                         "description": "RFC-3339 formatted date and time this ticket is valid for",
-                        "type": ["string","null"]
+                        "type": "string"
                       },
                       "supplier": {
                         "description": "The supplier of this ticket",
-                        "type": ["string","null"]
+                        "type": "string"
                       },
                       "price": {
                         "description": "The face-value price for this ticket",
@@ -527,23 +1124,23 @@ An event object with all fields.
                         "type": ["string","null"]
                       },
                       "inclBookingFee": {
-                        "description": "Flag indicating whether a booking fee is included in the price of this ticket.",
+                        "description": "Flag indicating whether a booking fee is included in the price of this ticket",
                         "type": "boolean"
                       },
                       "isOnSale": {
-                        "description": "Flag indicating whether the ticket is on sale.",
+                        "description": "Flag indicating whether the ticket is on sale",
                         "type": "boolean"
                       },
                       "isAvailable": {
-                        "description": "Flag indicating whether the ticket is available.",
+                        "description": "Flag indicating whether the ticket is available",
                         "type": "boolean"
                       },
                       "isPresaleTicket": {
-                        "description": "Flag indicating whether the ticket is a pre-sale ticket.",
+                        "description": "Flag indicating whether the ticket is a pre-sale ticket",
                         "type": "boolean"
                       },
                       "isResaleTicket": {
-                        "description": "Flag indicating whether the ticket is a re-sale ticket.",
+                        "description": "Flag indicating whether the ticket is a re-sale ticket",
                         "type": "boolean"
                       },
                       "onSaleFrom": {
@@ -559,11 +1156,11 @@ An event object with all fields.
                         "type": ["string","null"]
                       },
                       "email": {
-                        "description": "The sales email address for this ticket.",
+                        "description": "The sales email address for this ticket",
                         "type": ["string","null"]
                       },
                       "telephone": {
-                        "description": "The sales phone line number for this ticket.",
+                        "description": "The sales phone line number for this ticket",
                         "type": ["string","null"]
                       }
                     },
@@ -590,7 +1187,7 @@ An event object with all fields.
                   "type": "string"
                 }
               },
-              "required": ["id","title","headline","startDate","endDate","startTimeString","endTimeString","isSoldOut","ticketsAvailable","isFree","price","description","genre","webLink","fansOnEnts24","lastUpdate"]
+              "required": ["id","title","headline","startDate","endDate","startTimeString","endTimeString","isSoldOut","ticketsAvailable","isFree","description","genre","webLink","fansOnEnts24","lastUpdate"]
             }
 
 ### Image [/event/image?id={id}&size={size}&format={format}]
@@ -658,7 +1255,7 @@ An event image retrieved as either a JSON object or JPEG image.
 # Group Artist
 Available resources on the Artist API endpoints.
 
-### List [/artist/list?name={name}&genre={genre}&results\_per\_page={results\_per\_page}&page={page}&incl\_image={incl\_image}&image\_size={image\_size}&incl\_events={incl\_events}&full\_description={full\_description}&updated\_since={updated\_since}&order\_by={order\_by}&order\_direction={order\_direction}]
+### List [/artist/list?name={name}&like={like}&genre={genre}&results\_per\_page={results\_per\_page}&page={page}&incl\_image={incl\_image}&image\_size={image\_size}&incl\_events={incl\_events}&full\_description={full\_description}&updated\_since={updated\_since}&order\_by={order\_by}&order\_direction={order\_direction}]
 Multiple artist objects with selected fields.  
 ***NB:*** *You must filter resources retrieved from this end-point with at least one of the following request parameters:*  
 `name` `event_name`
@@ -666,6 +1263,7 @@ Multiple artist objects with selected fields.
 #### Artist List [GET]
 + Parameters
   + name (optional, string, `Blondie`) ... The string that matches artist names you want a list of.<br />***NB:*** *Values applied to this parameter may match more than one artist!<br />You should use the `artist/read` end-point to retrieve data for a particular artist.*
+  + like (optional, string, `oKkO`) ... Unique identifier string of the artist for which you want a list of similar artists.
   + genre (optional, string, `rock`) ... The genre you want an artists listing for.
   + results\_per\_page (optional, integer, `25`) ... The number of results you want per page/chunk [25, 50, 100].
   + page (optional, string, `ZW0=`) ... The page/chunk of results to be requested.
@@ -702,7 +1300,184 @@ Multiple artist objects with selected fields.
               "description": "A list of Artist objects with selected fields",
               "type": "array",
               "items": { 
-                "$ref": "https://raw.githubusercontent.com/Ents24/public-api-docs/beta3/response\_schemas/\_nested-artist.schema.json" 
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "description": "Unique identifier for the artist",
+                    "type": "string"
+                  },
+                  "name": {
+                    "description": "Name of the artist",
+                    "type": "string"
+                  },
+                  "description": {
+                    "description": "Description text for the artist",
+                    "type": ["string","null"]
+                  },
+                  "events": {
+                    "description": "Artists upcoming events",
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "description": "Unique identifier for the event",
+                          "type": "string"
+                        },
+                        "headline": {
+                          "description": "Headline of the event",
+                          "type": ["string","null"]
+                        },
+                        "title": {
+                          "description": "Title of the event",
+                          "type": ["string","null"]
+                        },
+                        "venue": {
+                          "description": "Venue the event is being held at",
+                          "type": "object",
+                          "properties": {
+                            "id": {
+                              "description": "Unique identifier for the venue",
+                              "type": "string"
+                            },
+                            "name": {
+                              "description": "Name of the venue",
+                              "type": "string"
+                            },
+                            "town": {
+                              "description": "Town or city where the venue is located",
+                              "type": "string"
+                            },
+                            "location": {
+                              "description": "Lat/Lon coordinates of the venue",
+                              "$ref": "http://json-schema.org/geo"
+                            }
+                          },
+                          "required": ["id","name","town","location"]
+                        },
+                        "startDate": {
+                          "description": "RFC-3339 formatted start date for the event",
+                          "type": "string"
+                        },
+                        "endDate": {
+                          "description": "RFC-3339 formatted end date for the event",
+                          "type": "string"
+                        },
+                        "startTimeString": {
+                          "description": "Start time string for the event",
+                          "type": ["string","null"]
+                        },
+                        "endTimeString": {
+                          "description": "End time string for the event",
+                          "type": ["string","null"]
+                        }
+                      },
+                      "required": ["id","title","startDate","endDate"]
+                    }
+                  },
+                  "images": {
+                    "description": "Multiple image assets for the artist",
+                    "type": "object",
+                    "properties": {
+                      "small": {
+                        "description": "Small sized image",
+                        "type": "object",
+                        "properties": {
+                          "url": {
+                            "description": "Image source URL",
+                            "type": "string"
+                          },
+                          "width": {
+                            "description": "Image width (px)",
+                            "type": "integer"
+                          },
+                          "height": {
+                            "description": "Image height (px)",
+                            "type": "integer"
+                          }
+                        },
+                        "required": ["url","width","height"]
+                      },
+                      "medium": {
+                        "description": "Medium sized image",
+                        "type": "object",
+                        "properties": {
+                          "url": {
+                            "description": "Image source URL",
+                            "type": "string"
+                          },
+                          "width": {
+                            "description": "Image width (px)",
+                            "type": "integer"
+                          },
+                          "height": {
+                            "description": "Image height (px)",
+                            "type": "integer"
+                          }
+                        },
+                        "required": ["url","width","height"]
+                      },
+                      "large": {
+                        "description": "Medium sized image",
+                        "type": "object",
+                        "properties": {
+                          "url": {
+                            "description": "Image source URL",
+                            "type": "string"
+                          },
+                          "width": {
+                            "description": "Image width (px)",
+                            "type": "integer"
+                          },
+                          "height": {
+                            "description": "Image height (px)",
+                            "type": "integer"
+                          }
+                        },
+                        "required": ["url","width","height"]
+                      },
+                      "metadata": {
+                        "description": "Metadata related to this image",
+                        "type": "object",
+                        "properties": {
+                          "copyright": {
+                            "description": "The copyright holder for this image",
+                            "type": ["string","null"]
+                          },
+                          "caption": {
+                            "description": "Caption text for this image",
+                            "type": ["string","null"]
+                          }
+                        },
+                        "required": ["copyright","caption"]
+                      }
+                    }
+                  },
+                  "genre": {
+                    "description": "The genre(s) the artist is found under",
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "webLink": {
+                    "description": "URL for the web page for the artist on ents24.com",
+                    "type": "string"
+                  },
+                  "viewsOnEnts24": {
+                    "description": "The number of unique vistors to this artist's page on Ents24",
+                    "type": "integer"
+                  },
+                  "fansOnEnts24": {
+                    "description": "The number of Ents24 users tracking updates and announcements for this artist",
+                    "type": "integer"
+                  },
+                  "lastUpdate": {
+                    "description": "RFC-3339 formatted added/updated timestamp for this object",
+                    "type": "string"
+                  }
+                },
+                "required": ["id","name","description","webLink","viewsOnEnts24","fansOnEnts24","lastUpdate"]
               }
             }
 
@@ -717,7 +1492,7 @@ Multiple artist objects with selected fields.
             X-Previous-Page: ZW0=
             X-Total-Items-Found: 75
 
-### Read [/artist/read?id={id}&incl\_events={incl\_events}&incl\_image={incl\_images}&full\_description={full\_description}]
+### Read [/artist/read?id={id}&incl\_events={incl\_events}&incl\_image={incl\_images}&incl\_also\_liked={incl\_also\_liked}&full\_description={full\_description}]
 An artist object with all fields.
 
 #### Artist [GET]
@@ -725,6 +1500,7 @@ An artist object with all fields.
   + id (required, string, `oKkO`) ... Unique identifier string of the Artist you want full details for.
   + incl\_events (optional, boolean, `1`) ... Decides whether or not a list of events the artists is performing at is included in the response.  
   + incl\_images (optional, boolean, `1`) ... Decides whether or not an artist images are included in the response.  
+  + incl\_also\_like (optional, boolean, `1`) ... Decides whether or not a list of IDs for similar artists is included in the response.
   + full\_description (optional, boolean, `1`) ... Decides whether full or summarised description text is included in the response. 
 
 + Request
@@ -759,7 +1535,7 @@ An artist object with all fields.
                 },
                 "description": {
                   "description": "Description text for the artist",
-                  "type": "string"
+                  "type": ["string","null"]
                 },
                 "events": {
                   "description": "Artists upcoming events",
@@ -771,9 +1547,13 @@ An artist object with all fields.
                         "description": "Unique identifier for the event",
                         "type": "string"
                       },
+                      "headline": {
+                        "description": "Headline of the event",
+                        "type": ["string","null"]
+                      },
                       "title": {
                         "description": "Title of the event",
-                        "type": "string"
+                        "type": ["string","null"]
                       },
                       "venue": {
                         "description": "Venue the event is being held at",
@@ -808,17 +1588,17 @@ An artist object with all fields.
                       },
                       "startTimeString": {
                         "description": "Start time string for the event",
-                        "type": "string"
+                        "type": ["string","null"]
                       },
                       "endTimeString": {
                         "description": "End time string for the event",
-                        "type": "string"
+                        "type": ["string","null"]
                       }
                     },
                     "required": ["id","title","startDate","endDate"]
                   }
                 },
-                "image": {
+                "images": {
                   "description": "Multiple image assets for the artist",
                   "type": "object",
                   "properties": {
@@ -885,11 +1665,11 @@ An artist object with all fields.
                       "properties": {
                         "copyright": {
                           "description": "The copyright holder for this image",
-                          "type": "string"
+                          "type": ["string","null"]
                         },
                         "caption": {
                           "description": "Caption text for this image",
-                          "type": "string"
+                          "type": ["string","null"]
                         }
                       },
                       "required": ["copyright","caption"]
@@ -907,6 +1687,17 @@ An artist object with all fields.
                   "description": "URL for the web page for the artist on ents24.com",
                   "type": "string"
                 },
+                "viewsOnEnts24": {
+                  "description": "The number of unique vistors to this artist's page on Ents24",
+                  "type": "integer"
+                },
+                "fansAlsoLiked": {
+                  "description": "A list of unique identifier strings for artsists similar to this artist",
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
                 "fansOnEnts24": {
                   "description": "The number of Ents24 users tracking updates and announcements for this artist",
                   "type": "integer"
@@ -916,7 +1707,7 @@ An artist object with all fields.
                   "type": "string"
                 }
               },
-              "required": ["id","name","description","webLink","fansOnEnts24","lastUpdate"]
+              "required": ["id","name","description","webLink","viewsOnEnts24","fansOnEnts24","lastUpdate"]
             }
 
 ### Events [/artist/events?id={id}&results\_per\_page={results\_per\_page}&page={page}&incl\_image={incl\_image}&image\_size={image\_size}&incl\_stages={incl\_stages}&incl\_artists={incl\_artists}&incl\_tickets={incl\_tickets}&full\_description={full\_description}&updated\_since={updated\_since}&order\_by={order\_by}&order\_direction={order\_direction}]
@@ -1025,7 +1816,6 @@ An artist image retrieved as either a JSON object or JPEG image.
               "required": ["url","width","height","metadata"]
             }
 
-
 ### Widget [/artist/widget?id={id}]
 Data for an artist tour dates widget.
 
@@ -1056,7 +1846,7 @@ Data for an artist tour dates widget.
 # Group Venue
 Available resources on the Venue API endpoints.
 
-### List [/venue/list?name={name}&location={location}&radius\_distance={radius\_distance}&distance\_unit={distance\_unit}&results\_per\_page={results\_per\_page}&page={page}&incl\_image={incl\_image}&image\_size={image\_size}&incl\_events={incl\_events}&full\_description={full\_description}&updated\_since={updated\_since}&order\_by={order\_by}&order\_direction={order\_direction}]
+### List [/venue/list?name={name}&like={like}&location={location}&radius\_distance={radius\_distance}&distance\_unit={distance\_unit}&results\_per\_page={results\_per\_page}&page={page}&incl\_image={incl\_image}&image\_size={image\_size}&incl\_events={incl\_events}&full\_description={full\_description}&updated\_since={updated\_since}&order\_by={order\_by}&order\_direction={order\_direction}]
 Multiple venue objects with selected fields.  
 ***NB:*** *You must filter resources retrieved from this end-point with at least one of the following request parameters:*  
 `name` `location` `event_name`
@@ -1064,6 +1854,7 @@ Multiple venue objects with selected fields.
 #### Venue List [GET]
 + Parameters
   + name (optional, string, `The Fleece`) ... The name of a venue.
+  + like (optional, string, `oKkO`) ... Unique identifier string of the venue for which you want a list of similar venues.
   + location (optional, string, `postcode:SW1X 7LY`) ... The location of events you want a listing for. Values should be prefixed with the type of location data you are submitting. [name, postcode, geo].<br />***NB:*** *Values applied to this parameter with the `name` may be ambiguous E.G: Newcastle. Use `location/search` endpoint to find a unique location identifier (postcode or lat,lng) that matches the location you want.*
   + radius\_distance (optional, integer, `10`) ... The furthest distance from the location you want events listed for.<br />***NB:*** *The `location` parameter is required when this parameter is set.*
   + distance\_unit (optional, string, `mi`) ... The unit of measurment that should be applied to the radius\_distance value [mi, km].<br />***NB:*** *The `location` parameter is required when this parameter is set.*
@@ -1102,7 +1893,207 @@ Multiple venue objects with selected fields.
               "description": "A list of Venue objects with selected fields",
               "type": "array",
               "items": { 
-                "$ref": "https://raw.githubusercontent.com/Ents24/public-api-docs/beta3/response\_schemas/\_nested-venue.schema.json" 
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "description": "Unique identifier for the venue",
+                    "type": "string"
+                  },
+                  "name": {
+                    "description": "Name of the venue",
+                    "type": "string"
+                  },
+                  "address": {
+                    "description": "The location details for a venue",
+                    "type": "object",
+                    "properties": {
+                      "streetAddress": {
+                        "description": "The building name/number, street name and district",
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "minItems": 1
+                      },
+                      "town": {
+                        "description": "Town or city where the venue is located",
+                        "type": "string"
+                      },
+                      "county": {
+                        "description": "The county where the venue is located",
+                        "type": "string"
+                      },
+                      "postcode": {
+                        "description": "Postal code for the venue address",
+                        "type": "string"
+                      },
+                      "country": {
+                        "description": "The country where the venue is located",
+                        "type": "string"
+                      }
+                    },
+                    "required": ["town","country"]
+                  },
+                  "location": {
+                    "description": "Lat/Lon coordinates of the venue",
+                    "$ref": "http://json-schema.org/geo"
+                  },
+                  "description": {
+                    "description": "Description text for the venue",
+                    "type": ["string","null"]
+                  },
+                  "website": {
+                    "description": "URL for the venues website",
+                    "type": "string"
+                  },
+                  "email": {
+                    "description": "Email address for general enquires",
+                    "type": "string"
+                  },
+                  "phone": {
+                    "description": "Phone numbers for the venue",
+                    "type": "object",
+                    "properties": {
+                      "enquires": {
+                        "description": "Phone number for general enquires",
+                        "type": "string"
+                      },
+                      "booking": {
+                        "description": "Phone number for bookings",
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "events": {
+                    "description": "Upcoming events at the venue",
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "description": "Unique identifier for an event",
+                          "type": "string"
+                        },
+                        "title": {
+                          "description": "Title of an event",
+                            "type": ["string","null"]
+                        },
+                        "startDate": {
+                          "description": "RFC-3339 formatted start date for the event",
+                          "type": "string"
+                        },
+                        "endDate": {
+                          "description": "RFC-3339 formatted end date for the event",
+                          "type": "string"
+                        },
+                        "startTimeString": {
+                          "description": "Start time string for the event",
+                          "type": ["string","null"]
+                        },
+                        "endTimeString": {
+                          "description": "End time string for the event",
+                          "type": ["string","null"]
+                        }
+                      },
+                      "required": ["id","title","startDate","endDate"]
+                    }
+                  },
+                  "images": {
+                    "description": "Multiple image assets for the venue",
+                    "type": "object",
+                    "properties": {
+                      "small": {
+                        "description": "Small sized image",
+                        "type": "object",
+                        "properties": {
+                          "url": {
+                            "description": "Image source URL",
+                            "type": "string"
+                          },
+                          "width": {
+                            "description": "Image width (px)",
+                            "type": "integer"
+                          },
+                          "height": {
+                            "description": "Image height (px)",
+                            "type": "integer"
+                          }
+                        },
+                        "required": ["url","width","height"]
+                      },
+                      "medium": {
+                        "description": "Medium sized image",
+                        "type": "object",
+                        "properties": {
+                          "url": {
+                            "description": "Image source URL",
+                            "type": "string"
+                          },
+                          "width": {
+                            "description": "Image width (px)",
+                            "type": "integer"
+                          },
+                          "height": {
+                            "description": "Image height (px)",
+                            "type": "integer"
+                          }
+                        },
+                        "required": ["url","width","height"]
+                      },
+                      "large": {
+                        "description": "Medium sized image",
+                        "type": "object",
+                        "properties": {
+                          "url": {
+                            "description": "Image source URL",
+                            "type": "string"
+                          },
+                          "width": {
+                            "description": "Image width (px)",
+                            "type": "integer"
+                          },
+                          "height": {
+                            "description": "Image height (px)",
+                            "type": "integer"
+                          }
+                        },
+                        "required": ["url","width","height"]
+                      },
+                      "metadata": {
+                        "description": "Metadata related to this image",
+                        "type": "object",
+                        "properties": {
+                          "copyright": {
+                            "description": "The copyright holder for this image",
+                            "type": ["string","null"]
+                          },
+                          "caption": {
+                            "description": "Caption text for this image",
+                            "type": ["string","null"]
+                          }
+                        },
+                        "required": ["copyright","caption"]
+                      }
+                    }
+                  },
+                  "webLink": {
+                    "description": "URL for the web page for the venue on ents24.com",
+                    "type": "string"
+                  },
+                  "viewsOnEnts24": {
+                    "description": "The number of unique vistors to this venue's page on Ents24",
+                    "type": "integer"
+                  },
+                  "fansOnEnts24": {
+                    "description": "The number of Ents24 users tracking updates and announcements for this venue",
+                    "type": "integer"
+                  },
+                  "lastUpdate": {
+                    "description": "RFC-3339 formatted added/updated timestamp for this object",
+                    "type": "string"
+                  }
+                },
+                "required": ["id","name","location","description","webLink","viewsOnEnts24","fansOnEnts24","lastUpdate"] 
               }
             }
 
@@ -1117,7 +2108,7 @@ Multiple venue objects with selected fields.
             X-Previous-Page: ZW0=
             X-Total-Items-Found: 75
 
-### Read [/venue/read?id={id}&incl\_events={incl\_events}&incl\_images={incl\_images}&full\_description={full\_description}]
+### Read [/venue/read?id={id}&incl\_events={incl\_events}&incl\_images={incl\_images}&incl\_also\_liked={incl\_also\_liked}&full\_description={full\_description}]
 A venue object with all fields.
 
 #### Venue [GET]
@@ -1125,6 +2116,7 @@ A venue object with all fields.
   + id (required, string, `oKkO`) ... Unique identifier string of the Artist you want full details for.
   + incl\_events (optional, boolean, `1`) ... Decides whether or not a list of events at this venue at is included in the response.  
   + incl\_images (optional, boolean, `1`) ... Decides whether or not an venue images are included in the response.  
+  + incl\_also\_like (optional, boolean, `1`) ... Decides whether or not a list of IDs for similar venues is included in the response.
   + full\_description (optional, boolean, `1`) ... Decides whether full or summarised description text is included in the response. 
 
 + Request
@@ -1194,7 +2186,7 @@ A venue object with all fields.
                 },
                 "description": {
                   "description": "Description text for the venue",
-                  "type": "string"
+                  "type": ["string","null"]
                 },
                 "website": {
                   "description": "URL for the venues website",
@@ -1230,7 +2222,7 @@ A venue object with all fields.
                       },
                       "title": {
                         "description": "Title of an event",
-                          "type": "string"
+                          "type": ["string","null"]
                       },
                       "startDate": {
                         "description": "RFC-3339 formatted start date for the event",
@@ -1242,17 +2234,17 @@ A venue object with all fields.
                       },
                       "startTimeString": {
                         "description": "Start time string for the event",
-                        "type": "string"
+                        "type": ["string","null"]
                       },
                       "endTimeString": {
                         "description": "End time string for the event",
-                        "type": "string"
+                        "type": ["string","null"]
                       }
                     },
                     "required": ["id","title","startDate","endDate"]
                   }
                 },
-                "image": {
+                "images": {
                   "description": "Multiple image assets for the venue",
                   "type": "object",
                   "properties": {
@@ -1319,11 +2311,11 @@ A venue object with all fields.
                       "properties": {
                         "copyright": {
                           "description": "The copyright holder for this image",
-                          "type": "string"
+                          "type": ["string","null"]
                         },
                         "caption": {
                           "description": "Caption text for this image",
-                          "type": "string"
+                          "type": ["string","null"]
                         }
                       },
                       "required": ["copyright","caption"]
@@ -1334,6 +2326,17 @@ A venue object with all fields.
                   "description": "URL for the web page for the venue on ents24.com",
                   "type": "string"
                 },
+                "viewsOnEnts24": {
+                  "description": "The number of unique vistors to this venue's page on Ents24",
+                  "type": "integer"
+                },
+                "fansAlsoLiked": {
+                  "description": "A list of unique identifier strings for venues similar to this venue",
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
                 "fansOnEnts24": {
                   "description": "The number of Ents24 users tracking updates and announcements for this venue",
                   "type": "integer"
@@ -1343,7 +2346,7 @@ A venue object with all fields.
                   "type": "string"
                 }
               },
-              "required": ["id","name","town","location","description","webLink","fansOnEnts24","lastUpdate"]
+              "required": ["id","name","location","description","webLink","viewsOnEnts24","fansOnEnts24","lastUpdate"]
             }
 
 ### Events [/venue/events?id={id}&results\_per\_page={results\_per\_page}&page={page}&incl\_image={incl\_image}&image\_size={image\_size}&incl\_stages={incl\_stages}&incl\_artists={incl\_artists}&incl\_tickets={incl\_tickets}&full\_description={full\_description}&updated\_since={updated\_since}&order\_by={order\_by}&order\_direction={order\_direction}]
@@ -1483,7 +2486,7 @@ Data for a venue events listing widget.
 Available resources on the User API endpoints.<br />
 ***NB:*** *A user access token is required to make requests to these endpoints.<br />Please see the 'User Authentication' section for more details.*  
 
-### Tracked Artists [/user/tracked/artists?updated\_since={updated\_since}]
+### Tracked Artists [/user/tracked-artists?updated\_since={updated\_since}]
 A list of artists the user is tracking.
 
 #### User Tracked Artists [GET]
@@ -1527,7 +2530,7 @@ A list of artists the user is tracking.
               X-Previous-Page: ZW0=
               X-Total-Items-Found: 75
 
-### Tracked Venues [/user/tracked/venues?updated\_since={updated\_since}]
+### Tracked Venues [/user/tracked-venues?updated\_since={updated\_since}]
 A list of venues the user is tracking.
 
 #### User Tracked Venues [GET]
@@ -1571,7 +2574,7 @@ A list of venues the user is tracking.
               X-Previous-Page: ZW0=
               X-Total-Items-Found: 75
 
-### Tracked Events [/user/tracked/events?updated\_since={updated\_since}]
+### Tracked Events [/user/tracked-events?updated\_since={updated\_since}]
 A list of events the user is tracking.
 
 #### User Tracked Events [GET]
@@ -1615,7 +2618,7 @@ A list of events the user is tracking.
               X-Previous-Page: ZW0=
               X-Total-Items-Found: 75
 
-### Tracking Update [/user/tracking/update]
+### Tracking Update [/user/tracking-update]
 Make changes to the users tracked artists, venues and events.
 
 #### User Tracking Update [POST]
@@ -1638,28 +2641,61 @@ Make changes to the users tracked artists, venues and events.
                   "type": "string"
                 },
                 "artists": {
-                  "description": "Tracked artist updates",
+                  "description": "Artists tracked by the user",
                   "type": "array",
                   "items": { 
-                    "$ref": "https://raw.githubusercontent.com/Ents24/public-api-docs/beta3/request\_schemas/\_nested-tracking-update.schema.json" 
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "description": "The unique identifier for the artist",
+                        "type": "string"
+                      },
+                      "subscribed": {
+                        "description": "RFC-3339 formatted timestamp for when the artist was tracked by the user",
+                        "type": "string"
+                      }
+                    },
+                    "required": ["id","subscribed"]
                   }
                 },
                 "venues": {
-                  "description": "Tracked venue updates",
+                  "description": "Venues tracked by the user",
                   "type": "array",
                   "items": { 
-                    "$ref": "https://raw.githubusercontent.com/Ents24/public-api-docs/beta3/request\_schemas/\_nested-tracking-update.schema.json" 
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "description": "The unique identifier for the venue",
+                        "type": "string"
+                      },
+                      "subscribed": {
+                        "description": "RFC-3339 formatted timestamp for when the venue was tracked by the user",
+                        "type": "string"
+                      }
+                    },
+                    "required": ["id","subscribed"]
                   }
                 },
                 "events": {
-                  "description": "Tracked event updates",
+                  "description": "Events tracked by the user",
                   "type": "array",
                   "items": { 
-                    "$ref": "https://raw.githubusercontent.com/Ents24/public-api-docs/beta3/request\_schemas/\_nested-tracking-update.schema.json" 
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "description": "The unique identifier for the event",
+                        "type": "string"
+                      },
+                      "subscribed": {
+                        "description": "RFC-3339 formatted timestamp for when the event was tracked by the user",
+                        "type": "string"
+                      }
+                    },
+                    "required": ["id","subscribed"]
                   }
                 }
               },
-              "required": ["lastSyncDate"]
+              "required": ["lastSyncDate","artists","venues","events"]
             }
 
 + Response 200 (application/json)
@@ -1678,26 +2714,36 @@ Make changes to the users tracked artists, venues and events.
               "description": "Entity tracking updates for the user",
               "type": "object",
               "properties": {
-                "artists": {
-                  "description": "Tracked artist updates",
-                  "type": "array",
-                  "items": { 
-                    "$ref": "https://raw.githubusercontent.com/Ents24/public-api-docs/beta3/response\_schemas/\_nested-tracking-update.schema.json" 
-                  }
+                "lastSyncDate": {
+                  "description": "RFC-3339 formatted timestamp for the last time the user client sent updates",
+                  "type": "string"
                 },
-                "venues": {
-                  "description": "Tracked venue updates",
+                "changes": {
+                  "description": "Tracked entity changes since last update request",
                   "type": "array",
                   "items": { 
-                    "$ref": "https://raw.githubusercontent.com/Ents24/public-api-docs/beta3/response\_schemas/\_nested-tracking-update.schema.json" 
-                  }
-                },
-                "events": {
-                  "description": "Tracked event updates",
-                  "type": "array",
-                  "items": { 
-                    "$ref": "https://raw.githubusercontent.com/Ents24/public-api-docs/beta3/response\_schemas/\_nested-tracking-update.schema.json" 
+                    "type": "object",
+                    "properties": {
+                      "type": {
+                        "description": "The type of tracked entity (E.G. artist)",
+                        "type": "string"
+                      },
+                      "id": {
+                        "description": "The unique identifier for the entity",
+                        "type": "string"
+                      },
+                      "action": {
+                        "description": "The action that should be taken for the entity (E.G. track)",
+                        "type": "string"
+                      },
+                      "timestamp": {
+                        "description": "RFC-3339 formatted timestamp showing when the action was scheduled for the entity",
+                        "type": "string"
+                      }
+                    },
+                    "required": ["type","id","action","timestamp"]
                   }
                 }
-              }
+              },
+              "required": ["lastSyncDate","changes"]
             }

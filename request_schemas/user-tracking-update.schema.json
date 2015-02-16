@@ -8,9 +8,60 @@
       "description": "RFC-3339 formatted timestamp for the last time the user client sent updates",
       "type": "string"
     },
-    "data": {
-      "$ref": "https://raw.githubusercontent.com/Ents24/public-api-docs/beta3/shared_schemas/_entity-tracking-update-list.schema.json"
+    "artists": {
+      "description": "Tracked artists",
+      "type": "array",
+      "items": { 
+        "type": "object",
+        "properties": {
+          "id": {
+            "description": "The unique identifier for the artist",
+            "type": "string"
+          },
+          "subscribed": {
+            "description": "RFC-3339 formatted timestamp for when this artist was tracked by the user",
+            "type": "string"
+          }
+        },
+        "required": ["id","subscribed"]
+      }
+    },
+    "venues": {
+      "description": "Tracked venues",
+      "type": "array",
+      "items": { 
+        "type": "object",
+        "properties": {
+          "id": {
+            "description": "The unique identifier for the venue",
+            "type": "string"
+          },
+          "subscribed": {
+            "description": "RFC-3339 formatted timestamp for when this venue was tracked by the user",
+            "type": "string"
+          }
+        },
+        "required": ["id","subscribed"]
+      }
+    },
+    "events": {
+      "description": "Tracked events",
+      "type": "array",
+      "items": { 
+        "type": "object",
+        "properties": {
+          "id": {
+            "description": "The unique identifier for the event",
+            "type": "string"
+          },
+          "subscribed": {
+            "description": "RFC-3339 formatted timestamp for when this event was tracked by the user",
+            "type": "string"
+          }
+        },
+        "required": ["id","subscribed"]
+      }
     }
   },
-  "required": ["lastSyncDate", "data"]
+  "required": ["lastSyncDate","artists","venues","events"]
 }

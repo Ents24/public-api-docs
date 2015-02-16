@@ -22,11 +22,11 @@
       "properties": {
         "copyright": {
           "description": "The copyright holder for this image",
-          "type": "string"
+          "type": ["string","null"]
         },
         "caption": {
           "description": "Caption text for this image",
-          "type": "string"
+          "type": ["string","null"]
         }
       },
       "required": ["copyright","caption"]

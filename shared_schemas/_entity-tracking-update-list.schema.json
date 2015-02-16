@@ -1,7 +1,0 @@
-{
-  "description": "Entity tracking update list",
-  "type": "array",
-  "items": {
-    "$ref": "https://raw.githubusercontent.com/Ents24/public-api-docs/beta3/shared_schemas/_entity-tracking-update.schema.json"
-  }
-}
