@@ -182,7 +182,7 @@ A list of all valid event genres.
               }
             }
 
-### List [/event/list?location={location}&radius\_distance={radius\_distance}&distance\_unit={distance\_unit}&type={type}&genre={genre}&date={date}&date\_from={date\_from}&date\_to={date\_to}&venue\_name={venue\_name}&artist\_name={artist\_name}&results\_per\_page={results\_per\_page}&page={page}&incl\_image={incl\_image}&image\_size={image\_size}&incl\_stages={incl\_stages}&incl\_artists={incl\_artists}&incl\_tickets={incl\_tickets}&full\_description={full\_description}&updated\_since={updated\_since}&order\_by={order\_by}&order\_direction={order\_direction}]
+### List [/event/list?location={location}&radius\_distance={radius\_distance}&distance\_unit={distance\_unit}&type={type}&genre={genre}&date={date}&date\_from={date\_from}&date\_to={date\_to}&venue\_name={venue\_name}&artist\_name={artist\_name}&results\_per\_page={results\_per\_page}&page={page}&incl\_image={incl\_image}&image\_size={image\_size}&incl\_stages={incl\_stages}&incl\_artists={incl\_artists}&incl\_occurrences={incl\_occurrences}&incl\_tickets={incl\_tickets}&full\_description={full\_description&flatten\_repeat\_events={flatten\_repeat\_events}updated\_since={updated\_since}&order\_by={order\_by}&order\_direction={order\_direction}]
 Multiple event objects with selected fields.  
 ***NB:*** *You must filter resources retrieved from this end-point with at least one of the following request parameters:*  
 `location` `venue_name` `artist_name`
@@ -204,8 +204,10 @@ Multiple event objects with selected fields.
   + image\_size (optional, string, `medium`) ... Chooses the size of image included with each image object if one is available.
   + incl\_stages (optional, boolean, `1`) ... Decides whether or not a list of stages is included for any festival events in the response. 
   + incl\_artists (optional, boolean, `1`) ... Decides whether or not a list of performing artists is included in the response. 
+  + incl\_occurrences (optional, boolean, `1`) ... Decides whether or not a list of individual event occurrences is included for any repeat events in the response.
   + incl\_tickets (optional, boolean, `1`) ... Decides whether or not a list of available tickets is included in the response.  
   + full\_description (optional, boolean, `0`) ... Decides whether full or summarised description text is included in the response. 
+  + flatten\_repeat\_events (optional, boolean, `1`) ... Decides whether repeat event occurences are shown as individual objects or grouped into a single object.
   + updated\_since (optional, date, `2014-08-31`) ... Only retrive events that have been added/updated since the given date.
   + order\_by (optional, string, `lastUpdate`) ... Order events by the named object property.
   + order\_direction (optional, string, `desc`) ... Ordering direction [asc, desc].
@@ -703,7 +705,7 @@ Multiple event objects with selected fields.
             X-Previous-Page: ZW0=
             X-Total-Items-Found: 75
 
-### Read [/event/read?id={id}&incl\_artists={incl\_artists}&incl\_images={incl\_images}&incl\_tickets={incl\_tickets}&full\_description={full\_description}]
+### Read [/event/read?id={id}&incl\_artists={incl\_artists}&incl\_images={incl\_images}&incl\_tickets={incl\_tickets}&incl\_occurrences={incl\_occurrences}&full\_description={full\_description}]
 An event object with all fields.
 
 #### Event [GET]
@@ -712,6 +714,7 @@ An event object with all fields.
   + incl\_artists (optional, boolean, `1`) ... Decides whether or not a list of performing artists is included in the response.  
   + incl\_images (optional, boolean, `1`) ... Decides whether or not an event images are included in the response.  
   + incl\_tickets (optional, boolean, `1`) ... Decides whether or not a list of available tickets is included in the response.  
+  + incl\_occurrences (optional, boolean, `1`) ... Decides whether or not a list of individual event occurrences is included in the response.
   + full\_description (optional, boolean, `1`) ... Decides whether full or summarised description text is included in the response. 
 
 + Request
@@ -1710,7 +1713,7 @@ An artist object with all fields.
               "required": ["id","name","description","webLink","viewsOnEnts24","fansOnEnts24","lastUpdate"]
             }
 
-### Events [/artist/events?id={id}&results\_per\_page={results\_per\_page}&page={page}&incl\_image={incl\_image}&image\_size={image\_size}&incl\_stages={incl\_stages}&incl\_artists={incl\_artists}&incl\_tickets={incl\_tickets}&full\_description={full\_description}&updated\_since={updated\_since}&order\_by={order\_by}&order\_direction={order\_direction}]
+### Events [/artist/events?id={id}&results\_per\_page={results\_per\_page}&page={page}&incl\_image={incl\_image}&image\_size={image\_size}&incl\_stages={incl\_stages}&incl\_artists={incl\_artists}&incl\_occurrences={incl\_occurrences}&incl\_tickets={incl\_tickets}&full\_description={full\_description}&flatten\_repeat\_events={flatten\_repeat\_events}&updated\_since={updated\_since}&order\_by={order\_by}&order\_direction={order\_direction}]
 A list of events for an artist.
 
 #### Artist Events [GET]
@@ -1722,8 +1725,10 @@ A list of events for an artist.
   + image\_size (optional, string, `medium`) ... Chooses the size of image included with each image object if one is available.
   + incl\_stages (optional, boolean, `1`) ... Decides whether or not a list of stages is included for any festival events in the response. 
   + incl\_artists (optional, boolean, `1`) ... Decides whether or not a list of performing artists is included in the response. 
+  + incl\_occurrences (optional, boolean, `1`) ... Decides whether or not a list of individual event occurrences is included for any repeat events in the response.
   + incl\_tickets (optional, boolean, `1`) ... Decides whether or not a list of available tickets is included in the response.  
   + full\_description (optional, boolean, `0`) ... Decides whether full or summarised description text is included in the response. 
+  + flatten\_repeat\_events (optional, boolean, `1`) ... Decides whether repeat event occurences are shown as multiple objects or as a single object.
   + updated\_since (optional, date, `2014-08-31`) ... Only retrive events that have been added/updated since the given date.
   + order\_by (optional, string, `lastUpdate`) ... Order events by the named object property.
   + order\_direction (optional, string, `desc`) ... Ordering direction [asc, desc]. 
@@ -2349,7 +2354,7 @@ A venue object with all fields.
               "required": ["id","name","location","description","webLink","viewsOnEnts24","fansOnEnts24","lastUpdate"]
             }
 
-### Events [/venue/events?id={id}&results\_per\_page={results\_per\_page}&page={page}&incl\_image={incl\_image}&image\_size={image\_size}&incl\_stages={incl\_stages}&incl\_artists={incl\_artists}&incl\_tickets={incl\_tickets}&full\_description={full\_description}&updated\_since={updated\_since}&order\_by={order\_by}&order\_direction={order\_direction}]
+### Events [/venue/events?id={id}&results\_per\_page={results\_per\_page}&page={page}&incl\_image={incl\_image}&image\_size={image\_size}&incl\_stages={incl\_stages}&incl\_artists={incl\_artists}&incl\_occurrences={incl\_occurrences}&incl\_tickets={incl\_tickets}&full\_description={full\_description}&flatten\_repeat\_events={flatten\_repeat\_events}&updated\_since={updated\_since}&order\_by={order\_by}&order\_direction={order\_direction}]
 A list of events for a venue.
 
 #### Venue Events [GET]
@@ -2361,8 +2366,10 @@ A list of events for a venue.
   + image\_size (optional, string, `medium`) ... Chooses the size of image included with each image object if one is available.
   + incl\_stages (optional, boolean, `1`) ... Decides whether or not a list of stages is included for any festival events in the response. 
   + incl\_artists (optional, boolean, `1`) ... Decides whether or not a list of performing artists is included in the response. 
+  + incl\_occurrences (optional, boolean, `1`) ... Decides whether or not a list of individual event occurrences is included for any repeat events in the response.
   + incl\_tickets (optional, boolean, `1`) ... Decides whether or not a list of available tickets is included in the response.  
   + full\_description (optional, boolean, `0`) ... Decides whether full or summarised description text is included in the response. 
+  + flatten\_repeat\_events (optional, boolean, `1`) ... Decides whether repeat event occurences are shown as multiple objects or as a single object.
   + updated\_since (optional, date, `2014-08-31`) ... Only retrive events that have been added/updated since the given date.
   + order\_by (optional, string, `lastUpdate`) ... Order events by the named object property.
   + order\_direction (optional, string, `desc`) ... Ordering direction [asc, desc]. 
