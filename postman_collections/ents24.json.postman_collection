@@ -1,6 +1,6 @@
 {
 	"id": "22267e5a-df9f-f779-9232-87f2c975ee3c",
-	"name": "ents24",
+	"name": "Ents24",
 	"description": "",
 	"order": [],
 	"folders": [
@@ -15,8 +15,11 @@
 				"ca34289e-6e3f-4a32-19af-58ff78c85498",
 				"4bbba730-be4d-a4ca-ab99-a1ebb6e36e28"
 			],
-			"collection_name": "ents24",
-			"collection_id": "22267e5a-df9f-f779-9232-87f2c975ee3c"
+			"collection_name": "Ents24",
+			"collection_id": "22267e5a-df9f-f779-9232-87f2c975ee3c",
+			"owner": 0,
+			"collection_owner": 0,
+			"write": true
 		},
 		{
 			"id": "3e9ec7aa-dedf-832a-970e-42e0a0fe84e3",
@@ -26,8 +29,11 @@
 				"20e7caf4-9ba0-9036-c9da-19cf68b77589",
 				"9e2d9079-78f3-615b-4234-9cd9afaefea9"
 			],
-			"collection_name": "ents24",
-			"collection_id": "22267e5a-df9f-f779-9232-87f2c975ee3c"
+			"collection_name": "Ents24",
+			"collection_id": "22267e5a-df9f-f779-9232-87f2c975ee3c",
+			"owner": 0,
+			"collection_owner": 0,
+			"write": true
 		},
 		{
 			"id": "fd53243a-169c-df36-93c3-501f1df28d09",
@@ -39,8 +45,11 @@
 				"53fcc89b-1725-3ff4-ede8-8ebc7b9130bd",
 				"b008ec71-1ee5-79b2-830f-f39dfe077593"
 			],
-			"collection_name": "ents24",
-			"collection_id": "22267e5a-df9f-f779-9232-87f2c975ee3c"
+			"collection_name": "Ents24",
+			"collection_id": "22267e5a-df9f-f779-9232-87f2c975ee3c",
+			"owner": 0,
+			"collection_owner": 0,
+			"write": true
 		},
 		{
 			"id": "f7c2d5d4-1668-9107-eae6-f395dff383fd",
@@ -49,8 +58,11 @@
 			"order": [
 				"244e75af-2a6e-b67e-2392-2b34d49fb54a"
 			],
-			"collection_name": "ents24",
-			"collection_id": "22267e5a-df9f-f779-9232-87f2c975ee3c"
+			"collection_name": "Ents24",
+			"collection_id": "22267e5a-df9f-f779-9232-87f2c975ee3c",
+			"owner": 0,
+			"collection_owner": 0,
+			"write": true
 		},
 		{
 			"id": "6c4ed05b-4dad-a3a5-da2d-53adec62d676",
@@ -62,8 +74,11 @@
 				"04b93626-0fb7-c470-82d1-bef6b9af198d",
 				"9d1f4018-1ce7-1666-ceb5-8bd3b995cb71"
 			],
-			"collection_name": "ents24",
-			"collection_id": "22267e5a-df9f-f779-9232-87f2c975ee3c"
+			"collection_name": "Ents24",
+			"collection_id": "22267e5a-df9f-f779-9232-87f2c975ee3c",
+			"owner": 0,
+			"collection_owner": 0,
+			"write": true
 		},
 		{
 			"id": "4625f7eb-3099-1e19-6406-98aa1a4d7cbe",
@@ -76,13 +91,21 @@
 				"e18b1c6b-b06e-639a-a48b-0170c951bf17",
 				"6f20fb5c-e0d7-188c-5fbd-b875720611b4"
 			],
-			"collection_name": "ents24",
-			"collection_id": "22267e5a-df9f-f779-9232-87f2c975ee3c"
+			"collection_name": "Ents24",
+			"collection_id": "22267e5a-df9f-f779-9232-87f2c975ee3c",
+			"owner": 0,
+			"collection_owner": 0,
+			"write": true
 		}
 	],
 	"timestamp": 1422999446358,
 	"synced": false,
+	"owner": 0,
+	"sharedWithTeam": false,
+	"subscribed": false,
 	"remoteLink": "",
+	"public": false,
+	"write": true,
 	"requests": [
 		{
 			"id": "04b93626-0fb7-c470-82d1-bef6b9af198d",
@@ -102,7 +125,9 @@
 			"description": "A list of events tracked by the user",
 			"collectionId": "22267e5a-df9f-f779-9232-87f2c975ee3c",
 			"responses": [],
-			"synced": false
+			"synced": false,
+			"owner": 0,
+			"folder": "6c4ed05b-4dad-a3a5-da2d-53adec62d676"
 		},
 		{
 			"id": "20e7caf4-9ba0-9036-c9da-19cf68b77589",
@@ -135,7 +160,9 @@
 			"description": "Get client level access token",
 			"collectionId": "22267e5a-df9f-f779-9232-87f2c975ee3c",
 			"responses": [],
-			"synced": false
+			"synced": false,
+			"owner": 0,
+			"folder": "3e9ec7aa-dedf-832a-970e-42e0a0fe84e3"
 		},
 		{
 			"id": "244e75af-2a6e-b67e-2392-2b34d49fb54a",
@@ -155,7 +182,9 @@
 			"description": "Validate and/or search for unique location identifiers (lat/lon, postal code, place name)",
 			"collectionId": "22267e5a-df9f-f779-9232-87f2c975ee3c",
 			"responses": [],
-			"synced": false
+			"synced": false,
+			"owner": 0,
+			"folder": "f7c2d5d4-1668-9107-eae6-f395dff383fd"
 		},
 		{
 			"id": "2b976dbe-5325-e29e-c70c-febb995a5820",
@@ -170,7 +199,7 @@
 			"tests": "",
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1423043122497,
+			"time": 1425466023438,
 			"name": "Artist Events",
 			"description": "Get list of event objects for an artist",
 			"collectionId": "22267e5a-df9f-f779-9232-87f2c975ee3c",
@@ -195,7 +224,9 @@
 			"description": "Get venue object",
 			"collectionId": "22267e5a-df9f-f779-9232-87f2c975ee3c",
 			"responses": [],
-			"synced": false
+			"synced": false,
+			"owner": 0,
+			"folder": "4625f7eb-3099-1e19-6406-98aa1a4d7cbe"
 		},
 		{
 			"id": "35db39eb-2e0f-acd5-9c8c-553c1b62a5e6",
@@ -215,12 +246,14 @@
 			"description": "Get event object",
 			"collectionId": "22267e5a-df9f-f779-9232-87f2c975ee3c",
 			"responses": [],
-			"synced": false
+			"synced": false,
+			"owner": 0,
+			"folder": "fd53243a-169c-df36-93c3-501f1df28d09"
 		},
 		{
 			"id": "37746d43-0ad9-69b0-deb6-fa6d5c654b18",
 			"headers": "Authorization: \n",
-			"url": "https://api.ents24.com/artist/read?id={id}&incl\\_events={incl_events}&incl\\_image={incl_images}&full\\_description={full_description}",
+			"url": "https://api.ents24.com/artist/read?id={id}&incl_events={incl_events}&incl_image={incl_images}&full_description={full_description}",
 			"preRequestScript": "",
 			"pathVariables": {},
 			"method": "GET",
@@ -230,7 +263,7 @@
 			"tests": "",
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1423043235106,
+			"time": 1425466019093,
 			"name": "Artist",
 			"description": "Get artist object",
 			"collectionId": "22267e5a-df9f-f779-9232-87f2c975ee3c",
@@ -255,7 +288,9 @@
 			"description": "A list of artists tracked by the user",
 			"collectionId": "22267e5a-df9f-f779-9232-87f2c975ee3c",
 			"responses": [],
-			"synced": false
+			"synced": false,
+			"owner": 0,
+			"folder": "6c4ed05b-4dad-a3a5-da2d-53adec62d676"
 		},
 		{
 			"id": "4bbba730-be4d-a4ca-ab99-a1ebb6e36e28",
@@ -270,7 +305,7 @@
 			"tests": "",
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1423043019041,
+			"time": 1425466037045,
 			"name": "Artist Widget",
 			"description": "Get a 'tour dates' widget object for an artist",
 			"collectionId": "22267e5a-df9f-f779-9232-87f2c975ee3c",
@@ -295,7 +330,9 @@
 			"description": "Get an image object or JPEG file for an event",
 			"collectionId": "22267e5a-df9f-f779-9232-87f2c975ee3c",
 			"responses": [],
-			"synced": false
+			"synced": false,
+			"owner": 0,
+			"folder": "fd53243a-169c-df36-93c3-501f1df28d09"
 		},
 		{
 			"id": "6f20fb5c-e0d7-188c-5fbd-b875720611b4",
@@ -315,7 +352,9 @@
 			"description": "Get a 'tour dates' widget object for an venue",
 			"collectionId": "22267e5a-df9f-f779-9232-87f2c975ee3c",
 			"responses": [],
-			"synced": false
+			"synced": false,
+			"owner": 0,
+			"folder": "4625f7eb-3099-1e19-6406-98aa1a4d7cbe"
 		},
 		{
 			"id": "8ca2571c-ecd2-11db-c303-be1d4a5ce5de",
@@ -335,7 +374,9 @@
 			"description": "Get list of event objects for a venue",
 			"collectionId": "22267e5a-df9f-f779-9232-87f2c975ee3c",
 			"responses": [],
-			"synced": false
+			"synced": false,
+			"owner": 0,
+			"folder": "4625f7eb-3099-1e19-6406-98aa1a4d7cbe"
 		},
 		{
 			"id": "90f7ad70-efdb-cf56-ac76-4c85117bd1f1",
@@ -355,7 +396,9 @@
 			"description": "A list of venues tracked by the user",
 			"collectionId": "22267e5a-df9f-f779-9232-87f2c975ee3c",
 			"responses": [],
-			"synced": false
+			"synced": false,
+			"owner": 0,
+			"folder": "6c4ed05b-4dad-a3a5-da2d-53adec62d676"
 		},
 		{
 			"id": "9d1f4018-1ce7-1666-ceb5-8bd3b995cb71",
@@ -376,7 +419,9 @@
 			"collectionId": "22267e5a-df9f-f779-9232-87f2c975ee3c",
 			"responses": [],
 			"synced": false,
-			"rawModeData": "{\n    \"lastSyncDate\": \"0000-00-00T00:00:00+00:00\",\n    \"artists\": [],\n    \"venues\": [],\n    \"events\": []\n}"
+			"rawModeData": "{\n    \"lastSyncDate\": \"0000-00-00T00:00:00+00:00\",\n    \"artists\": [],\n    \"venues\": [],\n    \"events\": []\n}",
+			"owner": 0,
+			"folder": "6c4ed05b-4dad-a3a5-da2d-53adec62d676"
 		},
 		{
 			"id": "9e2d9079-78f3-615b-4234-9cd9afaefea9",
@@ -421,7 +466,9 @@
 			"description": "Get user level access token",
 			"collectionId": "22267e5a-df9f-f779-9232-87f2c975ee3c",
 			"responses": [],
-			"synced": false
+			"synced": false,
+			"owner": 0,
+			"folder": "3e9ec7aa-dedf-832a-970e-42e0a0fe84e3"
 		},
 		{
 			"id": "b008ec71-1ee5-79b2-830f-f39dfe077593",
@@ -441,7 +488,9 @@
 			"description": "Get a list of valid event genres and/or sub-genres",
 			"collectionId": "22267e5a-df9f-f779-9232-87f2c975ee3c",
 			"responses": [],
-			"synced": false
+			"synced": false,
+			"owner": 0,
+			"folder": "fd53243a-169c-df36-93c3-501f1df28d09"
 		},
 		{
 			"id": "c7af6ed0-e47d-5d42-e3b7-2357c475ed2f",
@@ -456,7 +505,7 @@
 			"tests": "",
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1423043202141,
+			"time": 1425466021254,
 			"name": "Artist List",
 			"description": "Get list of artist objects",
 			"collectionId": "22267e5a-df9f-f779-9232-87f2c975ee3c",
@@ -476,7 +525,7 @@
 			"tests": "",
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1423043030577,
+			"time": 1425466025580,
 			"name": "Artist Image",
 			"description": "Get an image object or JPEG file for an artist",
 			"collectionId": "22267e5a-df9f-f779-9232-87f2c975ee3c",
@@ -501,7 +550,9 @@
 			"description": "Get list of venue objects",
 			"collectionId": "22267e5a-df9f-f779-9232-87f2c975ee3c",
 			"responses": [],
-			"synced": false
+			"synced": false,
+			"owner": 0,
+			"folder": "4625f7eb-3099-1e19-6406-98aa1a4d7cbe"
 		},
 		{
 			"id": "de8eeb9d-0f8a-6afc-71d1-350599a1ebc9",
@@ -521,7 +572,9 @@
 			"description": "Get list of event objects",
 			"collectionId": "22267e5a-df9f-f779-9232-87f2c975ee3c",
 			"responses": [],
-			"synced": false
+			"synced": false,
+			"owner": 0,
+			"folder": "fd53243a-169c-df36-93c3-501f1df28d09"
 		},
 		{
 			"id": "e18b1c6b-b06e-639a-a48b-0170c951bf17",
@@ -541,7 +594,9 @@
 			"description": "Get an image object or JPEG file for a venue",
 			"collectionId": "22267e5a-df9f-f779-9232-87f2c975ee3c",
 			"responses": [],
-			"synced": false
+			"synced": false,
+			"owner": 0,
+			"folder": "4625f7eb-3099-1e19-6406-98aa1a4d7cbe"
 		}
 	]
 }
