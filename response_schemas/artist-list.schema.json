@@ -3,7 +3,7 @@
   "title": "Artist List",
   "description": "A list of Artist objects with selected fields",
   "type": "array",
-  "items": {
+  "items": { 
     "type": "object",
     "properties": {
       "id": {
@@ -16,7 +16,7 @@
       },
       "description": {
         "description": "Description text for the artist",
-        "type": "string"
+        "type": ["string","null"]
       },
       "events": {
         "description": "Artists upcoming events",
@@ -28,9 +28,13 @@
               "description": "Unique identifier for the event",
               "type": "string"
             },
+            "headline": {
+              "description": "Headline of the event",
+              "type": ["string","null"]
+            },
             "title": {
               "description": "Title of the event",
-              "type": "string"
+              "type": ["string","null"]
             },
             "venue": {
               "description": "Venue the event is being held at",
@@ -55,14 +59,6 @@
               },
               "required": ["id","name","town","location"]
             },
-            "startDateTime": {
-              "description": "DEPRECATED IN BETA 2! RFC-3339 formatted start date and time for the event",
-              "type": "string"
-            },
-            "endDateTime": {
-              "description": "DEPRECATED IN BETA 2! RFC-3339 formatted end date and time for the event",
-              "type": "string"
-            },
             "startDate": {
               "description": "RFC-3339 formatted start date for the event",
               "type": "string"
@@ -73,31 +69,76 @@
             },
             "startTimeString": {
               "description": "Start time string for the event",
-              "type": "string"
+              "type": ["string","null"]
             },
             "endTimeString": {
               "description": "End time string for the event",
-              "type": "string"
+              "type": ["string","null"]
             }
           },
           "required": ["id","title","startDate","endDate"]
         }
       },
-      "image": {
-        "description": "Single image asset for the artist",
+      "images": {
+        "description": "Multiple image assets for the artist",
         "type": "object",
         "properties": {
-          "url": {
-            "description": "Image source URL",
-            "type": "string"
+          "small": {
+            "description": "Small sized image",
+            "type": "object",
+            "properties": {
+              "url": {
+                "description": "Image source URL",
+                "type": "string"
+              },
+              "width": {
+                "description": "Image width (px)",
+                "type": "integer"
+              },
+              "height": {
+                "description": "Image height (px)",
+                "type": "integer"
+              }
+            },
+            "required": ["url","width","height"]
           },
-          "width": {
-            "description": "Image width (px)",
-            "type": "integer"
+          "medium": {
+            "description": "Medium sized image",
+            "type": "object",
+            "properties": {
+              "url": {
+                "description": "Image source URL",
+                "type": "string"
+              },
+              "width": {
+                "description": "Image width (px)",
+                "type": "integer"
+              },
+              "height": {
+                "description": "Image height (px)",
+                "type": "integer"
+              }
+            },
+            "required": ["url","width","height"]
           },
-          "height": {
-            "description": "Image height (px)",
-            "type": "integer"
+          "large": {
+            "description": "Medium sized image",
+            "type": "object",
+            "properties": {
+              "url": {
+                "description": "Image source URL",
+                "type": "string"
+              },
+              "width": {
+                "description": "Image width (px)",
+                "type": "integer"
+              },
+              "height": {
+                "description": "Image height (px)",
+                "type": "integer"
+              }
+            },
+            "required": ["url","width","height"]
           },
           "metadata": {
             "description": "Metadata related to this image",
@@ -105,15 +146,22 @@
             "properties": {
               "copyright": {
                 "description": "The copyright holder for this image",
-                "type": "string"
+                "type": ["string","null"]
               },
               "caption": {
                 "description": "Caption text for this image",
-                "type": "string"
+                "type": ["string","null"]
               }
             },
             "required": ["copyright","caption"]
           }
+        }
+      },
+      "genre": {
+        "description": "The genre(s) the artist is found under",
+        "type": "array",
+        "items": {
+          "type": "string"
         }
       },
       "webLink": {

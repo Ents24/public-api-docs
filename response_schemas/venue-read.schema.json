@@ -49,7 +49,7 @@
     },
     "description": {
       "description": "Description text for the venue",
-      "type": "string"
+      "type": ["string","null"]
     },
     "website": {
       "description": "URL for the venues website",
@@ -85,15 +85,7 @@
           },
           "title": {
             "description": "Title of an event",
-              "type": "string"
-          },
-          "startDateTime": {
-            "description": "DEPRECATED IN BETA 2! RFC-3339 formatted start date and time for the event",
-            "type": "string"
-          },
-          "endDateTime": {
-            "description": "DEPRECATED IN BETA 2! RFC-3339 formatted end date and time for the event",
-            "type": "string"
+              "type": ["string","null"]
           },
           "startDate": {
             "description": "RFC-3339 formatted start date for the event",
@@ -105,17 +97,17 @@
           },
           "startTimeString": {
             "description": "Start time string for the event",
-            "type": "string"
+            "type": ["string","null"]
           },
           "endTimeString": {
             "description": "End time string for the event",
-            "type": "string"
+            "type": ["string","null"]
           }
         },
         "required": ["id","title","startDate","endDate"]
       }
     },
-    "image": {
+    "images": {
       "description": "Multiple image assets for the venue",
       "type": "object",
       "properties": {
@@ -182,11 +174,11 @@
           "properties": {
             "copyright": {
               "description": "The copyright holder for this image",
-              "type": "string"
+              "type": ["string","null"]
             },
             "caption": {
               "description": "Caption text for this image",
-              "type": "string"
+              "type": ["string","null"]
             }
           },
           "required": ["copyright","caption"]
@@ -201,6 +193,13 @@
       "description": "The number of unique vistors to this venue's page on Ents24",
       "type": "integer"
     },
+    "fansAlsoLiked": {
+      "description": "A list of unique identifier strings for venues similar to this venue",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
     "fansOnEnts24": {
       "description": "The number of Ents24 users tracking updates and announcements for this venue",
       "type": "integer"
@@ -210,5 +209,5 @@
       "type": "string"
     }
   },
-  "required": ["id","name","town","location","description","webLink","viewsOnEnts24","fansOnEnts24","lastUpdate"]
+  "required": ["id","name","location","description","webLink","viewsOnEnts24","fansOnEnts24","lastUpdate"]
 }

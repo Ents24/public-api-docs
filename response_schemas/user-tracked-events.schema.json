@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "title": "Event List",
-  "description": "A list of Event objects with selected fields",
+  "title": "User Tracked Events",
+  "description": "A list of events tracked by the user",
   "type": "array",
   "items": { 
     "type": "object",

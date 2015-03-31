@@ -14,7 +14,7 @@
     },
     "description": {
       "description": "Description text for the artist",
-      "type": "string"
+      "type": ["string","null"]
     },
     "events": {
       "description": "Artists upcoming events",
@@ -26,9 +26,13 @@
             "description": "Unique identifier for the event",
             "type": "string"
           },
+          "headline": {
+            "description": "Headline of the event",
+            "type": ["string","null"]
+          },
           "title": {
             "description": "Title of the event",
-            "type": "string"
+            "type": ["string","null"]
           },
           "venue": {
             "description": "Venue the event is being held at",
@@ -53,14 +57,6 @@
             },
             "required": ["id","name","town","location"]
           },
-          "startDateTime": {
-            "description": "DEPRECATED IN BETA 2! RFC-3339 formatted start date and time for the event",
-            "type": "string"
-          },
-          "endDateTime": {
-            "description": "DEPRECATED IN BETA 2! RFC-3339 formatted end date and time for the event",
-            "type": "string"
-          },
           "startDate": {
             "description": "RFC-3339 formatted start date for the event",
             "type": "string"
@@ -71,17 +67,17 @@
           },
           "startTimeString": {
             "description": "Start time string for the event",
-            "type": "string"
+            "type": ["string","null"]
           },
           "endTimeString": {
             "description": "End time string for the event",
-            "type": "string"
+            "type": ["string","null"]
           }
         },
         "required": ["id","title","startDate","endDate"]
       }
     },
-    "image": {
+    "images": {
       "description": "Multiple image assets for the artist",
       "type": "object",
       "properties": {
@@ -148,11 +144,11 @@
           "properties": {
             "copyright": {
               "description": "The copyright holder for this image",
-              "type": "string"
+              "type": ["string","null"]
             },
             "caption": {
               "description": "Caption text for this image",
-              "type": "string"
+              "type": ["string","null"]
             }
           },
           "required": ["copyright","caption"]
@@ -173,6 +169,13 @@
     "viewsOnEnts24": {
       "description": "The number of unique vistors to this artist's page on Ents24",
       "type": "integer"
+    },
+    "fansAlsoLiked": {
+      "description": "A list of unique identifier strings for artsists similar to this artist",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
     },
     "fansOnEnts24": {
       "description": "The number of Ents24 users tracking updates and announcements for this artist",

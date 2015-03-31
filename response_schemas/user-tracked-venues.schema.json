@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "title": "Venue List",
-  "description": "A list of Venue objects with selected fields",
+  "title": "User Tracked Venues",
+  "description": "A list of venues tracked by the user",
   "type": "array",
   "items": { 
     "type": "object",

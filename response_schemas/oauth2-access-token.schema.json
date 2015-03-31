@@ -1,0 +1,23 @@
+{
+  "description": "An OAuth2 access token object",
+  "type": "object",
+  "properties": {
+    "access_token": {
+      "description": "The requested access token",
+      "type": "string"
+    },
+    "token_type": {
+      "description": "The type of access token issued",
+      "type": "string"
+    },
+    "expires": {
+      "description": "The expiry date of the issued access token",
+      "type": "integer"
+    },
+    "expires_in": {
+      "description": "The validity timespan for the token from the time of issue",
+      "type": "integer"
+    }
+  },
+  "required": ["access_token", "token_type", "expires", "expires_in"]
+}

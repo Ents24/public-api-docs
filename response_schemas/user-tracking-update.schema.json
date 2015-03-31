@@ -1,0 +1,39 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "User Tracking Updates Response",
+  "description": "Entity tracking updates for the user",
+  "type": "object",
+  "properties": {
+    "lastSyncDate": {
+      "description": "RFC-3339 formatted timestamp for the last time the user client sent updates",
+      "type": "string"
+    },
+    "changes": {
+      "description": "Tracked artist updates",
+      "type": "array",
+      "items": { 
+        "type": "object",
+        "properties": {
+          "type": {
+            "description": "The type of tracked entity (E.G. `artist`)",
+            "type": "string"
+          },
+          "id": {
+            "description": "The unique identifier for the entity",
+            "type": "string"
+          },
+          "action": {
+            "description": "The action that should be taken for the entity (E.G. `track`)",
+            "type": "string"
+          },
+          "timestamp": {
+            "description": "RFC-3339 formatted timestamp showing when the action was scheduled for the entity",
+            "type": "string"
+          }
+        },
+        "required": ["type","id","action","timestamp"]
+      }
+    }
+  },
+  "required": ["lastSyncDate","changes"]
+}
