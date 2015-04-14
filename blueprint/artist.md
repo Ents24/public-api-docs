@@ -11,7 +11,7 @@ Licensing terms and conditions apply.
 # Group Artist
 Available resources on the Artist API endpoints.
 
-### List [/artist/list?name={name}&like={like}&genre={genre}&results\_per\_page={results\_per\_page}&page={page}&incl\_image={incl\_image}&image\_size={image\_size}&incl\_events={incl\_events}&full\_description={full\_description}&updated\_since={updated\_since}&order\_by={order\_by}&order\_direction={order\_direction}]
+### List [/artist/list?name={name}&like={like}&genre={genre}&results\_per\_page={results\_per\_page}&page={page}&incl\_image={incl\_image}&image\_size={image\_size}&full\_description={full\_description}&incl\_also\_liked={incl\_also\_liked}&updated\_since={updated\_since}&order\_by={order\_by}&order\_direction={order\_direction}]
 Multiple artist objects with selected fields.  
 ***NB:*** *You must filter resources retrieved from this end-point with at least one of the following request parameters:*  
 `name` `event_name`
@@ -23,8 +23,8 @@ Multiple artist objects with selected fields.
   + genre (optional, string, `rock`) ... The genre you want an artists listing for.
   + incl\_image (optional, boolean, `1`) ... Decides whether or not an artist image is included in the response.
   + image\_size (optional, string, `medium`) ... Chooses the size of image included with each artist object if one is available.
-  + incl\_events (optional, boolean, `1`) ... Decides whether or not a list of upcoming events is included with each artist object in the response.
   + full\_description (optional, boolean, `0`) ... Decides whether full or summarised description text is included in the response. 
+  + incl\_also\_like (optional, boolean, `1`) ... Decides whether or not a list of IDs for similar artists is included in the response.
   + updated\_since (optional, date, `YYYY-MM-DD`) ... Only retrive artists that have been added/updated since the given date.
   + results\_per\_page (optional, integer, `25`) ... The number of results you want per page/chunk [25, 50, 100].
   + page (optional, string, `ZW0=`) ... The page/chunk of results to be requested.

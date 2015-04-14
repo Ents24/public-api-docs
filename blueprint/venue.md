@@ -11,7 +11,7 @@ Licensing terms and conditions apply.
 # Group Venue
 Available resources on the Venue API endpoints.
 
-### List [/venue/list?name={name}&like={like}&location={location}&radius\_distance={radius\_distance}&distance\_unit={distance\_unit}&results\_per\_page={results\_per\_page}&page={page}&incl\_image={incl\_image}&image\_size={image\_size}&incl\_events={incl\_events}&full\_description={full\_description}&updated\_since={updated\_since}&order\_by={order\_by}&order\_direction={order\_direction}]
+### List [/venue/list?name={name}&like={like}&location={location}&radius\_distance={radius\_distance}&distance\_unit={distance\_unit}&results\_per\_page={results\_per\_page}&page={page}&incl\_image={incl\_image}&image\_size={image\_size}&full\_description={full\_description}&incl\_also\_liked={incl\_also\_liked}&updated\_since={updated\_since}&order\_by={order\_by}&order\_direction={order\_direction}]
 Multiple venue objects with selected fields.  
 ***NB:*** *You must filter resources retrieved from this end-point with at least one of the following request parameters:*  
 `name` `location` `event_name`
@@ -25,8 +25,8 @@ Multiple venue objects with selected fields.
   + distance\_unit (optional, string, `mi`) ... The unit of measurment that should be applied to the radius\_distance value [mi, km].<br />***NB:*** *The `location` parameter is required when this parameter is set.*
   + incl\_image (optional, boolean, `1`) ... Decides whether or not an artist image is included in the response.
   + image\_size (optional, string, `medium`) ... Chooses the size of image included with each venue object if one is available.
-  + incl\_events (optional, boolean, `1`) ... Decides whether or not a list of upcoming events is included with each venue object in the response.
   + full\_description (optional, boolean, `0`) ... Decides whether full or summarised description text is included in the response. 
+  + incl\_also\_like (optional, boolean, `1`) ... Decides whether or not a list of IDs for similar venues is included in the response.
   + updated\_since (optional, date, `YYYY-MM-DD`) ... Only retrive venues that have been added/updated since the given date.
   + results\_per\_page (optional, integer, `25`) ... The number of results you want per page/chunk [25, 50, 100].
   + page (optional, integer, `1`) ... The page/chunk of results to be requested.
