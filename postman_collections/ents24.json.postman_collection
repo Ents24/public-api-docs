@@ -106,11 +106,12 @@
 	"remoteLink": "",
 	"public": false,
 	"write": true,
+	"hasRequests": true,
 	"requests": [
 		{
 			"id": "04b93626-0fb7-c470-82d1-bef6b9af198d",
 			"headers": "Authorization: \n",
-			"url": "https://api.ents24.com/user/tracked/artists",
+			"url": "https://api.ents24.com/user/tracked-events",
 			"preRequestScript": "",
 			"pathVariables": {},
 			"method": "GET",
@@ -120,14 +121,12 @@
 			"tests": "",
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1423002148320,
+			"time": 1429023950189,
 			"name": "User Tracked Events",
 			"description": "A list of events tracked by the user",
 			"collectionId": "22267e5a-df9f-f779-9232-87f2c975ee3c",
 			"responses": [],
-			"synced": false,
-			"owner": 0,
-			"folder": "6c4ed05b-4dad-a3a5-da2d-53adec62d676"
+			"synced": false
 		},
 		{
 			"id": "20e7caf4-9ba0-9036-c9da-19cf68b77589",
@@ -204,7 +203,9 @@
 			"description": "Get list of event objects for an artist",
 			"collectionId": "22267e5a-df9f-f779-9232-87f2c975ee3c",
 			"responses": [],
-			"synced": false
+			"synced": false,
+			"owner": 0,
+			"folder": "d7b2567a-d65e-63ba-9b3f-67ad6ed675fe"
 		},
 		{
 			"id": "2d003b09-e9f5-a94a-ec45-d858a3389c8a",
@@ -268,12 +269,14 @@
 			"description": "Get artist object",
 			"collectionId": "22267e5a-df9f-f779-9232-87f2c975ee3c",
 			"responses": [],
-			"synced": false
+			"synced": false,
+			"owner": 0,
+			"folder": "d7b2567a-d65e-63ba-9b3f-67ad6ed675fe"
 		},
 		{
 			"id": "3f22712e-b608-5096-5597-65af282c8906",
 			"headers": "Authorization: \n",
-			"url": "https://api.ents24.com/user/tracked/artists",
+			"url": "https://api.ents24.com/user/tracked-artists",
 			"preRequestScript": "",
 			"pathVariables": {},
 			"method": "GET",
@@ -283,14 +286,12 @@
 			"tests": "",
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1423002133065,
+			"time": 1429023925617,
 			"name": "User Tracked Artists",
 			"description": "A list of artists tracked by the user",
 			"collectionId": "22267e5a-df9f-f779-9232-87f2c975ee3c",
 			"responses": [],
-			"synced": false,
-			"owner": 0,
-			"folder": "6c4ed05b-4dad-a3a5-da2d-53adec62d676"
+			"synced": false
 		},
 		{
 			"id": "4bbba730-be4d-a4ca-ab99-a1ebb6e36e28",
@@ -310,7 +311,9 @@
 			"description": "Get a 'tour dates' widget object for an artist",
 			"collectionId": "22267e5a-df9f-f779-9232-87f2c975ee3c",
 			"responses": [],
-			"synced": false
+			"synced": false,
+			"owner": 0,
+			"folder": "d7b2567a-d65e-63ba-9b3f-67ad6ed675fe"
 		},
 		{
 			"id": "53fcc89b-1725-3ff4-ede8-8ebc7b9130bd",
@@ -381,7 +384,7 @@
 		{
 			"id": "90f7ad70-efdb-cf56-ac76-4c85117bd1f1",
 			"headers": "Authorization: \n",
-			"url": "https://api.ents24.com/user/tracked/artists",
+			"url": "https://api.ents24.com/user/tracked-venues",
 			"preRequestScript": "",
 			"pathVariables": {},
 			"method": "GET",
@@ -391,19 +394,17 @@
 			"tests": "",
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1423002138310,
+			"time": 1429023941215,
 			"name": "User Tracked Venues",
 			"description": "A list of venues tracked by the user",
 			"collectionId": "22267e5a-df9f-f779-9232-87f2c975ee3c",
 			"responses": [],
-			"synced": false,
-			"owner": 0,
-			"folder": "6c4ed05b-4dad-a3a5-da2d-53adec62d676"
+			"synced": false
 		},
 		{
 			"id": "9d1f4018-1ce7-1666-ceb5-8bd3b995cb71",
 			"headers": "Authorization: \n",
-			"url": "https://api.ents24.com/user/tracking/update",
+			"url": "https://api.ents24.com/user/tracking-update",
 			"preRequestScript": "",
 			"pathVariables": {},
 			"method": "POST",
@@ -413,15 +414,13 @@
 			"tests": "",
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1423002459042,
+			"time": 1429023959463,
 			"name": "User Tracking Update",
 			"description": "Syncronise tracked artist, venue and event lists with Ents24",
 			"collectionId": "22267e5a-df9f-f779-9232-87f2c975ee3c",
 			"responses": [],
 			"synced": false,
-			"rawModeData": "{\n    \"lastSyncDate\": \"0000-00-00T00:00:00+00:00\",\n    \"artists\": [],\n    \"venues\": [],\n    \"events\": []\n}",
-			"owner": 0,
-			"folder": "6c4ed05b-4dad-a3a5-da2d-53adec62d676"
+			"rawModeData": "{\n    \"lastSyncDate\": \"0000-00-00T00:00:00+00:00\",\n    \"artists\": [],\n    \"venues\": [],\n    \"events\": []\n}"
 		},
 		{
 			"id": "9e2d9079-78f3-615b-4234-9cd9afaefea9",
@@ -495,7 +494,7 @@
 		{
 			"id": "c7af6ed0-e47d-5d42-e3b7-2357c475ed2f",
 			"headers": "Authorization: \n",
-			"url": "https://api.ents24.com/artist/list?name={name}&genre={genre}&results_per_page={results_per_page}&page={page}&incl_image={incl_image}&image_size={image_size}&incl_events={incl_events}&full_description={full_description}&updated_since={updated_since}&order_by={order_by}&order_direction={order_direction}",
+			"url": "https://api.ents24.com/artist/list?name={name}&genre={genre}&results_per_page={results_per_page}&page={page}&incl_image={incl_image}&image_size={image_size}&full_description={full_description}&incl_also_liked={incl_also_liked}&updated_since={updated_since}&order_by={order_by}&order_direction={order_direction}",
 			"preRequestScript": "",
 			"pathVariables": {},
 			"method": "GET",
@@ -505,7 +504,7 @@
 			"tests": "",
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1425466021254,
+			"time": 1429023668534,
 			"name": "Artist List",
 			"description": "Get list of artist objects",
 			"collectionId": "22267e5a-df9f-f779-9232-87f2c975ee3c",
@@ -530,12 +529,14 @@
 			"description": "Get an image object or JPEG file for an artist",
 			"collectionId": "22267e5a-df9f-f779-9232-87f2c975ee3c",
 			"responses": [],
-			"synced": false
+			"synced": false,
+			"owner": 0,
+			"folder": "d7b2567a-d65e-63ba-9b3f-67ad6ed675fe"
 		},
 		{
 			"id": "ce4f352f-6955-8b09-4ac7-ad2b9f2478ec",
 			"headers": "Authorization: \n",
-			"url": "https://api.ents24.com/venue/list?name={name}&location={location}&radius_distance={radius_distance}&distance_unit={distance_unit}&results_per_page={results_per_page}&page={page}&incl_image={incl_image}&image_size={image_size}&incl_events={incl_events}&full_description={full_description}&updated_since={updated_since}&order_by={order_by}&order_direction={order_direction}",
+			"url": "https://api.ents24.com/venue/list?name={name}&location={location}&radius_distance={radius_distance}&distance_unit={distance_unit}&results_per_page={results_per_page}&page={page}&incl_image={incl_image}&image_size={image_size}&full_description={full_description}&incl_also_liked={incl_also_liked}&updated_since={updated_since}&order_by={order_by}&order_direction={order_direction}",
 			"preRequestScript": "",
 			"pathVariables": {},
 			"method": "GET",
@@ -545,14 +546,12 @@
 			"tests": "",
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1423042882874,
+			"time": 1429023695750,
 			"name": "Venue List",
 			"description": "Get list of venue objects",
 			"collectionId": "22267e5a-df9f-f779-9232-87f2c975ee3c",
 			"responses": [],
-			"synced": false,
-			"owner": 0,
-			"folder": "4625f7eb-3099-1e19-6406-98aa1a4d7cbe"
+			"synced": false
 		},
 		{
 			"id": "de8eeb9d-0f8a-6afc-71d1-350599a1ebc9",
