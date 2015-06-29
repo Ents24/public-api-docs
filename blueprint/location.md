@@ -10,7 +10,7 @@ Licensing terms and conditions apply.
 
 # Group Location
 
-### Search [/event/list?name={name}&postcode={postcode}&geo={geo}&radius\_distance={radius\_distance}&distance\_unit={distance\_unit}]
+### Search [/location/search?name={name}&postcode={postcode}&geo={geo}&radius\_distance={radius\_distance}&distance\_unit={distance\_unit}]
 Check location parameter values for use in event or venue list by location requests.
 
 #### Location Search [GET]
