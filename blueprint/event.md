@@ -1,7 +1,7 @@
 FORMAT: 1A
 HOST: https://api.ents24.com
 
-# Ents24 REST API (Beta 3)
+# Ents24 REST API (Beta 3.2)
 The Ents24 REST API gives you easy access to the UK's most comprehensive live entertainment database:  
 A horde of event-listing experts add over 10,000 new listings every week!  
 Easily use our data for your website or application.  
@@ -51,16 +51,16 @@ A list of all valid event genres.
                     "description": "The genre title",
                     "type": ["string","null"]
                   },
-                  "isChild": {
-                    "description": "Flag showing if this genre object represents a subgenre of another genre",
+                  "isSubGenre": {
+                    "description": "Flag showing if this genre object has a parent genre object",
                     "type": "boolean"
                   },
                   "parentKey": {
-                    "description": "The key of the parent genre object. E.G: music, comedy or theatre-shows",
+                    "description": "The key of the parent genre. E.G: Music, Comedy or Theatre",
                     "type": "string"
                   }
                 },
-                "required": ["key","title","isChild"]
+                "required": ["key","title","isSubGenre"]
               }
             }
 
@@ -407,66 +407,21 @@ Multiple event objects with selected fields.
                       "required": ["id","startDate","endDate","startTimeString","endTimeString","hasMoved","isCancelled","isPostponed","isRescheduled","isSoldOut","ticketsAvailable","isFree","price"]
                     }
                   },
-                  "images": {
-                    "description": "Multiple image assets for the event",
+                  "image": {
+                    "description": "Image asset for the event",
                     "type": "object",
                     "properties": {
-                      "small": {
-                        "description": "Small sized image",
-                        "type": "object",
-                        "properties": {
-                          "url": {
-                            "description": "Image source URL",
-                            "type": "string"
-                          },
-                          "width": {
-                            "description": "Image width (px)",
-                            "type": "integer"
-                          },
-                          "height": {
-                            "description": "Image height (px)",
-                            "type": "integer"
-                          }
-                        },
-                        "required": ["url","width","height"]
+                      "url": {
+                        "description": "Image source URL",
+                        "type": "string"
                       },
-                      "medium": {
-                        "description": "Medium sized image",
-                        "type": "object",
-                        "properties": {
-                          "url": {
-                            "description": "Image source URL",
-                            "type": "string"
-                          },
-                          "width": {
-                            "description": "Image width (px)",
-                            "type": "integer"
-                          },
-                          "height": {
-                            "description": "Image height (px)",
-                            "type": "integer"
-                          }
-                        },
-                        "required": ["url","width","height"]
+                      "width": {
+                        "description": "Image width (px)",
+                        "type": "integer"
                       },
-                      "large": {
-                        "description": "Medium sized image",
-                        "type": "object",
-                        "properties": {
-                          "url": {
-                            "description": "Image source URL",
-                            "type": "string"
-                          },
-                          "width": {
-                            "description": "Image width (px)",
-                            "type": "integer"
-                          },
-                          "height": {
-                            "description": "Image height (px)",
-                            "type": "integer"
-                          }
-                        },
-                        "required": ["url","width","height"]
+                      "height": {
+                        "description": "Image height (px)",
+                        "type": "integer"
                       },
                       "metadata": {
                         "description": "Metadata related to this image",
@@ -483,7 +438,8 @@ Multiple event objects with selected fields.
                         },
                         "required": ["copyright","caption"]
                       }
-                    }
+                    },
+                    "required": ["url","width","height","metadata"]
                   },
                   "tickets": {
                     "description": "Tickets for this event",
@@ -1123,11 +1079,11 @@ An event image retrieved as either a JSON object or JPEG image.
                   "properties": {
                     "copyright": {
                       "description": "The copyright holder for this image",
-                      "type": "string"
+                      "type": ["string","null"]
                     },
                     "caption": {
                       "description": "Caption text for this image",
-                      "type": "string"
+                      "type": ["string","null"]
                     }
                   },
                   "required": ["copyright","caption"]

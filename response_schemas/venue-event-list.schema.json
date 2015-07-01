@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "title": "Event List",
+  "title": "Venue Event List",
   "description": "A list of Event objects with selected fields",
   "type": "array",
   "items": { 
@@ -65,29 +65,6 @@
       "price": {
         "description": "Price info for the event",
         "type": ["string","null"]
-      },
-      "venue": {
-        "description": "Venue the event is being held at",
-        "type": "object",
-        "properties": {
-          "id": {
-            "description": "Unique identifier for the venue",
-            "type": "string"
-          },
-          "name": {
-            "description": "Name of the venue",
-            "type": "string"
-          },
-          "town": {
-            "description": "Town or city where the venue is located",
-            "type": "string"
-          },
-          "location": {
-            "description": "Lat/Lon coordinates of the venue",
-            "$ref": "http://json-schema.org/geo"
-          }
-        },
-        "required": ["id","name","town","location"]
       },
       "description": {
         "description": "Description text for the event",

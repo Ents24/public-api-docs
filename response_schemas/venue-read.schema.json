@@ -70,42 +70,16 @@
         "booking": {
           "description": "Phone number for bookings",
           "type": "string"
+        },
+        "disabled": {
+          "description": "Phone number for disabled users",
+          "type": "string"
         }
       }
     },
-    "events": {
-      "description": "Upcoming events at the venue",
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "description": "Unique identifier for an event",
-            "type": "string"
-          },
-          "title": {
-            "description": "Title of an event",
-              "type": ["string","null"]
-          },
-          "startDate": {
-            "description": "RFC-3339 formatted start date for the event",
-            "type": "string"
-          },
-          "endDate": {
-            "description": "RFC-3339 formatted end date for the event",
-            "type": "string"
-          },
-          "startTimeString": {
-            "description": "Start time string for the event",
-            "type": ["string","null"]
-          },
-          "endTimeString": {
-            "description": "End time string for the event",
-            "type": ["string","null"]
-          }
-        },
-        "required": ["id","title","startDate","endDate"]
-      }
+    "upcomingEvents": {
+      "description": "The number of upcoming events on Ents24 for the venue",
+      "type": "integer"
     },
     "images": {
       "description": "Multiple image assets for the venue",
@@ -189,8 +163,8 @@
       "description": "URL for the web page for the venue on ents24.com",
       "type": "string"
     },
-    "viewsOnEnts24": {
-      "description": "The number of unique vistors to this venue's page on Ents24",
+    "fansOnEnts24": {
+      "description": "The number of Ents24 users tracking updates and announcements for this venue",
       "type": "integer"
     },
     "fansAlsoLiked": {
@@ -200,14 +174,10 @@
         "type": "string"
       }
     },
-    "fansOnEnts24": {
-      "description": "The number of Ents24 users tracking updates and announcements for this venue",
-      "type": "integer"
-    },
     "lastUpdate": {
       "description": "RFC-3339 formatted added/updated timestamp for this object",
       "type": "string"
     }
   },
-  "required": ["id","name","location","description","webLink","viewsOnEnts24","fansOnEnts24","lastUpdate"]
+  "required": ["id","name","location","description","webLink","fansOnEnts24","lastUpdate"]
 }

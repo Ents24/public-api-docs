@@ -16,66 +16,9 @@
       "description": "Description text for the artist",
       "type": ["string","null"]
     },
-    "events": {
-      "description": "Artists upcoming events",
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "description": "Unique identifier for the event",
-            "type": "string"
-          },
-          "headline": {
-            "description": "Headline of the event",
-            "type": ["string","null"]
-          },
-          "title": {
-            "description": "Title of the event",
-            "type": ["string","null"]
-          },
-          "venue": {
-            "description": "Venue the event is being held at",
-            "type": "object",
-            "properties": {
-              "id": {
-                "description": "Unique identifier for the venue",
-                "type": "string"
-              },
-              "name": {
-                "description": "Name of the venue",
-                "type": "string"
-              },
-              "town": {
-                "description": "Town or city where the venue is located",
-                "type": "string"
-              },
-              "location": {
-                "description": "Lat/Lon coordinates of the venue",
-                "$ref": "http://json-schema.org/geo"
-              }
-            },
-            "required": ["id","name","town","location"]
-          },
-          "startDate": {
-            "description": "RFC-3339 formatted start date for the event",
-            "type": "string"
-          },
-          "endDate": {
-            "description": "RFC-3339 formatted end date for the event",
-            "type": "string"
-          },
-          "startTimeString": {
-            "description": "Start time string for the event",
-            "type": ["string","null"]
-          },
-          "endTimeString": {
-            "description": "End time string for the event",
-            "type": ["string","null"]
-          }
-        },
-        "required": ["id","title","startDate","endDate"]
-      }
+    "upcomingEvents": {
+      "description": "The number of upcoming events on Ents24 for the artist",
+      "type": "integer"
     },
     "images": {
       "description": "Multiple image assets for the artist",
@@ -166,8 +109,8 @@
       "description": "URL for the web page for the artist on ents24.com",
       "type": "string"
     },
-    "viewsOnEnts24": {
-      "description": "The number of unique vistors to this artist's page on Ents24",
+    "fansOnEnts24": {
+      "description": "The number of Ents24 users tracking updates and announcements for this artist",
       "type": "integer"
     },
     "fansAlsoLiked": {
@@ -177,14 +120,10 @@
         "type": "string"
       }
     },
-    "fansOnEnts24": {
-      "description": "The number of Ents24 users tracking updates and announcements for this artist",
-      "type": "integer"
-    },
     "lastUpdate": {
       "description": "RFC-3339 formatted added/updated timestamp for this object",
       "type": "string"
     }
   },
-  "required": ["id","name","description","webLink","viewsOnEnts24","fansOnEnts24","lastUpdate"]
+  "required": ["id","name","description","upcomingEvents","webLink","fansOnEnts24","lastUpdate"]
 }

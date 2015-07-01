@@ -293,66 +293,21 @@
           "required": ["id","startDate","endDate","startTimeString","endTimeString","hasMoved","isCancelled","isPostponed","isRescheduled","isSoldOut","ticketsAvailable","isFree","price"]
         }
       },
-      "images": {
-        "description": "Multiple image assets for the event",
+      "image": {
+        "description": "Image asset for the event",
         "type": "object",
         "properties": {
-          "small": {
-            "description": "Small sized image",
-            "type": "object",
-            "properties": {
-              "url": {
-                "description": "Image source URL",
-                "type": "string"
-              },
-              "width": {
-                "description": "Image width (px)",
-                "type": "integer"
-              },
-              "height": {
-                "description": "Image height (px)",
-                "type": "integer"
-              }
-            },
-            "required": ["url","width","height"]
+          "url": {
+            "description": "Image source URL",
+            "type": "string"
           },
-          "medium": {
-            "description": "Medium sized image",
-            "type": "object",
-            "properties": {
-              "url": {
-                "description": "Image source URL",
-                "type": "string"
-              },
-              "width": {
-                "description": "Image width (px)",
-                "type": "integer"
-              },
-              "height": {
-                "description": "Image height (px)",
-                "type": "integer"
-              }
-            },
-            "required": ["url","width","height"]
+          "width": {
+            "description": "Image width (px)",
+            "type": "integer"
           },
-          "large": {
-            "description": "Medium sized image",
-            "type": "object",
-            "properties": {
-              "url": {
-                "description": "Image source URL",
-                "type": "string"
-              },
-              "width": {
-                "description": "Image width (px)",
-                "type": "integer"
-              },
-              "height": {
-                "description": "Image height (px)",
-                "type": "integer"
-              }
-            },
-            "required": ["url","width","height"]
+          "height": {
+            "description": "Image height (px)",
+            "type": "integer"
           },
           "metadata": {
             "description": "Metadata related to this image",
@@ -369,7 +324,8 @@
             },
             "required": ["copyright","caption"]
           }
-        }
+        },
+        "required": ["url","width","height","metadata"]
       },
       "tickets": {
         "description": "Tickets for this event",

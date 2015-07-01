@@ -1,7 +1,7 @@
 FORMAT: 1A
 HOST: https://api.ents24.com
 
-# Ents24 REST API (Beta 3)
+# Ents24 REST API (Beta 3.2)
 The Ents24 REST API gives you easy access to the UK's most comprehensive live entertainment database:  
 A horde of event-listing experts add over 10,000 new listings every week!  
 Easily use our data for your website or application.  
@@ -40,7 +40,7 @@ Check location parameter values for use in event or venue list by location reque
             {
               "$schema": "http://json-schema.org/draft-04/schema#",
               "title": "Location Search",
-              "description": "List of location objects with properties matching the query parameter values",
+              "description": "List of location objects matching the request parameters",
               "type": "array",
               "items": {
                 "type": "object",
@@ -52,13 +52,6 @@ Check location parameter values for use in event or venue list by location reque
                   "county": {
                     "description": "County where the location is found",
                     "type": "string"
-                  },
-                  "postCodes": {
-                    "description": "Valid postal codes for this location",
-                    "type": "array",
-                    "items": {
-                      "type": "string"
-                    }
                   },
                   "latitude": {
                     "description": "Latitude of the location",

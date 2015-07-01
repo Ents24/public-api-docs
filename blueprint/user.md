@@ -1,7 +1,7 @@
 FORMAT: 1A
 HOST: https://api.ents24.com
 
-# Ents24 REST API (Beta 3)
+# Ents24 REST API (Beta 3.2)
 The Ents24 REST API gives you easy access to the UK's most comprehensive live entertainment database:  
 A horde of event-listing experts add over 10,000 new listings every week!  
 Easily use our data for your website or application.  
@@ -34,8 +34,8 @@ A list of artists the user is tracking.
 
             {
               "$schema": "http://json-schema.org/draft-04/schema#",
-              "title": "Tracked Artists List",
-              "description": "A list of Artist objects representing the Artists tracked by the user",
+              "title": "User Tracked Artists",
+              "description": "A list of artists tracked by the user",
               "type": "array",
               "items": { 
                 "type": "object",
@@ -52,127 +52,25 @@ A list of artists the user is tracking.
                     "description": "Description text for the artist",
                     "type": ["string","null"]
                   },
-                  "events": {
-                    "description": "Artists upcoming events",
-                    "type": "array",
-                    "items": {
-                      "type": "object",
-                      "properties": {
-                        "id": {
-                          "description": "Unique identifier for the event",
-                          "type": "string"
-                        },
-                        "headline": {
-                          "description": "Headline of the event",
-                          "type": ["string","null"]
-                        },
-                        "title": {
-                          "description": "Title of the event",
-                          "type": ["string","null"]
-                        },
-                        "venue": {
-                          "description": "Venue the event is being held at",
-                          "type": "object",
-                          "properties": {
-                            "id": {
-                              "description": "Unique identifier for the venue",
-                              "type": "string"
-                            },
-                            "name": {
-                              "description": "Name of the venue",
-                              "type": "string"
-                            },
-                            "town": {
-                              "description": "Town or city where the venue is located",
-                              "type": "string"
-                            },
-                            "location": {
-                              "description": "Lat/Lon coordinates of the venue",
-                              "$ref": "http://json-schema.org/geo"
-                            }
-                          },
-                          "required": ["id","name","town","location"]
-                        },
-                        "startDate": {
-                          "description": "RFC-3339 formatted start date for the event",
-                          "type": "string"
-                        },
-                        "endDate": {
-                          "description": "RFC-3339 formatted end date for the event",
-                          "type": "string"
-                        },
-                        "startTimeString": {
-                          "description": "Start time string for the event",
-                          "type": ["string","null"]
-                        },
-                        "endTimeString": {
-                          "description": "End time string for the event",
-                          "type": ["string","null"]
-                        }
-                      },
-                      "required": ["id","title","startDate","endDate"]
-                    }
+                  "upcomingEvents": {
+                    "description": "The number of upcoming events on Ents24 for the artist",
+                    "type": "integer"
                   },
-                  "images": {
-                    "description": "Multiple image assets for the artist",
+                  "image": {
+                    "description": "Image asset for the artist",
                     "type": "object",
                     "properties": {
-                      "small": {
-                        "description": "Small sized image",
-                        "type": "object",
-                        "properties": {
-                          "url": {
-                            "description": "Image source URL",
-                            "type": "string"
-                          },
-                          "width": {
-                            "description": "Image width (px)",
-                            "type": "integer"
-                          },
-                          "height": {
-                            "description": "Image height (px)",
-                            "type": "integer"
-                          }
-                        },
-                        "required": ["url","width","height"]
+                      "url": {
+                        "description": "Image source URL",
+                        "type": "string"
                       },
-                      "medium": {
-                        "description": "Medium sized image",
-                        "type": "object",
-                        "properties": {
-                          "url": {
-                            "description": "Image source URL",
-                            "type": "string"
-                          },
-                          "width": {
-                            "description": "Image width (px)",
-                            "type": "integer"
-                          },
-                          "height": {
-                            "description": "Image height (px)",
-                            "type": "integer"
-                          }
-                        },
-                        "required": ["url","width","height"]
+                      "width": {
+                        "description": "Image width (px)",
+                        "type": "integer"
                       },
-                      "large": {
-                        "description": "Medium sized image",
-                        "type": "object",
-                        "properties": {
-                          "url": {
-                            "description": "Image source URL",
-                            "type": "string"
-                          },
-                          "width": {
-                            "description": "Image width (px)",
-                            "type": "integer"
-                          },
-                          "height": {
-                            "description": "Image height (px)",
-                            "type": "integer"
-                          }
-                        },
-                        "required": ["url","width","height"]
+                      "height": {
+                        "description": "Image height (px)",
+                        "type": "integer"
                       },
                       "metadata": {
                         "description": "Metadata related to this image",
@@ -189,7 +87,8 @@ A list of artists the user is tracking.
                         },
                         "required": ["copyright","caption"]
                       }
-                    }
+                    },
+                    "required": ["url","width","height","metadata"]
                   },
                   "genre": {
                     "description": "The genre(s) the artist is found under",
@@ -202,23 +101,23 @@ A list of artists the user is tracking.
                     "description": "URL for the web page for the artist on ents24.com",
                     "type": "string"
                   },
+                  "fansOnEnts24": {
+                    "description": "The number of Ents24 users tracking updates and announcements for this artist",
+                    "type": "integer"
+                  },
                   "fansAlsoLiked": {
-                    "description": "A list of unique identifier strings for artists similar to this artist",
+                    "description": "A list of unique identifier strings for artsists similar to this artist",
                     "type": "array",
                     "items": {
                       "type": "string"
                     }
-                  },
-                  "fansOnEnts24": {
-                    "description": "The number of Ents24 users tracking updates and announcements for this artist",
-                    "type": "integer"
                   },
                   "lastUpdate": {
                     "description": "RFC-3339 formatted added/updated timestamp for this object",
                     "type": "string"
                   }
                 },
-                "required": ["id","name","description","webLink","viewsOnEnts24","fansOnEnts24","lastUpdate"]
+                "required": ["id","name","description","upcomingEvents","webLink","fansOnEnts24","lastUpdate"]
               }
             }
 
@@ -255,8 +154,8 @@ A list of venues the user is tracking.
 
             {
               "$schema": "http://json-schema.org/draft-04/schema#",
-              "title": "Tracked Venues List",
-              "description": "A list of Venue objects representing the Venues tracked by the user",
+              "title": "User Tracked Venues",
+              "description": "A list of venues tracked by the user",
               "type": "array",
               "items": { 
                 "type": "object",
@@ -327,103 +226,32 @@ A list of venues the user is tracking.
                       "booking": {
                         "description": "Phone number for bookings",
                         "type": "string"
+                      },
+                      "disabled": {
+                        "description": "Phone number for disabled users",
+                        "type": "string"
                       }
                     }
                   },
-                  "events": {
-                    "description": "Upcoming events at the venue",
-                    "type": "array",
-                    "items": {
-                      "type": "object",
-                      "properties": {
-                        "id": {
-                          "description": "Unique identifier for an event",
-                          "type": "string"
-                        },
-                        "title": {
-                          "description": "Title of an event",
-                            "type": ["string","null"]
-                        },
-                        "startDate": {
-                          "description": "RFC-3339 formatted start date for the event",
-                          "type": "string"
-                        },
-                        "endDate": {
-                          "description": "RFC-3339 formatted end date for the event",
-                          "type": "string"
-                        },
-                        "startTimeString": {
-                          "description": "Start time string for the event",
-                          "type": ["string","null"]
-                        },
-                        "endTimeString": {
-                          "description": "End time string for the event",
-                          "type": ["string","null"]
-                        }
-                      },
-                      "required": ["id","title","startDate","endDate"]
-                    }
+                  "upcomingEvents": {
+                    "description": "The number of upcoming events on Ents24 for the venue",
+                    "type": "integer"
                   },
-                  "images": {
-                    "description": "Multiple image assets for the venue",
+                  "image": {
+                    "description": "Image asset for the artist",
                     "type": "object",
                     "properties": {
-                      "small": {
-                        "description": "Small sized image",
-                        "type": "object",
-                        "properties": {
-                          "url": {
-                            "description": "Image source URL",
-                            "type": "string"
-                          },
-                          "width": {
-                            "description": "Image width (px)",
-                            "type": "integer"
-                          },
-                          "height": {
-                            "description": "Image height (px)",
-                            "type": "integer"
-                          }
-                        },
-                        "required": ["url","width","height"]
+                      "url": {
+                        "description": "Image source URL",
+                        "type": "string"
                       },
-                      "medium": {
-                        "description": "Medium sized image",
-                        "type": "object",
-                        "properties": {
-                          "url": {
-                            "description": "Image source URL",
-                            "type": "string"
-                          },
-                          "width": {
-                            "description": "Image width (px)",
-                            "type": "integer"
-                          },
-                          "height": {
-                            "description": "Image height (px)",
-                            "type": "integer"
-                          }
-                        },
-                        "required": ["url","width","height"]
+                      "width": {
+                        "description": "Image width (px)",
+                        "type": "integer"
                       },
-                      "large": {
-                        "description": "Medium sized image",
-                        "type": "object",
-                        "properties": {
-                          "url": {
-                            "description": "Image source URL",
-                            "type": "string"
-                          },
-                          "width": {
-                            "description": "Image width (px)",
-                            "type": "integer"
-                          },
-                          "height": {
-                            "description": "Image height (px)",
-                            "type": "integer"
-                          }
-                        },
-                        "required": ["url","width","height"]
+                      "height": {
+                        "description": "Image height (px)",
+                        "type": "integer"
                       },
                       "metadata": {
                         "description": "Metadata related to this image",
@@ -440,11 +268,16 @@ A list of venues the user is tracking.
                         },
                         "required": ["copyright","caption"]
                       }
-                    }
+                    },
+                    "required": ["url","width","height","metadata"]
                   },
                   "webLink": {
                     "description": "URL for the web page for the venue on ents24.com",
                     "type": "string"
+                  },
+                  "fansOnEnts24": {
+                    "description": "The number of Ents24 users tracking updates and announcements for this venue",
+                    "type": "integer"
                   },
                   "fansAlsoLiked": {
                     "description": "A list of unique identifier strings for venues similar to this venue",
@@ -453,16 +286,12 @@ A list of venues the user is tracking.
                       "type": "string"
                     }
                   },
-                  "fansOnEnts24": {
-                    "description": "The number of Ents24 users tracking updates and announcements for this venue",
-                    "type": "integer"
-                  },
                   "lastUpdate": {
                     "description": "RFC-3339 formatted added/updated timestamp for this object",
                     "type": "string"
                   }
                 },
-                "required": ["id","name","location","description","webLink","viewsOnEnts24","fansOnEnts24","lastUpdate"] 
+                "required": ["id","name","location","description","webLink","fansOnEnts24","lastUpdate"] 
               }
             }
 
@@ -499,8 +328,8 @@ A list of events the user is tracking.
 
             {
               "$schema": "http://json-schema.org/draft-04/schema#",
-              "title": "Tracked Events List",
-              "description": "A list of Event objects representing the Events tracked by the user",
+              "title": "User Tracked Events",
+              "description": "A list of events tracked by the user",
               "type": "array",
               "items": { 
                 "type": "object",
@@ -792,66 +621,21 @@ A list of events the user is tracking.
                       "required": ["id","startDate","endDate","startTimeString","endTimeString","hasMoved","isCancelled","isPostponed","isRescheduled","isSoldOut","ticketsAvailable","isFree","price"]
                     }
                   },
-                  "images": {
-                    "description": "Multiple image assets for the event",
+                  "image": {
+                    "description": "Image asset for the event",
                     "type": "object",
                     "properties": {
-                      "small": {
-                        "description": "Small sized image",
-                        "type": "object",
-                        "properties": {
-                          "url": {
-                            "description": "Image source URL",
-                            "type": "string"
-                          },
-                          "width": {
-                            "description": "Image width (px)",
-                            "type": "integer"
-                          },
-                          "height": {
-                            "description": "Image height (px)",
-                            "type": "integer"
-                          }
-                        },
-                        "required": ["url","width","height"]
+                      "url": {
+                        "description": "Image source URL",
+                        "type": "string"
                       },
-                      "medium": {
-                        "description": "Medium sized image",
-                        "type": "object",
-                        "properties": {
-                          "url": {
-                            "description": "Image source URL",
-                            "type": "string"
-                          },
-                          "width": {
-                            "description": "Image width (px)",
-                            "type": "integer"
-                          },
-                          "height": {
-                            "description": "Image height (px)",
-                            "type": "integer"
-                          }
-                        },
-                        "required": ["url","width","height"]
+                      "width": {
+                        "description": "Image width (px)",
+                        "type": "integer"
                       },
-                      "large": {
-                        "description": "Medium sized image",
-                        "type": "object",
-                        "properties": {
-                          "url": {
-                            "description": "Image source URL",
-                            "type": "string"
-                          },
-                          "width": {
-                            "description": "Image width (px)",
-                            "type": "integer"
-                          },
-                          "height": {
-                            "description": "Image height (px)",
-                            "type": "integer"
-                          }
-                        },
-                        "required": ["url","width","height"]
+                      "height": {
+                        "description": "Image height (px)",
+                        "type": "integer"
                       },
                       "metadata": {
                         "description": "Metadata related to this image",
@@ -868,7 +652,8 @@ A list of events the user is tracking.
                         },
                         "required": ["copyright","caption"]
                       }
-                    }
+                    },
+                    "required": ["url","width","height","metadata"]
                   },
                   "tickets": {
                     "description": "Tickets for this event",
@@ -994,7 +779,7 @@ Make changes to the users tracked artists, venues and events.
                   "type": "string"
                 },
                 "artists": {
-                  "description": "Artists tracked by the user",
+                  "description": "Tracked artists",
                   "type": "array",
                   "items": { 
                     "type": "object",
@@ -1004,7 +789,7 @@ Make changes to the users tracked artists, venues and events.
                         "type": "string"
                       },
                       "subscribed": {
-                        "description": "RFC-3339 formatted timestamp for when the artist was tracked by the user",
+                        "description": "RFC-3339 formatted timestamp for when this artist was tracked by the user",
                         "type": "string"
                       }
                     },
@@ -1012,7 +797,7 @@ Make changes to the users tracked artists, venues and events.
                   }
                 },
                 "venues": {
-                  "description": "Venues tracked by the user",
+                  "description": "Tracked venues",
                   "type": "array",
                   "items": { 
                     "type": "object",
@@ -1022,7 +807,7 @@ Make changes to the users tracked artists, venues and events.
                         "type": "string"
                       },
                       "subscribed": {
-                        "description": "RFC-3339 formatted timestamp for when the venue was tracked by the user",
+                        "description": "RFC-3339 formatted timestamp for when this venue was tracked by the user",
                         "type": "string"
                       }
                     },
@@ -1030,7 +815,7 @@ Make changes to the users tracked artists, venues and events.
                   }
                 },
                 "events": {
-                  "description": "Events tracked by the user",
+                  "description": "Tracked events",
                   "type": "array",
                   "items": { 
                     "type": "object",
@@ -1040,7 +825,7 @@ Make changes to the users tracked artists, venues and events.
                         "type": "string"
                       },
                       "subscribed": {
-                        "description": "RFC-3339 formatted timestamp for when the event was tracked by the user",
+                        "description": "RFC-3339 formatted timestamp for when this event was tracked by the user",
                         "type": "string"
                       }
                     },
@@ -1072,13 +857,13 @@ Make changes to the users tracked artists, venues and events.
                   "type": "string"
                 },
                 "changes": {
-                  "description": "Tracked entity changes since last update request",
+                  "description": "Tracked artist updates",
                   "type": "array",
                   "items": { 
                     "type": "object",
                     "properties": {
                       "type": {
-                        "description": "The type of tracked entity (E.G. artist)",
+                        "description": "The type of tracked entity (E.G. `artist`)",
                         "type": "string"
                       },
                       "id": {
@@ -1086,7 +871,7 @@ Make changes to the users tracked artists, venues and events.
                         "type": "string"
                       },
                       "action": {
-                        "description": "The action that should be taken for the entity (E.G. track)",
+                        "description": "The action that should be taken for the entity (E.G. `track`)",
                         "type": "string"
                       },
                       "timestamp": {

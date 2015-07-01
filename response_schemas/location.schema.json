@@ -14,13 +14,6 @@
         "description": "County where the location is found",
         "type": "string"
       },
-      "postCodes": {
-        "description": "Valid postal codes for this location",
-        "type": "array",
-        "items": {
-          "type": "string"
-        }
-      },
       "latitude": {
         "description": "Latitude of the location",
         "type": "number"
