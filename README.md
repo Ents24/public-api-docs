@@ -1,14 +1,14 @@
 Ents24 REST API (Beta 3.2)
-===============
+==========================
 
 The Ents24 REST API gives you easy access to the UK's most comprehensive live entertainment database:  A horde of event-listing experts add over 10,000 new listings every week!  
 Easily use our data for your website or application.  
 
-Licensing [**terms and conditions**](http://docs.api.ents24.com/licensing) apply.
+Licensing [**terms and conditions**](https://docs.api.ents24.com/licensing) apply.
 
 In order to use the Ents24 REST API you must first [**register as a developer**](https://docs.api.ents24.com/registration), once you have your client credentials you may begin making requests to the API.
 
-Full documention is available in human friendly HTML format at [**docs.api.ents24.com**](http://docs.api.ents24.com/)
+Full documention is available in human friendly HTML format at [**docs.api.ents24.com**](https://docs.api.ents24.com/)
 
 ### Client Libraries
 
