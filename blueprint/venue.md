@@ -11,7 +11,7 @@ Licensing terms and conditions apply.
 # Group Venue
 Available resources on the Venue API endpoints.
 
-### List [/venue/list?name={name}&like={like}&location={location}&radius\_distance={radius\_distance}&distance\_unit={distance\_unit}&results\_per\_page={results\_per\_page}&page={page}&incl\_image={incl\_image}&image\_size={image\_size}&full\_description={full\_description}&incl\_also\_liked={incl\_also\_liked}&updated\_since={updated\_since}&order\_by={order\_by}&order\_direction={order\_direction}]
+### List [/venue/list?name={name}&like={like}&location={location}&radius\_distance={radius\_distance}&distance\_unit={distance\_unit}&postcode={postcode}&incl\_image={incl\_image}&image\_size={image\_size}&full\_description={full\_description}&incl\_also\_liked={incl\_also\_liked}&updated\_since={updated\_since}&results\_per\_page={results\_per\_page}&page={page}&order\_by={order\_by}&order\_direction={order\_direction}]
 Multiple venue objects with selected fields.  
 ***NB:*** *You must filter resources retrieved from this end-point with at least one of the following request parameters:*  
 `name` `location` `event_name`
@@ -23,6 +23,7 @@ Multiple venue objects with selected fields.
   + location (optional, string, `postcode:SW1X 7LY`) ... The location of events you want a listing for. Values should be prefixed with the type of location data you are submitting. [name, postcode, geo].<br />***NB:*** *Values applied to this parameter with the `name` may be ambiguous E.G: Newcastle. Use `location/search` endpoint to find a unique location identifier (postcode or lat,lng) that matches the location you want.*
   + radius\_distance (optional, integer, `10`) ... The furthest distance from the location you want events listed for.<br />***NB:*** *The `location` parameter is required when this parameter is set.*
   + distance\_unit (optional, string, `mi`) ... The unit of measurment that should be applied to the radius\_distance value [mi, km].<br />***NB:*** *The `location` parameter is required when this parameter is set.*
+  + postcode (optional, string, `SW1X 7LY`) ... The postcode of the venue(s) you want a listing for.<br />***NB:*** *This parameter will only produce a list of venues with the exact postcode given.*
   + incl\_image (optional, boolean, `1`) ... Decides whether or not an artist image is included in the response.
   + image\_size (optional, string, `medium`) ... Chooses the size of image included with each venue object if one is available.
   + full\_description (optional, boolean, `0`) ... Decides whether full or summarised description text is included in the response. 

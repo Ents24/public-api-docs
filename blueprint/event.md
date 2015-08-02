@@ -64,7 +64,7 @@ A list of all valid event genres.
               }
             }
 
-### List [/event/list?location={location}&radius\_distance={radius\_distance}&distance\_unit={distance\_unit}&type={type}&genre={genre}&date={date}&date\_from={date\_from}&date\_to={date\_to}&venue\_name={venue\_name}&artist\_name={artist\_name}&results\_per\_page={results\_per\_page}&page={page}&incl\_image={incl\_image}&image\_size={image\_size}&incl\_stages={incl\_stages}&incl\_artists={incl\_artists}&incl\_occurrences={incl\_occurrences}&incl\_tickets={incl\_tickets}&full\_description={full\_description}&updated\_since={updated\_since}&order\_by={order\_by}&order\_direction={order\_direction}]
+### List [/event/list?location={location}&radius\_distance={radius\_distance}&distance\_unit={distance\_unit}&type={type}&genre={genre}&date={date}&date\_from={date\_from}&date\_to={date\_to}&venue\_name={venue\_name}&venue\_postcode={venue\_postcode}&artist\_name={artist\_name}&results\_per\_page={results\_per\_page}&page={page}&incl\_image={incl\_image}&image\_size={image\_size}&incl\_stages={incl\_stages}&incl\_artists={incl\_artists}&incl\_occurrences={incl\_occurrences}&incl\_tickets={incl\_tickets}&full\_description={full\_description}&updated\_since={updated\_since}&order\_by={order\_by}&order\_direction={order\_direction}]
 Multiple event objects with selected fields.  
 ***NB:*** *You must filter resources retrieved from this end-point with at least one of the following request parameters:*  
 `location` `venue_name` `artist_name`
@@ -79,6 +79,7 @@ Multiple event objects with selected fields.
   + date\_from (optional, date, `2014-09-03`) ... The date you want an events listing from.<br />***NB:*** *This parameter is required when `date\_to` parameter is set.*
   + date\_to (optional, date, `2014-09-10`) ... The date you want an events listing to.<br />***NB:*** *This parameter is required when `date_from` parameter is set.*
   + venue_name (optional, string, `Hyde Park`) ... The venue you want an events listing for.<br />***NB:*** *Values applied to this parameter may match more than one venue!<br />You should use the `venue/read` end-point to get event listings for a particular venue.*
+  + venue_postcode (optional, string, `SW1X 7LY`) ... The postcode of the venue you want an events listing for.<br />***NB:*** *This parameter will only produce a list of events for venues with the exact postcode given. Values applied to this parameter may match more than one venue!<br />You should use the `venue/read` end-point to get event listings for a particular venue.*
   + artist_name (optional, string, `Blondie`) ... The artist you want an events listing for.<br />***NB:*** *Values applied to this parameter may match more than one artist!<br />You should use the `artist/read` end-point to get an upcoming events list for a particular artist.*
   + incl\_image (optional, boolean, `1`) ... Decides whether or not an event image is included in the response.
   + image\_size (optional, string, `medium`) ... Chooses the size of image included with each image object if one is available.
