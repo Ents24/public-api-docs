@@ -1,0 +1,94 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"title": "Location Widget",
+	"description": "A location centric event listings widget",
+	"type": "object",
+	"properties": {
+		"data": {
+			"description": "Location widget data",
+			"type": "object",
+			"properties": {
+				"location": {
+					"description": "Location of event listing",
+					"type": "object",
+					"properties": {
+						"name": {
+							"description": "Place name of location",
+							"type": "string"
+						},
+						"county": {
+							"description": "County name",
+							"type": "string"
+						},
+						"latitude": {
+							"description": "Latitude of location",
+							"type": "double"
+						},
+						"longitude": {
+							"description": "Longitude of location",
+							"type": "double"
+						}
+					}
+				},
+				"events": {
+					"description": "Events listings for location grouped by date",
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"date": {
+								"description": "RFC-3339 formatted date for listing section",
+								"type": "string"
+							},
+							"events": {
+								"description": "Events listings for location on given date",
+								"type": "array",
+								"items": {
+									"type": "object",
+									"properties": {
+										"title": {
+											"description": "Title of event",
+											"type": "string"
+										},
+										"eventUrl": {
+											"description": "URL for event page",
+											"type": "string"
+										},
+										"isFree": {
+											"description": "Flag for if event is free",
+											"type": "boolean"
+										},
+										"status": {
+											"description": "Event status (sold out or not)",
+											"type": "string"
+										},
+										"venueName": {
+											"description": "Name of venue",
+											"type": "string"
+										},
+										"venueTown": {
+											"description": "Name of venue town",
+											"type": "string"
+										},
+										"ticketUrl": {
+											"description": "URL for tickets",
+											"type": "string"
+										},
+										"image": {
+											"description": "Image for event",
+											"type": "string"
+										},
+										"trackUrl": {
+											"description": "URL to track event",
+											"type": "string"
+										}
+									}
+								}
+							}	
+						}
+					}
+				}
+			}
+		}
+	}
+}
