@@ -1,0 +1,90 @@
+FORMAT: 1A
+HOST: https://api.ents24.com
+
+# Group Error Responses
+In the event you receive an error from the API the response you receive will follow the format of the following:
+
+### Request error
+Status codes: 400, 401, 403, 404, 405 and 503
+
+    {
+      "$schema": "http://json-schema.org/draft-04/schema#",
+      "title": "A request error(s) response",
+      "description": "The response given when the API receives an unauthorised, forbidden or invalid request",
+      "type": "object",
+      "properties": {
+        "errors": {
+          "description": "The errors that have caused the response to be sent",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "description": "The error code (HTTP status code)",
+                "type": "integer"
+              },
+              "message": {
+                "description": "The message describing the error(s) that has occured",
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    }
+
+Example:
+
+    {
+      "errors": [
+        {
+          "code": 401,
+          "message": "The access token provided is expired, revoked, malformed, or invalid for other reasons."
+        }
+      ]
+    }
+
+### Parameter validation error
+Status codes: 400, 401, 404 and 422
+    
+    {
+      "$schema": "http://json-schema.org/draft-04/schema#",
+      "title": "A parameter validation error(s) response",
+      "description": "Given when there is a missing or invalid request parameter",
+      "type": "object",
+      "properties": {
+        "errors": {
+          "description": "The errors that have caused the response to be sent",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "description": "The error code (HTTP status code)",
+                "type": "integer"
+              },
+              "parameter": {
+                "description": "The request parameter(s) that caused the error(s)",
+                "type": "string"
+              },
+              "message": {
+                "description": "The message describing the error(s) that has occured",
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    }
+
+Example:
+
+    {
+      "errors": [
+        {
+          "code": 400,
+          "parameter": "location, name, venue_name, venue_postcode, artist_name, ids",
+          "message": "At least one filter parameter is required"
+        }
+      ]
+    }
