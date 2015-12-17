@@ -1,0 +1,305 @@
+FORMAT: 1A
+HOST: https://api.ents24.com
+
+# Group Location
+
+### Search [/location/search?name={name}&postcode={postcode}&geo={geo}&radius_distance={radius_distance}&distance_unit={distance_unit}]
+Check location parameter values for use in event or venue list by location requests.
+
+#### Location Search [GET]
++ Parameters
+  + name (optional, string, `Newcastle`) ... The name of the location your searching for.
+  + postcode (optional, string, `NE82 6YY`) ... The postcode of the location your searching for.
+  + geo (optional, string, `54.974384411995,-1.6015806376512`) ... Comma separated latitude and longitude of the location you are searching for.
+  + radius_distance (optional, integer, `10`) ... The furthest distance from the given location that should be searched.<br />***NB:*** *This parameter is disregarded unless either the `postcode` or `geo` parameter is set.*
+  + distance_unit (optional, string, `mi`) ... The unit of measurment that should be applied to the radius_distance value [`mi`, `km`].<br />***NB:*** *This parameter is disregarded unless either the `postcode` or `geo` parameter is set.*
+
++ Request
+
+    + Headers
+
+            Authorization: qnFqFAVw8pJMCF1z8tIMYoXwommArRmt9C08jIRA
+
++ Response 200 (application/json)
+
+    + Headers
+
+            Date: Tue, 26 Aug 2014 08:00:00 GMT
+            Expires: Tue, 26 Aug 2014 09:00:00 GMT
+            Last-Modified: Tue, 25 Aug 2014 22:10:00 GMT
+
+    + Body
+
+            {
+              "$schema": "http://json-schema.org/draft-04/schema#",
+              "title": "Location Search",
+              "description": "List of location objects matching the request parameters",
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "description": "Name of the location",
+                    "type": "string"
+                  },
+                  "county": {
+                    "description": "County where the location is found",
+                    "type": "string"
+                  },
+                  "latitude": {
+                    "description": "Latitude of the location",
+                    "type": "number"
+                  },
+                  "longitude": {
+                    "description": "Longitude of the location",
+                    "type": "number"
+                  }
+                }
+              }
+            }
+
+### Widget [/location/widget?location={location}&radius_distance={radius_distance}&distance_unit={distance_unit}&genres={genres}&encode={encode}&results_per_page={results_per_page}&page={page}]
+Return widget data for location based event listings.
+
+#### Location Widget [GET]
++ Parameters
+  + location (string, `geo:54.974384411995,-1.6015806376512`) ... The location of events you want a listing for. Values should be prefixed with the type of location data you are submitting [`name:`, `postcode:`, `geo:`].<br />***NB:*** *Values applied to this parameter with the `name` may be ambiguous E.G: Newcastle. Use `location/search` endpoint to find a unique location identifier (postcode or lat,lng) that matches the location you want.*
+  + radius_distance (optional, integer, `10`) ... The furthest distance from the location you want events listed for.
+  + distance_unit (optional, string, `mi`) ... The unit of measurment that should be applied to the radius_distance value [`mi`, `km`].
+  + genres (optional, string, `["rock","blues"]`) ... A serialised JSON array of genres you want events listed for.
+  + encode (optional, string, `utf-8`) ... The character encoding for the data response.
+  + results_per_page (optional, integer, `25`) ... The number of results you want per page/chunk [`25`, `50`, `75`, `100`].
+  + page (optional, integer, `1`) ... The page/chunk of results to be requested.
+
++ Response 200 (application/json)
+
+    + Headers
+
+            Date: Tue, 26 Aug 2014 08:00:00 GMT
+            Expires: Tue, 26 Aug 2014 09:00:00 GMT
+            X-Next-Page: R2U=
+            X-Previous-Page: bUw=
+            X-Total-Items-Found: 75
+
+    + Body
+    
+            {
+              "$schema": "http://json-schema.org/draft-04/schema#",
+              "title": "Location Widget",
+              "description": "A location centric event listings widget",
+              "type": "object",
+              "properties": {
+                "jsonLD": {
+                  "description": "Schema.org linked-data formatted event listings",
+                  "type": ["array", "null"],
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "@context": {
+                        "description": "The context in which the event data is being described (Schema.org)",
+                        "type": "string"
+                      },
+                      "@type": {
+                        "description": "The type of event the object represents",
+                        "type": "string"
+                      },
+                      "name": {
+                        "description": "The name of the event. This is shown in the rich snippet. See specific policies about event names below",
+                        "type": "string"
+                      },
+                      "url": {
+                        "description": "A link to the event's details page",
+                        "type": "string"
+                      },
+                      "startDate": {
+                        "description": "The starting date and time of the event (ISO8601)",
+                        "type": "string"
+                      },
+                      "endDate": {
+                        "description": "The ending date and time of the event (ISO8601)",
+                        "type": "string"
+                      },
+                      "eventStatus": {
+                        "description": "An eventStatus of an event represents its status; particularly useful when an event is cancelled or rescheduled",
+                        "type": "string"
+                      },
+                      "location": {
+                        "description": "The location of the event",
+                        "type": "object",
+                        "properties": {
+                          "@type": {
+                            "description": "The type of location",
+                            "type": "string"
+                          },
+                          "name": {
+                            "description": "The name of the location",
+                            "type": "string"
+                          },
+                          "address": {
+                            "description": "Physical/Mailing address of the location",
+                            "type": "object",
+                            "properties": {
+                              "@type": {
+                                "description": "The type of address",
+                                "type": "string"
+                              },
+                              "streetAddress": {
+                                "description": "The street address",
+                                "type": "string"
+                              },
+                              "addressLocality": {
+                                "description": "  The locality. For example, Mountain View.",
+                                "type": "string"
+                              },
+                              "addressRegion": {
+                                "description": "The region. For example, CA.",
+                                "type": "string"
+                              },
+                              "postalCode": {
+                                "description": "The postal code. For example, 94043.",
+                                "type": "string"
+                              },
+                              "addressCountry": {
+                                "description": "The country. For example, USA or ISO 3166-1 alpha-2 country code.",
+                                "type": "string"
+                              }
+                            }
+                          },
+                          "offers": {
+                            "description": " An offer to buy tickets for this event",
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "@type": {
+                                  "description": "The type of offer",
+                                  "type": "string"
+                                },
+                                "category": {
+                                  "description": "A category for the offer",
+                                  "type": "string"
+                                },
+                                "price": {
+                                  "description": "The offer price of a product",
+                                  "type": "string"
+                                },
+                                "priceCurrency": {
+                                  "description": "The currency (in 3-letter ISO 4217 format) of the price",
+                                  "type": "string"
+                                },
+                                "availability": {
+                                  "description": "The availability of the offer",
+                                  "type": "string"
+                                },
+                                "validFrom": {
+                                  "description": "The date when the offer becomes valid",
+                                  "type": "string"
+                                },
+                                "validThrough": {
+                                  "description": "The end of the validity of offer",
+                                  "type": "string"
+                                },
+                                "url": {
+                                  "description": "URL of the offer",
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          },
+                          "image" {
+                            "description": "The URL for the image for this event",
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "data": {
+                  "description": "Location widget data",
+                  "type": "object",
+                  "properties": {
+                    "location": {
+                      "description": "Location of event listing",
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "description": "Place name of location",
+                          "type": "string"
+                        },
+                        "county": {
+                          "description": "County name",
+                          "type": "string"
+                        },
+                        "latitude": {
+                          "description": "Latitude of location",
+                          "type": "float"
+                        },
+                        "longitude": {
+                          "description": "Longitude of location",
+                          "type": "float"
+                        }
+                      }
+                    },
+                    "listings": {
+                      "description": "Events listings for location grouped by date",
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "date": {
+                            "description": "RFC-3339 formatted date for listing section",
+                            "type": "string"
+                          },
+                          "events": {
+                            "description": "Event listings for location on given date",
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "title": {
+                                  "description": "Title of event",
+                                  "type": "string"
+                                },
+                                "eventUrl": {
+                                  "description": "URL for event page",
+                                  "type": "string"
+                                },
+                                "isFree": {
+                                  "description": "Flag for if event is free",
+                                  "type": "boolean"
+                                },
+                                "status": {
+                                  "description": "Event status (sold out or not)",
+                                  "type": "string"
+                                },
+                                "venueName": {
+                                  "description": "Name of venue",
+                                  "type": "string"
+                                },
+                                "venueTown": {
+                                  "description": "Name of venue town",
+                                  "type": "string"
+                                },
+                                "ticketUrl": {
+                                  "description": "URL for tickets",
+                                  "type": "string"
+                                },
+                                "image": {
+                                  "description": "Image for event",
+                                  "type": "string"
+                                },
+                                "trackUrl": {
+                                  "description": "URL to track event",
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          } 
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }

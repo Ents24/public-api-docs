@@ -1,0 +1,37 @@
+FORMAT: 1A
+HOST: https://api.ents24.com
+
+# Group Response Headers
+
+### Status Codes
+Depending upon the outcome of your request to the API, the response you receive will have one of the following status codes:
+
+Code    | Status               | Description
+------- | -------------------- | -----------------------------------------------------------------------------------------------------
+**200** | OK                   | The request was understood and successful, and content was found for the response.
+**204** | No Content           | The request was understood and successful but no content was found for the response.
+**400** | Bad Request          | The request was not understand.
+**401** | Unauthorized         | The request was not authorised due to invalid, missing or malformed authentication credentials.
+**403** | Forbidden            | The request was not authorised with authentication credentials provided.
+**404** | Not Found            | The resource requested was not found.
+**405** | Method Not Allowed   | The endpoint the request was sent to expected to receive it via a different HTTP method.
+**422** | Unprocessable Entity | The request was understood but unsuccessful due to invalid, missing or malformed request parameters.
+**503** | Service Unavailable  | The endpoint the request was sent to was unavailable due to downtime.
+
+### Important Headers
+
+Header                  | Value Type     | Description
+----------------------- | -------------- | -----------------------------------------------------------------------------------------
+**Content-Type**        | String         | Type/Format of the response body.
+**Date**                | String         | The date the requested representation of a resource was served.
+**Expires**             | String         | The date the requested representation of a resource may be cached until.
+**Last-Modified**       | String         | The date the resource requested was added/updated.
+
+### Metadata Headers
+Aside from the usual data our response headers will include any metadata relevent to a given request and/or response body.
+
+Header                  | Value Type     | Description
+----------------------- | -------------- | ----------------------------------------------------------------------
+**X-Next-Page**         | String         | The cursor position for the next page/chunk.
+**X-Previous-Page**     | String         | The cursor position for the previous page/chunk.
+**X-Total-Items-Found** | Integer        | The total number of items from all page(s)/chunk(s).

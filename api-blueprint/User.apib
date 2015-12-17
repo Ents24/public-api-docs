@@ -1,21 +1,25 @@
 FORMAT: 1A
 HOST: https://api.ents24.com
 
-# Ents24 REST API (Beta 3.2)
-The Ents24 REST API gives you easy access to the UK's most comprehensive live entertainment database:  
-A horde of event-listing experts add over 10,000 new listings every week!  
-Easily use our data for your website or application.  
-
-Licensing terms and conditions apply.
-
 # Group User
 Available resources on the User API endpoints.<br />
 ***NB:*** *A user access token is required to make requests to these endpoints.<br />Please see the 'User Authentication' section for more details.*  
 
-### Tracked Artists [/user/tracked-artists?updated\_since={updated\_since}]
+### Tracked Artists [/user/tracked-artists?results_per_page={results_per_page}&page={page}&incl_image={incl_image}&image_size={image_size}&full_description={full_description}&incl_also_liked={incl_also_liked}&updated_since={updated_since}&order_by={order_by}&order_direction={order_direction}]
 A list of artists the user is tracking.
 
 #### User Tracked Artists [GET]
++ Parameters
+  + incl_image (optional, boolean, `1`) ... Decides whether or not an artist image is included in the response.
+  + image_size (optional, string, `medium`) ... Chooses the size of image included with each artist object if one is available [`small`, `medium`, `large`].
+  + full_description (optional, boolean, `0`) ... Decides whether full or summarised description text is included in the response. 
+  + incl_also_liked (optional, boolean, `1`) ... Decides whether or not a list of IDs for similar artists is included in the response.
+  + updated_since (optional, datetime, `2015-08-15T15:52:01+00:00`) ... Only retrive artists that have been added/updated since the given timestamp (RFC3339).
+  + results_per_page (optional, integer, `25`) ... The number of results you want per page/chunk [`25`, `50`, `75`, `100`].
+  + page (optional, string, `ZW0=`) ... The page/chunk of results to be requested.
+  + order_by (optional, string, `lastUpdate`) ... Order events by the named object property.
+  + order_direction (optional, string, `desc`) ... Ordering direction [`asc`, `desc`].
+
 + Request
 
     + Headers
@@ -84,11 +88,9 @@ A list of artists the user is tracking.
                             "description": "Caption text for this image",
                             "type": ["string","null"]
                           }
-                        },
-                        "required": ["copyright","caption"]
+                        }
                       }
-                    },
-                    "required": ["url","width","height","metadata"]
+                    }
                   },
                   "genre": {
                     "description": "The genre(s) the artist is found under",
@@ -116,8 +118,7 @@ A list of artists the user is tracking.
                     "description": "RFC-3339 formatted added/updated timestamp for this object",
                     "type": "string"
                   }
-                },
-                "required": ["id","name","description","upcomingEvents","webLink","fansOnEnts24","lastUpdate"]
+                }
               }
             }
 
@@ -132,10 +133,21 @@ A list of artists the user is tracking.
               X-Previous-Page: ZW0=
               X-Total-Items-Found: 75
 
-### Tracked Venues [/user/tracked-venues?updated\_since={updated\_since}]
+### Tracked Venues [/user/tracked-venues?results_per_page={results_per_page}&page={page}&incl_image={incl_image}&image_size={image_size}&full_description={full_description}&incl_also_liked={incl_also_liked}&updated_since={updated_since}&order_by={order_by}&order_direction={order_direction}]
 A list of venues the user is tracking.
 
 #### User Tracked Venues [GET]
++ Parameters
+  + incl_image (optional, boolean, `1`) ... Decides whether or not a venue image is included in the response.
+  + image_size (optional, string, `medium`) ... Chooses the size of image included with each venue object if one is available [`small`, `medium`, `large`].
+  + full_description (optional, boolean, `0`) ... Decides whether full or summarised description text is included in the response. 
+  + incl_also_liked (optional, boolean, `1`) ... Decides whether or not a list of IDs for similar venues is included in the response.
+  + updated_since (optional, datetime, `2015-08-15T15:52:01+00:00`) ... Only retrive venues that have been added/updated since the given timestamp (RFC3339).
+  + results_per_page (optional, integer, `25`) ... The number of results you want per page/chunk [`25`, `50`, `75`, `100`].
+  + page (optional, integer, `1`) ... The page/chunk of results to be requested.
+  + order_by (optional, string, `lastUpdate`) ... Order events by the named object property.
+  + order_direction (optional, string, `desc`) ... Ordering direction [`asc`, `desc`].
+
 + Request
 
     + Headers
@@ -196,8 +208,7 @@ A list of venues the user is tracking.
                         "description": "The country where the venue is located",
                         "type": "string"
                       }
-                    },
-                    "required": ["town","country"]
+                    }
                   },
                   "location": {
                     "description": "Lat/Lon coordinates of the venue",
@@ -265,11 +276,9 @@ A list of venues the user is tracking.
                             "description": "Caption text for this image",
                             "type": ["string","null"]
                           }
-                        },
-                        "required": ["copyright","caption"]
+                        }
                       }
-                    },
-                    "required": ["url","width","height","metadata"]
+                    }
                   },
                   "webLink": {
                     "description": "URL for the web page for the venue on ents24.com",
@@ -290,8 +299,7 @@ A list of venues the user is tracking.
                     "description": "RFC-3339 formatted added/updated timestamp for this object",
                     "type": "string"
                   }
-                },
-                "required": ["id","name","location","description","webLink","fansOnEnts24","lastUpdate"] 
+                }
               }
             }
 
@@ -306,10 +314,24 @@ A list of venues the user is tracking.
               X-Previous-Page: ZW0=
               X-Total-Items-Found: 75
 
-### Tracked Events [/user/tracked-events?updated\_since={updated\_since}]
+### Tracked Events [/user/tracked-events?results_per_page={results_per_page}&page={page}&incl_image={incl_image}&image_size={image_size}&incl_stages={incl_stages}&incl_artists={incl_artists}&incl_occurrences={incl_occurrences}&incl_tickets={incl_tickets}&full_description={full_description}&updated_since={updated_since}&order_by={order_by}&order_direction={order_direction}]
 A list of events the user is tracking.
 
 #### User Tracked Events [GET]
++ Parameters
+  + incl_image (optional, boolean, `1`) ... Decides whether or not an event image is included in the response.
+  + image_size (optional, string, `medium`) ... Chooses the size of image included with each image object if one is available [`small`, `medium`, `large`].
+  + incl_stages (optional, boolean, `1`) ... Decides whether or not a list of stages is included for any festival events in the response. 
+  + incl_artists (optional, boolean, `1`) ... Decides whether or not a list of performing artists is included in the response. 
+  + incl_occurrences (optional, boolean, `1`) ... Decides whether or not a list of individual event occurrences is included for any repeat events in the response.
+  + incl_tickets (optional, boolean, `1`) ... Decides whether or not a list of available tickets is included in the response.  
+  + full_description (optional, boolean, `0`) ... Decides whether full or summarised description text is included in the response. 
+  + updated_since (optional, datetime, `2015-08-15T15:52:01+00:00`) ... Only retrive events that have been added/updated since the given timestamp (RFC3339).
+  + results_per_page (optional, integer, `25`) ... The number of results you want per page/chunk [`25`, `50`, `75`, `100`].
+  + page (optional, string, `ZW0=`) ... The page/chunk of results to be requested.
+  + order_by (optional, string, `lastUpdate`) ... Order events by the named object property.
+  + order_direction (optional, string, `desc`) ... Ordering direction [`asc`, `desc`].
+
 + Request
 
     + Headers
@@ -414,8 +436,7 @@ A list of events the user is tracking.
                         "description": "Lat/Lon coordinates of the venue",
                         "$ref": "http://json-schema.org/geo"
                       }
-                    },
-                    "required": ["id","name","town","location"]
+                    }
                   },
                   "description": {
                     "description": "Description text for the event",
@@ -435,8 +456,7 @@ A list of events the user is tracking.
                           "description": "Name of a featured artist",
                           "type": "string"
                         }
-                      },
-                      "required": ["name"]
+                      }
                     }
                   },
                   "stages": {
@@ -481,16 +501,13 @@ A list of events the user is tracking.
                                       "description": "Name of a featured artist",
                                       "type": "string"
                                     }
-                                  },
-                                  "required": ["name"]
+                                  }
                                 }
                               }
-                            },
-                            "required": ["startDate","endDate"]
+                            }
                           }
                         }
-                      },
-                      "required": ["name","days"]
+                      }
                     }
                   },
                   "occurrences": {
@@ -613,12 +630,10 @@ A list of events the user is tracking.
                                 "description": "The sales phone line number for this ticket",
                                 "type": ["string","null"]
                               }
-                            },
-                            "required": ["dateTime","supplier","price","totalPrice","inclBookingFee","isOnSale","isAvailable","isPresaleTicket","isResaleTicket","onSaleFrom","onSaleUntil","url","email","telephone"]
+                            }
                           }
                         }
-                      },
-                      "required": ["id","startDate","endDate","startTimeString","endTimeString","hasMoved","isCancelled","isPostponed","isRescheduled","isSoldOut","ticketsAvailable","isFree","price"]
+                      }
                     }
                   },
                   "image": {
@@ -649,11 +664,9 @@ A list of events the user is tracking.
                             "description": "Caption text for this image",
                             "type": ["string","null"]
                           }
-                        },
-                        "required": ["copyright","caption"]
+                        }
                       }
-                    },
-                    "required": ["url","width","height","metadata"]
+                    }
                   },
                   "tickets": {
                     "description": "Tickets for this event",
@@ -717,8 +730,7 @@ A list of events the user is tracking.
                           "description": "The sales phone line number for this ticket",
                           "type": ["string","null"]
                         }
-                      },
-                      "required": ["dateTime","supplier","price","totalPrice","inclBookingFee","isOnSale","isAvailable","isPresaleTicket","isResaleTicket","onSaleFrom","onSaleUntil","url","email","telephone"]
+                      }
                     }
                   },
                   "genre": {
@@ -740,8 +752,7 @@ A list of events the user is tracking.
                     "description": "RFC-3339 formatted added/updated timestamp for this object",
                     "type": "string"
                   }
-                },
-                "required": ["id","title","headline","startDate","endDate","startTimeString","endTimeString","isSoldOut","ticketsAvailable","isFree","description","genre","webLink","fansOnEnts24","lastUpdate"]
+                }
               }
             }
 
@@ -792,8 +803,7 @@ Make changes to the users tracked artists, venues and events.
                         "description": "RFC-3339 formatted timestamp for when this artist was tracked by the user",
                         "type": "string"
                       }
-                    },
-                    "required": ["id","subscribed"]
+                    }
                   }
                 },
                 "venues": {
@@ -810,8 +820,7 @@ Make changes to the users tracked artists, venues and events.
                         "description": "RFC-3339 formatted timestamp for when this venue was tracked by the user",
                         "type": "string"
                       }
-                    },
-                    "required": ["id","subscribed"]
+                    }
                   }
                 },
                 "events": {
@@ -828,12 +837,10 @@ Make changes to the users tracked artists, venues and events.
                         "description": "RFC-3339 formatted timestamp for when this event was tracked by the user",
                         "type": "string"
                       }
-                    },
-                    "required": ["id","subscribed"]
+                    }
                   }
                 }
-              },
-              "required": ["lastSyncDate","artists","venues","events"]
+              }
             }
 
 + Response 200 (application/json)
@@ -878,11 +885,8 @@ Make changes to the users tracked artists, venues and events.
                         "description": "RFC-3339 formatted timestamp showing when the action was scheduled for the entity",
                         "type": "string"
                       }
-                    },
-                    "required": ["type","id","action","timestamp"]
+                    }
                   }
                 }
-              },
-              "required": ["lastSyncDate","changes"]
+              }
             }
-           
