@@ -1,7 +1,7 @@
 Ents24 REST API (Beta 4 v1.0.0)
 ===============================
 
-**N.B. This repository of schemas is currently out of date and does not necessarily represent the current state of the Ents24 API. This is because rather than have multiple copies of this documentation as we have in the past we are endeavouring to centralise our docs and thereby reduce the maintenance cost of making API updates. For the most comprehensive and up to date representation of our API please go to [developers.ents24.com/](https://developers.ents24.com/)**
+**N.B. This repository of schemas is currently out of date and does not necessarily represent the current state of the Ents24 API. This is because rather than have multiple copies of this documentation as we have in the past we are endeavouring to centralise our docs and thereby reduce the maintenance cost of making API updates. For the most comprehensive and up to date representation of our API please go to [developers.ents24.com/](https://developers.ents24.com)**
 
 The Ents24 REST API gives you easy access to the UK's most comprehensive live entertainment database:  A horde of event-listing experts add over 10,000 new listings every week!  Easily use our data for your website or application.  
 
